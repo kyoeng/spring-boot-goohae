@@ -5,15 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>practise</title>
-    <link rel="stylesheet" href="css/admin/common.css">
-    <link rel="stylesheet" href="css/admin/regProduct.css">
+    <link rel="stylesheet" href="/css/admin/common.css">
+    <link rel="stylesheet" href="/css/admin/regProduct.css">
 </head>
 
 <body>
     <header th:replace="admin/fragment :: adminHeader"></header>
 
     <div class="reg_container">
-        <form>
+        <h2>상품 등록</h2>
+
+        <form action="/admin/product/reg" enctype="multipart/form-data">
             <select class="select_cate" name="categoryCode" required>
                 <option value="1" selected>소파</option>
                 <option value="2">테이블</option>
@@ -37,10 +39,10 @@
 
             <input type="text" name="productOption" placeholder="상품 옵션-색상">
 
-            <textarea name="productInfo" placeholder="상품 정보-공백 가능"></textarea>
+            <input type="text" name="productInfo" placeholder="상품 정보-공백 가능"></input>
 
             <input type="file" multiple name="files">
-            <div>
+            <div class="preview">
 
             </div>
 

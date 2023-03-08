@@ -5,11 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ProductController {
+public class AdminController {
 
-    @GetMapping("/admin/reg-pro")
-    public String regProduct() {
-        return "admin/regProduct";
+    @GetMapping("/admin")
+    public String adminMain() {
+        return "admin/main";
     }
 
 }
