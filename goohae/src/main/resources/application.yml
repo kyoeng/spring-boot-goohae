@@ -1,0 +1,23 @@
+spring:
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 10MB
+  datasource:
+    username: root
+    password: mysql
+    url: jdbc:mysql://localhost:3306/goohae?&serverTimezone=UTC&autoReconnect=true&allowMultiQueries=true&characterEncoding=UTF-8
+    driver: com.mysql.cj.jdbc.Driver
+  http:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+
+
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.kdt.goohae.domain
