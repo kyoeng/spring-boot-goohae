@@ -1,4 +1,33 @@
 .reg_container {
     margin: auto;
-    width: 600px;
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+}
+
+.reg_container>form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+.select_cate {
+    width: 100%;
+    height: 30px;
+}
+
+.reg_container>form>input:not(:last-of-type) {
+    width: 100%;
+    height: 30px;
+}
+
+
+.reg_btn {
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
 }
