@@ -89,3 +89,21 @@ header>.header_container>.header_nav {
     opacity: 1;
     text-decoration: underline;
 }
+
+
+.logout_btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 1.3rem;
+    background-color: black;
+    color: white;
+}
+
+.logout_btn:hover {
+    opacity: 0.5;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>practise</title>
+    <link rel="stylesheet" href="/css/admin/common.css">
+    <link rel="stylesheet" href="/css/admin/productList.css">
+</head>
+
+<body>
+    <header th:replace="admin/fragment :: adminHeader"></header>
+
+    <div class="list_container">
+        <h2>상품 리스트</h2>
+
+        <div class="list_titles">
+            <span class="pro_name">상품명</span>
+            <span class="pro_price">가격</span>
+            <span class="pro_dis">할인율</span>
+            <span class="pro_opt">옵션</span>
+            <span class="pro_img">이미지</span>
+        </div>
+
+        <div class="list_values">
+            <div class="values" th:each="product : ${product}">
+                <span class="values_name" th:text="${product.productName}"></span>
+                <span class="values_price" th:text="${product.price}"></span>
+                <span class="values_dis" th:text="${product.discount}"></span>
+                <span class="values_opt" th:text="${product.productOption}"></span>
+                <img th:src="${product.imagePath}">
+            </div>
+        </div>
+
+        <div class="paging">
+            <button th:disabled="${pageMaker.prev == false} ? 'disabled'">&lt;&lt;</button>
+            <button th:disabled="${pageMaker.prev == false} ? 'disabled'">&lt;</button>
+
+            <button th:each="num, stat : ${#numbers.sequence(1, 5)}" th:text="${num}"
+                    th:disabled="${pageMaker.criteria.currentPage == num} ? 'disabled'"
+                    th:if="|${stat.count}| <= ${pageMaker.endPageNum}"></button>
+
+            <button th:disabled="${pageMaker.next == false} ? 'disabled'">&gt;</button>
+            <button th:disabled="${pageMaker.next == false} ? 'disabled'">&gt;&gt;</button>
+        </div>
+    </div>
+</body>
+
+</html>
