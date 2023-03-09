@@ -17,21 +17,29 @@
             <nav class="user-navbar">
                 <ul class="user-list">
                     <li class="login-inner user-menu">
-                        <a href="#">
+                        <a href="/user/login" th:if="${session.loginId == null}">
                             <img src="/images/icon/login_icon.png" alt="로그인">
                             <span>로그인</span>
+                        </a>
+                        <a href="/user/logout" th:if="${session.loginId != null}">
+                            <img src="/images/icon/login_icon.png" alt="로그아웃">
+                            <span>로그아웃</span>
                         </a>
                     </li>
 
                     <li class="join-inner user-menu">
-                        <a href="#">
+                        <a href="/user/join" th:if="${session.loginId == null}">
                             <img src="/images/icon/join.png" alt="회원가입">
                             <span>회원가입</span>
+                        </a>
+                        <a href="/user/mypage" th:if="${session.loginId != null}">
+                            <img src="/images/icon/join.png" alt="마이페이지">
+                            <span>마이페이지</span>
                         </a>
                     </li>
 
                     <li class="cart-inner user-menu">
-                        <a href="#">
+                        <a href="/user/mycart" th:if="${session.loginId != null}">
                             <img src="/images/icon/cart.png" alt="카트">
                             <span>장바구니</span>
                         </a>
@@ -43,7 +51,6 @@
                     <button class="search-btn"></button>
                 </form>
             </nav>
-
         </div>
 
         <div class="under-header">
@@ -54,7 +61,7 @@
                         <span>거실</span>
                         <ul class="living-category">
                             <li>
-                                <a href="#">테이블</a>
+                                <a th:href="@{/product/}">테이블</a>
                             </li>
                             <li>
                                 <a href="#">의자</a>
@@ -111,10 +118,10 @@
                         <span>고객문의</span>
                         <ul class="customer-category">
                             <li>
-                                <a href="#">공지사항</a>
+                                <a href="/customer/main">공지사항</a>
                             </li>
                             <li>
-                                <a href="#">FAQ</a>
+                                <a href="/customer/inquiry">FAQ</a>
                             </li>
                             <li>
                                 <a href="#">상담문의</a>

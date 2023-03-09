@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Slf4j
@@ -52,29 +54,36 @@ public class UserController {
     }
 
     @GetMapping (value = "user/login")
-    public String loginF() {
-        log.info("로그인");
-        return "user/singlePage/login";
-    }
+    public String loginF() { return "user/singlePage/login"; }
 
     @PostMapping (value = "user/login")
-    public ModelAndView login(@RequestBody UserVO vo, ModelAndView mv) {
+    public ModelAndView login(UserVO vo, ModelAndView mv, HttpSession httpSession) {
         log.info("{}",vo);
         UserVO dbVO = userService.selectOne(vo);
+        log.info("{}",dbVO.getPassword());
         if(dbVO != null){
             if(passwordEncoder.matches(vo.getPassword(), dbVO.getPassword())){
-                mv.setViewName("mainPage");
+                httpSession.setAttribute("loginId",vo.getId());
+                httpSession.setAttribute("name",vo.getName());
+                mv.setViewName("/mainPage");
             }else{
                 mv.addObject("message", "PW오류");
-                mv.setViewName("user/login");
+                mv.setViewName("/user/singlePage/login");
             }
         }else {
             mv.addObject("message", "ID오류");
-            mv.setViewName("user/login");
+            mv.setViewName("/user/singlePage/login");
         }
         return mv;
     }
 
+    @GetMapping (value = "user/logout")
+    public String logout(HttpSession httpSession){
+        httpSession.setAttribute("loginId",null);
+        return "/mainPage";
+    }
+
+    // 아이디 찾기, 비밀번호 찾기
     @GetMapping (value = "user/findid")
     public String findId () {return "user/singlePage/findId";}
     @GetMapping (value = "user/findpw")
@@ -83,6 +92,8 @@ public class UserController {
         mv.addObject("findPw",vo);
         return "user/singlePage/findPw";}
 
+
+    // 로그인 이후 기능
     // 마이페이지는 로그인 해야함.
     @GetMapping (value = "user/mypage")
     public String myPage(){ return "user/myPage/myPage";}

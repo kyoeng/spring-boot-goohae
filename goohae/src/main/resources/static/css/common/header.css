@@ -36,7 +36,7 @@
 }
 
 .user-navbar {
-    width: 300px;
+    width: 320px;
     height: 70px;
 
     display: flex;
@@ -71,7 +71,7 @@
 }
 
 .user-navbar>.user-list>.user-menu>a>span {
-    width: 70%;
+    width: 80%;
     height: 100%;
     font-size: 12px;
     letter-spacing: 2px;
