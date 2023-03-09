@@ -5,6 +5,7 @@ import com.kdt.goohae.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,25 +14,60 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 @Controller
 public class UserController {
-//    private final UserService userService;
-//    private final PasswordEncoder passwordEncoder;
-//
-//    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
-//        this.userService = userService;
-//        this.passwordEncoder = passwordEncoder;
-//    }
+
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @GetMapping(value = "main")
     public String main() { return "mainPage";}
 
     @GetMapping(value = "user/join")
-    public ModelAndView join(UserVO vo, ModelAndView mv) {
+    public ModelAndView joinF(UserVO vo, ModelAndView mv) {
         mv.setViewName("user/singlePage/signUp");
-        mv.addObject("signUp",vo);
-        return mv;}
+        mv.addObject("UserVO",vo);
+        return mv;
+    }
+
+    @PostMapping(value = "user/join")
+    public ModelAndView join (@RequestBody UserVO vo, ModelAndView mv) {
+        vo.setPassword(passwordEncoder.encode(vo.getPassword()));
+        if ( userService.insert(vo)>0 ) {
+            mv.setViewName("user/singlePage/login");
+        } else {
+            mv.setViewName("user/singlePage/login");
+        }
+        return mv;
+    }
+
     @GetMapping (value = "user/login")
-    public String login() {
+    public String loginF() {
         log.info("로그인");
-        return "user/singlePage/login";}
+        return "user/singlePage/login";
+    }
+
+    @PostMapping (value = "user/login")
+    public ModelAndView login(@RequestBody UserVO vo, ModelAndView mv) {
+        log.info("{}",vo);
+        UserVO dbVO = userService.selectOne(vo);
+        if(dbVO != null){
+            if(passwordEncoder.matches(vo.getPassword(), dbVO.getPassword())){
+                mv.setViewName("mainPage");
+            }else{
+                mv.addObject("message", "PW오류");
+                mv.setViewName("user/login");
+            }
+        }else {
+            mv.addObject("message", "ID오류");
+            mv.setViewName("user/login");
+        }
+        return mv;
+    }
+
     @GetMapping (value = "user/findid")
     public String findId () {return "user/singlePage/findId";}
     @GetMapping (value = "user/findpw")
@@ -49,9 +85,4 @@ public class UserController {
     public String myCart(){ return "user/myPage/shoppingCart";}
 
 
-    @PostMapping(value = "user/join")
-    public String join(@RequestBody UserVO vo) {
-//        if(userService.insert(vo)>0) return "user/join";
-        return "user/login";
-    }
 }
