@@ -1,0 +1,40 @@
+.FaqTable {
+    height: 535px;
+    box-sizing: border-box;
+}
+
+.tableList {
+    height: 38px;
+}
+
+.tableList tr th:nth-child(1) {
+    width: 70px;
+}
+
+.tableTr td:nth-child(1) {
+    width: 80px;
+}
+
+.tableList tr th:nth-child(2) {
+    width: 300px;
+}
+
+.tableTr td:nth-child(2) {
+    width: 310px;
+}
+
+.tableList tr th:nth-child(3) {
+    width: 100px;
+}
+
+.tableTr td:nth-child(3) {
+    width: 110px;
+}
+
+.tableList tr th:nth-child(4) {
+    width: 130px;
+}
+
+.tableTr td:nth-child(4) {
+    width: 130px;
+}

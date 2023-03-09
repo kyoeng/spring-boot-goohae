@@ -1,0 +1,89 @@
+@import url(./productBox.css);
+@import url(./productContainer.css);
+
+/* subHeader */
+.SubHeaderContainer {
+    width: 70%;
+    height: 15vw;
+    margin: auto;
+    margin-top: 158px;
+    display: flex;
+    flex-direction: column;
+}
+
+.SubHeaderInfo {
+    height: 10%;
+    display: flex;
+    gap: 1%;
+    font-size: 1.2rem;
+}
+
+.SubHeaderTitle {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.3rem;
+    color: white;
+}
+
+.SubHeaderNav {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    gap: 3%;
+}
+
+.SubHeaderNav>li {
+    width: 7%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.SubHeaderNav>li:hover {
+    color: #505DD0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* subProducts */
+.categoryBest {
+    width: 70%;
+    height: 25vw;
+    margin: auto;
+    margin-top: 6%;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.categoryBest>h2 {
+    font-size: 3rem;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* products ===== */
+.categoryProducts {
+    width: 70%;
+    height: 50vw;
+    margin: auto;
+    margin-top: 6%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.categoryProducts>h3 {
+    font-size: 2.5rem;
+    height: 7.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

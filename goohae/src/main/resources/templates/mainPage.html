@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: header">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static//css/common/config.css">
+    <link rel="stylesheet" href="../static/css/mainPage.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header th:replace="common/header :: fragment-header"></header>
+    <div class="bannerContainer">
+        <ul class="bannerInner">
+            <li class="bannerImgBox">
+                <img src="/images/banner/banner1.jpg" alt="banner">
+            </li>
+            <li>
+                <img src="/images/banner/banner2.jpg" alt="banner">
+            </li>
+        </ul>
+
+        <button class="bannerLeftBtn"></button>
+        <button class="bannerRightBtn"></button>
+    </div>
+
+    <section class="mainCategory">
+        <div class="LivingCategory">
+            <a href="#"><span>Living</span></a>
+        </div>
+        <div class="BedCategory">
+            <a href="#"><span>Bed Room</span></a>
+        </div>
+        <div class="DiningCategory">
+            <a href="#"><span>Dining</span></a>
+        </div>
+        <div class="DressCategory">
+            <a href="#"><span>Dress Room</span></a>
+        </div>
+    </section>
+
+    <section class="mainReview">
+        <h3>Review</h3>
+
+        <div class="ReviewContainer">
+            <article class="reviewBox">
+                <a href="#!" class="AforReviewBox">:</a>
+
+                <img class="reviewImg" src="" alt="리뷰이미지">
+
+                <div class="reviewInfo">
+                    <p class="reviewProduct">리뷰내용</p>
+
+                    <div class="reviewIdScore">
+                        <span class="reviewWriter">작성자</span>
+                        <span class="reviewScore">점수</span>
+                    </div>
+
+                    <p class="reviewTitle">제목</p>
+                </div>
+            </article>
+        </div>
+    </section>
+</body>
+
+<script src=""></script>
+
+</html>

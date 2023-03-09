@@ -1,0 +1,117 @@
+@import url(./banner.css);
+
+/* newProduct =========================== */
+.newProductContainer {
+    width: 70%;
+    height: 25vw;
+    margin: auto;
+    margin-top: 6%;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.newProductContainer>h2 {
+    font-size: 3rem;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* bestProduct ========================== */
+.bestProductContainer {
+    width: 70%;
+    height: 50vw;
+    margin: auto;
+    margin-top: 6%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.bestProductContainer>h2 {
+    font-size: 3rem;
+    height: 7.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* mainCategory ========================= */
+.mainCategory {
+    width: 90%;
+    height: 30vw;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 6%;
+}
+
+.mainCategory>div {
+    width: 24%;
+    height: 100%;
+    position: relative;
+}
+
+.LivingCategory {
+    background: url(/images/main/CateLiving.jpg) center/cover;
+}
+
+.BedCategory {
+    background: url(/images/main/CateBed.jpg) center/cover;
+}
+
+.DiningCategory {
+    background: url(/images/main/CateDining.jpg) center/cover;
+}
+
+.DressCategory {
+    background: url(/images/main/CateDress.jpg) center/cover;
+}
+
+.mainCategory>div>a {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(26, 27, 35, .3);
+}
+
+.mainCategory>div>a>span {
+    color: white;
+    font-size: 2.3rem;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    bottom: 0;
+    transform: translateY(-80%);
+}
+
+.mainCategory>div>a:hover {
+    background-color: rgba(80, 90, 208, .3);
+}
+
+/* review ============================ */
+.mainReview {
+    width: 70%;
+    height: 25vw;
+    margin: auto;
+    margin-top: 6%;
+    display: flex;
+    gap: 10%;
+    flex-direction: column;
+}
+
+.mainReview>h3 {
+    font-size: 2.5rem;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

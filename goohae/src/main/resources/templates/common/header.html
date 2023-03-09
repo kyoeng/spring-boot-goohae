@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="userFragment :: header">
+<head th:fragment="headerFragment">
     <link rel="stylesheet" href="/css/common/header.css">
 </head>
 
 <body>
-
-    <header id='goohae-header'>
+    <header th:fragment="header" id='goohae-header'>
         <div class="upper-header">
             <div class="logo-container">
                 <a href="#">
