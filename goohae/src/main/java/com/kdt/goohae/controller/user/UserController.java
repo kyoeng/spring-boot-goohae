@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+
 @Slf4j
 @Controller
 public class UserController {
@@ -22,6 +24,11 @@ public class UserController {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
+
+    @GetMapping(value = "deletetest")
+    public void listtest(UserVO vo){
+        vo.setId("dbdb1114");
+        log.info("{}",userService.delete(vo)); }
 
     @GetMapping(value = "main")
     public String main() { return "mainPage";}

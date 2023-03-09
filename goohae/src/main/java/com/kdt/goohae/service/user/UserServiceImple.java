@@ -9,6 +9,8 @@ import java.util.ArrayList;
 @Service
 public class UserServiceImple  implements UserService{
 
+    public UserServiceImple(UserMapper mapper) {this.mapper = mapper;}
+
     UserMapper mapper;
 
     @Override
