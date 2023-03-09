@@ -9,6 +9,74 @@
     <link rel="stylesheet" href="/css/common/footer.css">
     <link rel="stylesheet" href="/css/mainPage.css">
     <title>Document</title>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+
+    <script>
+        const Data = [
+            {
+                "title": "좋아요",
+                "contents": "안좋아요",
+                "writer": "writer",
+                "score": "4.5"
+            },
+            {
+                "title": "좋아요",
+                "contents": "안좋아요",
+                "writer": "writer",
+                "score": "4.5"
+            },
+            {
+                "title": "좋아요",
+                "contents": "안좋아요",
+                "writer": "writer",
+                "score": "4.5"
+            },
+            {
+                "title": "좋아요",
+                "contents": "안좋아요",
+                "writer": "writer",
+                "score": "4.5"
+            }
+        ];
+
+        const container = document.querySelector(".ReviewContainer");
+        Data.forEach((item) => {
+            const article = document.createElement("article");
+            article.className = "reviewBox";
+            const link = document.createElement("a");
+            link.href = "#!";
+            link.className = "AforReviewBox";
+            article.appendChild(link);
+            const image = document.createElement("img");
+            image.className = "reviewImg";
+            image.src = "";
+            image.alt = "리뷰이미지";
+            article.appendChild(image);
+            const info = document.createElement("div");
+            info.className = "reviewInfo";
+            const product = document.createElement("p");
+            product.className = "reviewProduct";
+            product.textContent = item.contents;
+            info.appendChild(product);
+            const idScore = document.createElement("div");
+            idScore.className = "reviewIdScore";
+            const writer = document.createElement("span");
+            writer.className = "reviewWriter";
+            writer.textContent = item.writer;
+            idScore.appendChild(writer);
+            const score = document.createElement("span");
+            score.className = "reviewScore";
+            score.textContent = item.score;
+            idScore.appendChild(score);
+            info.appendChild(idScore);
+            const title = document.createElement("p");
+            title.className = "reviewTitle";
+            title.textContent = item.title;
+            info.appendChild(title);
+            article.appendChild(info);
+            container.appendChild(article);
+        });
+    </script>
 </head>
 
 <body>
@@ -24,6 +92,72 @@
         </ul>
     </div>
 
+    <section class="bestProductContainer">
+        <h2>Best Products</h2>
+        <div class="productContainer">
+            <article class="productBox">
+                <a href="#" class="AforProduct">
+                    <img src="" class="productImg" alt="상품이미지">
+
+                    <div class="productInfo">
+                        <p class="productName">상품이름</p>
+
+                        <p class="productPrice">
+                            <span>가격</span>
+                            <span>원가</span>
+                            <span>할인율</span>
+                        </p>
+                    </div>
+
+                    <div class="forFavorite">좋아요</div>
+                </a>
+            </article>
+        </div>
+
+        <div class="productContainer">
+            <article class="productBox">
+                <a href="#" class="AforProduct">
+                    <img src="" class="productImg" alt="상품이미지">
+
+                    <div class="productInfo">
+                        <p class="productName">상품이름</p>
+
+                        <p class="productPrice">
+                            <span>가격</span>
+                            <span>원가</span>
+                            <span>할인율</span>
+                        </p>
+                    </div>
+
+                    <div class="forFavorite">좋아요</div>
+                </a>
+            </article>
+        </div>
+    </section>
+
+    <section class="newProductContainer">
+        <h2>New Products</h2>
+
+        <div class="productContainer">
+            <article class="productBox">
+                <a href="#" class="AforProduct">
+                    <img src="" class="productImg" alt="상품이미지">
+
+                    <div class="productInfo">
+                        <p class="productName">상품이름</p>
+
+                        <p class="productPrice">
+                            <span>가격</span>
+                            <span>원가</span>
+                            <span>할인율</span>
+                        </p>
+                    </div>
+
+                    <div class="forFavorite">좋아요</div>
+                </a>
+            </article>
+        </div>
+    </section>
 
     <section class="mainCategory">
         <div class="LivingCategory">
@@ -40,31 +174,18 @@
         </div>
     </section>
 
+
+
     <section class="mainReview">
         <h3>Review</h3>
 
         <div class="ReviewContainer">
-            <article class="reviewBox">
-                <a href="#!" class="AforReviewBox">:</a>
 
-                <img class="reviewImg" src="" alt="리뷰이미지">
-
-                <div class="reviewInfo">
-                    <p class="reviewProduct">리뷰내용</p>
-
-                    <div class="reviewIdScore">
-                        <span class="reviewWriter">작성자</span>
-                        <span class="reviewScore">점수</span>
-                    </div>
-
-                    <p class="reviewTitle">제목</p>
-                </div>
-            </article>
         </div>
     </section>
     <footer th:replace="common/footer :: footer"></footer>
 </body>
 
-<script src=""></script>
+
 
 </html>
