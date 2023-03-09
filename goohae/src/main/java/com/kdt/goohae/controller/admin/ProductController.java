@@ -135,7 +135,7 @@ public class ProductController {
      * @return 메시지와 함께 리다이렉트
      */
     @GetMapping("/admin/del-pro")
-    public ModelAndView derProduct(ProductVO vo, ModelAndView mv, RedirectAttributes rttr) {
+    public ModelAndView delProduct(ProductVO vo, ModelAndView mv, RedirectAttributes rttr) {
         String uri = "redirect:/admin/get-pro";
 
         if (service.deleteProduct(vo) > 0) {

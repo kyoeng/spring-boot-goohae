@@ -53,8 +53,9 @@
 
             <!-- 페이징 번호 -->
             <a th:each="num, stat : ${#numbers.sequence(1, 5)}" th:text="${num}"
-                th:if="|${stat.count}| <= ${pageMaker.endPageNum}"
-                th:href="@{/admin/get-pro(categoryCode=${code}, currentPage=${num}, check=${check})}"></a>
+               th:if="|${stat.count}| <= ${pageMaker.endPageNum}"
+               th:href="@{/admin/get-pro(categoryCode=${code}, currentPage=${num}, check=${check})}"
+               th:style="${pageMaker.criteria.currentPage == num ? 'pointer-events: none; text-decoration: underline;' : ''}"></a>
 
             <!-- 다음 페이징으로 -->
             <a th:href="@{/admin/get-pro(categoryCode=${code}, currentPage=${pageMaker.endPageNum + 1}, check=${check})}"
