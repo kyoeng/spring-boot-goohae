@@ -3,31 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-  <link rel="stylesheet" href="/css/singlePage/signUp.css">
+  <link rel="stylesheet" href="/css/user/singlePage/signUp.css">
 <!--  <script defer src="/js/singlePage/login.js"></script>-->
 <!--</head>-->
 <body>
 <main class="signUpContainer">
   <section id="MemberInfoWrap">
     <div class="logoImage">
-      <a href="http://192.168.0.86:3000" th:href="@{/}"><img src={logo} alt="img" /></a>
+      <a href="/" th:href="@{/}"><img src={logo} alt="img" /></a>
     </div>
     <article class="FormWrap">
       <form class="InfoForm" name="memberJoin"  th:action="@{/account/signUp}" method="post" th:object="${signUp}">
         <div class="idInputWrap">
           <p>아이디</p>
           <input type="text" name="id" class="signUpId" minLength={5} maxLength={16} value={signUpId}
-                 placeholder="영문 대소문자와 숫자 5-19자 조합" onChange={onChangeSignUpId} />
+                 placeholder="영문 대소문자와 숫자 5-19자 조합" />
           <p class="signUpErrorMassage" th:if="error">{signUpIdErrorMassage}</p>
           <p class="signUpErrorMassage" th:if="error">{signUpIdMassage}</p>
-          <button class="signUpIdDuplicateConform signUpBtn" onChange={signUpIdDuplicateConform}
+          <button class="signUpIdDuplicateConform signUpBtn"
                   disabled={!isSignUpId}>아이디 중복확인</button>
         </div>
         <div class="emailInputWrap">
           <p>이메일</p>
           <div class="emailInput">
             <input class="emailIdInput" value={signUpEmail} type="text" name="e_mailId"
-                   onChange={onChangeSignUpEmail} /><span>&nbsp;@&nbsp;</span>
+                   /><span>&nbsp;@&nbsp;</span>
             <input class="emailDomainInput" type="text" name="e_mailDomain" />
             <select class="emailDomainSelect" name="emailDomain" id="emailDomain">
               <option>직접입력</option>
@@ -42,27 +42,25 @@
         </div>
         <div class="pwInputWrap">
           <p>비밀번호</p>
-          <input class="pwInput" type="password" name="psw" value={signUpPassword} // minLength={8}
-          maxLength={16} placeholder=" 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합"
-          onChange={onChangeSignUpPassword} />
+          <input class="pwInput" type="password" name="psw" value={signUpPassword}  minLength=8
+          maxLength=16 placeholder=" 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합"/>
           <p class="signUpErrorMassage" th:if="error">{signUpPwMassage}</p>
         </div>
         <div class="pwConfirmInputWrap">
           <p>비밀번호 확인</p>
           <input class="pwConfirmInput" type="password" name="psw" minLength={8} maxLength={16}
-                 value={signUpPasswordConfirm} onChange={onChangeSignUpPasswordConfirm} />
+                 value={signUpPasswordConfirm}/>
           <p class="signUpErrorMassage" th:if="error">{signUpPwConfirmMessage}</p>
         </div>
         <div class="nameInputWrap">
           <p>이름</p>
-          <input class="signUpName" type="text" name="Name" value={signUpName}
-                 onChange={onChangeSignUpName} // onChange={sinUpChangeName} />
+          <input class="signUpName" type="text" name="Name" value={signUpName} />
           <p class="signUpErrorMassage" th:if="error">{signUpNameMassage}</p>
         </div>
         <div class="tellInputWrap">
           <p>휴대전화</p>
           <input class="signUpPhone" type="text" name="signUpPhone" value={signUpPhone}
-                 placeholder="'-'없이 입력해주세요" onChange={onChangeSignUpPhone} />
+                 placeholder="'-'없이 입력해주세요" />
           <p class="signUpErrorMassage" th:if="error">{signUpPhoneMassage}</p>
         </div>
         <div class="emailGetRadio">
@@ -559,7 +557,7 @@
           <p class="signUpErrorMassage" th:if="error">{signUpMeCheckMessage}</p>
         </div>
         <div class="ButtonWrap">
-          <button class="signUpSubmitBtn signUpBtn" type="submit" onChange={signUp}
+          <button class="signUpSubmitBtn signUpBtn" type="submit"
                   disabled={!activeSinupbtn} >
             회원가입 하기
           </button>
