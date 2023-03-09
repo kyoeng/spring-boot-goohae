@@ -21,6 +21,7 @@
             <span class="pro_dis">할인율</span>
             <span class="pro_opt">옵션</span>
             <span class="pro_img">이미지</span>
+            <span class="pro_del">삭제하기</span>
         </div>
 
         <div class="list_values">
@@ -30,20 +31,85 @@
                 <span class="values_dis" th:text="${product.discount}"></span>
                 <span class="values_opt" th:text="${product.productOption}"></span>
                 <img th:src="${product.imagePath}">
+                <div class="values_del">
+                    <a th:href="@{/admin/del-pro(productCode=${product.productCode})}">
+                        삭제하기
+                    </a>
+                </div>
             </div>
         </div>
 
         <div class="paging">
-            <button th:disabled="${pageMaker.prev == false} ? 'disabled'">&lt;&lt;</button>
-            <button th:disabled="${pageMaker.prev == false} ? 'disabled'">&lt;</button>
+            <!-- 처음으로 -->
+            <a th:href="@{/admin/get-pro(categoryCode=${code}, currentPage=1, check=${check})}"
+               th:style="${pageMaker.prev == false ? 'visibility: hidden' : 'visibility: visible'}">
+                &lt;&lt;
+            </a>
+            <!-- 이전 페이징으로 -->
+            <a th:href="@{/admin/get-pro(categoryCode=${code}, currentPage=${pageMaker.startPageNum - 1}, check=${check})}"
+               th:style="${pageMaker.prev == false ? 'visibility: hidden' : 'visibility: visible'}">
+                &lt;
+            </a>
 
-            <button th:each="num, stat : ${#numbers.sequence(1, 5)}" th:text="${num}"
-                    th:disabled="${pageMaker.criteria.currentPage == num} ? 'disabled'"
-                    th:if="|${stat.count}| <= ${pageMaker.endPageNum}"></button>
+            <!-- 페이징 번호 -->
+            <a th:each="num, stat : ${#numbers.sequence(1, 5)}" th:text="${num}"
+                th:if="|${stat.count}| <= ${pageMaker.endPageNum}"
+                th:href="@{/admin/get-pro(categoryCode=${code}, currentPage=${num}, check=${check})}"></a>
 
-            <button th:disabled="${pageMaker.next == false} ? 'disabled'">&gt;</button>
-            <button th:disabled="${pageMaker.next == false} ? 'disabled'">&gt;&gt;</button>
+            <!-- 다음 페이징으로 -->
+            <a th:href="@{/admin/get-pro(categoryCode=${code}, currentPage=${pageMaker.endPageNum + 1}, check=${check})}"
+               th:style="${pageMaker.next == false ? 'visibility: hidden' : 'visibility: visible'}">
+                &gt;
+            </a>
+            <!-- 마지막 페이지로 -->
+            <a th:href="@{/admin/get-pro(categoryCode=${code}, currentPage=${pageMaker.lastPageNum}, check=${check})}"
+               th:style="${pageMaker.next == false ? 'visibility: hidden' : 'visibility: visible'}">
+                &gt;&gt;
+            </a>
         </div>
+
+        <form class="search_box" action="/admin/get-pro" method="get">
+            <select name="categoryCode">
+                <option value="1" selected>소파</option>
+                <option value="2">테이블</option>
+                <option value="3">의자-거실</option>
+                <option value="4">TV콘솔</option>
+                <option value="5">침대</option>
+                <option value="6">매트리스</option>
+                <option value="7">협탁</option>
+                <option value="8">식탁</option>
+                <option value="9">의자-주방</option>
+                <option value="10">행거</option>
+                <option value="11">수납장</option>
+                <option value="12">화장대</option>
+            </select>
+
+            <div>
+                <div>
+                    <input type="radio" name="check" value="new" checked>
+                    최신순
+                </div>
+
+                <div>
+                    <input type="radio" name="check" value="old">
+                    오래된순
+                </div>
+
+                <div>
+                    <input type="radio" name="check" value="expen">
+                    가격순↑
+                </div>
+
+                <div>
+                    <input type="radio" name="check" value="cheap">
+                    가격순↓
+                </div>
+            </div>
+
+            <input type="submit" value="검색">
+        </form>
+
+        <p class="message" th:text="${message}"></p>
     </div>
 </body>
 

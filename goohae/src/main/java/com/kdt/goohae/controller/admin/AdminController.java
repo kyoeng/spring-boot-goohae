@@ -68,8 +68,8 @@ public class AdminController {
             if (passwordEncoder.matches(pw, vo.getPassword())) {
                 HttpSession session = request.getSession();
 
-                session.setAttribute("loginID", vo.getId());
-                session.setAttribute("auth", vo.getAuth());
+                session.setAttribute("adminID", vo.getId());
+                session.setAttribute("adminName", vo.getName());
 
                 uri = "redirect:/admin";
             } else {

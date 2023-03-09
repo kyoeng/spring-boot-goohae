@@ -22,7 +22,7 @@
 
     <!-- 상품 삭제 -->
     <delete id="deleteProduct">
-        delete from product where product_code = #{productCode} and product_name = #{productName}
+        delete from product where product_code = #{productCode}
     </delete>
 
 

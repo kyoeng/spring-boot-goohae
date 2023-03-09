@@ -13,7 +13,7 @@ public class CertificationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (ObjectUtils.isEmpty(request.getSession().getAttribute("loginID"))) {
+        if (ObjectUtils.isEmpty(request.getSession().getAttribute("adminID"))) {
             response.sendRedirect("/admin-loginf");
             return false;
         } else {
