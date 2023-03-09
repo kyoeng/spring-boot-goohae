@@ -49,7 +49,7 @@ public class PostBoardController {
         vo.setManagerId((String)request.getSession().getAttribute("adminID"));
         String uri = "admin/regPostBoard";
 
-        if (service.regPostBoard(vo) > 0) {
+        if (service.insert(vo) > 0) {
             mv.addObject("message", "등록에 성공하였습니다.");
         } else {
             mv.addObject("message", "등록에 실패하였습니다.");
@@ -73,7 +73,7 @@ public class PostBoardController {
         cri.setStartNum();
 
         // 게시글 데이터 넣기
-        model.addAttribute("board", service.getPostBoard(cri));
+        model.addAttribute("board", service.selectList(cri));
 
         // 페이징을 위한 정보 넣기
         model.addAttribute("check", cri.getCheck());
@@ -102,7 +102,7 @@ public class PostBoardController {
     public ModelAndView delPostBoard(PostBoardVO vo, ModelAndView mv, RedirectAttributes rttr) {
         String uri = "redirect:/admin/post-list";
 
-        if (service.delPostBoard(vo) > 0) {
+        if (service.delete(vo) > 0) {
             rttr.addAttribute("message", "삭제에 성공했습니다.");
         } else {
             rttr.addAttribute("message", "삭제에 실패했습니다.");
@@ -121,7 +121,7 @@ public class PostBoardController {
      */
     @GetMapping("/admin/detail-post")
     public String postDetail(PostBoardVO vo, Model model) {
-        model.addAttribute("board", service.postDetail(vo));
+        model.addAttribute("board", service.selectOne(vo));
         return "admin/postDetail";
     }
 
@@ -137,7 +137,7 @@ public class PostBoardController {
     public ModelAndView updatePostBoard(PostBoardVO vo, ModelAndView mv, RedirectAttributes rttr) {
         String uri = "redirect:/admin/post-list";
 
-        if (service.updatePost(vo) > 0) {
+        if (service.update(vo) > 0) {
             rttr.addAttribute("message", "수정이 완료되었습니다.");
         } else {
             rttr.addAttribute("message", "수정에 실패하였습니다.");

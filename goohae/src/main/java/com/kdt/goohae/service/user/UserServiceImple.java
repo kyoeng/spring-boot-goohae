@@ -1,5 +1,6 @@
 package com.kdt.goohae.service.user;
 
+import com.kdt.goohae.domain.forPaging.SearchCri;
 import com.kdt.goohae.domain.user.UserVO;
 import com.kdt.goohae.mapper.user.UserMapper;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,5 @@ public class UserServiceImple  implements UserService{
     @Override
     public int delete(UserVO vo) {return mapper.delete(vo);}
     @Override
-    public ArrayList<UserVO> selectList() { return mapper.selectList();}
+    public ArrayList<UserVO> selectList(SearchCri cri) { return mapper.selectList(cri);}
 }

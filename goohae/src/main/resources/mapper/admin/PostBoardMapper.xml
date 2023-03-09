@@ -3,7 +3,7 @@
 
 <mapper namespace="com.kdt.goohae.mapper.admin.PostBoardMapper">
     <!-- 게시글 등록 -->
-    <insert id="regPostBoard">
+    <insert id="insert">
         insert into post_board(manager_id, title, content)
         values(#{managerId}, #{title}, #{content})
     </insert>
@@ -26,7 +26,7 @@
     </sql>
 
     <!-- 게시글 데이터 가져오기 ( 페이징 적용 ) -->
-    <select id="getPostBoard" resultType="PostBoardVO">
+    <select id="selectList" resultType="PostBoardVO">
         select *
         from post_board
         <include refid="check" />
@@ -41,14 +41,14 @@
 
 
     <!-- 게시글 삭제 -->
-    <delete id="delPostBoard">
+    <delete id="delete">
         delete from post_board
         where post_seq = #{postSeq}
     </delete>
 
 
     <!-- 게시글 디테일 -->
-    <select id="postDetail" resultType="PostBoardVO">
+    <select id="selectOne" resultType="PostBoardVO">
         select *
         from post_board
         where post_seq = #{postSeq}
@@ -56,7 +56,7 @@
 
 
     <!-- 게시글 수정 -->
-    <update id="updatePost">
+    <update id="update">
         update post_board set
         content = #{content}
         where post_seq = #{postSeq}

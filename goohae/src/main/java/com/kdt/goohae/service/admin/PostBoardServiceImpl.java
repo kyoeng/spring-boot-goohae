@@ -26,8 +26,8 @@ public class PostBoardServiceImpl implements PostBoardService {
      * @return 성공 시 1, 실패 시 0
      */
     @Override
-    public int regPostBoard(PostBoardVO vo) {
-        return mapper.regPostBoard(vo);
+    public int insert(PostBoardVO vo) {
+        return mapper.insert(vo);
     }
 
 
@@ -37,8 +37,8 @@ public class PostBoardServiceImpl implements PostBoardService {
      * @return 게시글 데이터 List
      */
     @Override
-    public List<PostBoardVO> getPostBoard(SearchCri cri) {
-        return mapper.getPostBoard(cri);
+    public List<PostBoardVO> selectList(SearchCri cri) {
+        return mapper.selectList(cri);
     }
 
 
@@ -58,8 +58,8 @@ public class PostBoardServiceImpl implements PostBoardService {
      * @return 성공 시 1, 실패 시 0
      */
     @Override
-    public int delPostBoard(PostBoardVO vo) {
-        return mapper.delPostBoard(vo);
+    public int delete(PostBoardVO vo) {
+        return mapper.delete(vo);
     }
 
 
@@ -69,8 +69,8 @@ public class PostBoardServiceImpl implements PostBoardService {
      * @return PostBoardVO
      */
     @Override
-    public PostBoardVO postDetail(PostBoardVO vo) {
-        return mapper.postDetail(vo);
+    public PostBoardVO selectOne(PostBoardVO vo) {
+        return mapper.selectOne(vo);
     }
 
 
@@ -80,7 +80,7 @@ public class PostBoardServiceImpl implements PostBoardService {
      * @return 성공 시 1, 실패 시 0
      */
     @Override
-    public int updatePost(PostBoardVO vo) {
-        return mapper.updatePost(vo);
+    public int update(PostBoardVO vo) {
+        return mapper.update(vo);
     }
 }

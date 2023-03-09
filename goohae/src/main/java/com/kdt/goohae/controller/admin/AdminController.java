@@ -2,7 +2,10 @@ package com.kdt.goohae.controller.admin;
 
 
 import com.kdt.goohae.domain.admin.ManagerVO;
+import com.kdt.goohae.domain.forPaging.PageMaker;
+import com.kdt.goohae.domain.forPaging.SearchCri;
 import com.kdt.goohae.service.admin.AdminService;
+import com.kdt.goohae.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,11 +26,13 @@ public class AdminController {
     // 필드
     private final AdminService service;
     private final PasswordEncoder passwordEncoder;
+    private final UserService userService;
 
     // 생성자
-    public AdminController(AdminService service, PasswordEncoder passwordEncoder) {
+    public AdminController(AdminService service, PasswordEncoder passwordEncoder, UserService userService) {
         this.service = service;
         this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
     }
 
 
@@ -93,6 +98,17 @@ public class AdminController {
     public String adminLogout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "admin/adminLogin";
+    }
+
+
+
+    @GetMapping("/admin/user-list")
+    public String userList(SearchCri cri, PageMaker pageMaker, Model model) {
+        cri.setStartNum();
+
+        model.addAttribute("users", userService.selectList(cri));
+
+        return "";
     }
 
 }
