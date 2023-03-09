@@ -56,19 +56,19 @@
 }
 
 .LivingCategory {
-    background: url(/images/main/CateLiving.jpg) center/cover;
+    background: url(/images/staticImages/CateLiving.jpg) center/cover;
 }
 
 .BedCategory {
-    background: url(/images/main/CateBed.jpg) center/cover;
+    background: url(/images/staticImages/CateBed.jpg) center/cover;
 }
 
 .DiningCategory {
-    background: url(/images/main/CateDining.jpg) center/cover;
+    background: url(/images/staticImages/CateDining.jpg) center/cover;
 }
 
 .DressCategory {
-    background: url(/images/main/CateDress.jpg) center/cover;
+    background: url(/images/staticImages/CateDress.jpg) center/cover;
 }
 
 .mainCategory>div>a {

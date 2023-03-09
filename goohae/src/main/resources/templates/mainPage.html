@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="common/header :: header">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static//css/common/config.css">
-    <link rel="stylesheet" href="../static/css/mainPage.css">
+    <link rel="stylesheet" href="/css/common/config.css">
+    <link rel="stylesheet" href="/css/common/header.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/mainPage.css">
     <title>Document</title>
 </head>
 
 <body>
-    <header th:replace="common/header :: fragment-header"></header>
+    <header th:replace="common/header :: header"></header>
     <div class="bannerContainer">
         <ul class="bannerInner">
             <li class="bannerImgBox">
-                <img src="/images/banner/banner1.jpg" alt="banner">
+                <img src="/images/staticImages/banner1.jpg" alt="banner">
             </li>
             <li>
-                <img src="/images/banner/banner2.jpg" alt="banner">
+                <img src="/images/staticImages/banner2.jpg" alt="banner">
             </li>
         </ul>
-
-        <button class="bannerLeftBtn"></button>
-        <button class="bannerRightBtn"></button>
     </div>
+
 
     <section class="mainCategory">
         <div class="LivingCategory">
@@ -62,6 +62,7 @@
             </article>
         </div>
     </section>
+    <footer th:replace="common/footer :: footer"></footer>
 </body>
 
 <script src=""></script>
