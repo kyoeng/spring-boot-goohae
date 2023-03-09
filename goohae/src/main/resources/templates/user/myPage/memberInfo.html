@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="userFragment :: head">
+  <title>memberInfoMain</title>
+  <link rel="stylesheet" href="/css/myPage/myPost.css">
+</head>
+
+<body>
+<main class="memberInfoMain">
+  <section id="memberInfoWrap">
+    <div class="myInfoCategory">
+      <a href ="/" class="myPageLink">홈 &gt;</a>
+      <a href ="/user/myPage" class="myPageLink">마이쇼핑 &gt;</a>
+      <a href ="/user/memberInfo" class="myPageLink" id="myPageSubLink">내 정보</a>
+    </div>
+    <p class="memberInfoTitle">내 정보</p>
+    <div class="Ment">
+      <p class='memberInfoHeadText'><strong class="memberInfoHeadTextName"  th:field="${user.name}" >유정현</strong> 님 환영합니다.</p>
+    </div>
+
+    <article class="FormWrap">
+      <form class="memberInfoForm" action="server.html" name="memberJoin">
+        <div class="memberInfoIdInputWrap">
+          <p>아이디</p>
+          <input type="text" class="memberInfoIdInput" name="id" th:field="${user.id}" disabled />
+          <p class="infoGuide">오류 메세지 입니다.</p>
+        </div>
+        <div class="memberInfoEmailInputWrap">
+          <p>이메일</p>
+          <input class="memberINfoEmailIdInput" type="text" name="e_mailId"  th:field="${user.email}"  />
+          <p class="infoGuide">오류 메세지 입니다.</p>
+        </div>
+        <div class="memberInfoPwInputWrap">
+          <p>비밀번호</p>
+          <input class="memberInfoPwInput" type="password" name="psw" minLength={10} maxLength={16} placeholder=" 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합" />
+          <p class="infoGuide">오류 메세지 입니다.</p>
+        </div>
+        <div class="memberInfoPwConfirmInputWrap">
+          <p>비밀번호 확인</p>
+          <input class="memberInfoPwConfirmInput" type="password" name="psw" minLength={7} maxLength={15} />
+          <p class="infoGuide">오류 메세지 입니다.</p>
+        </div>
+        <div class="memberInfoNameInputWrap">
+          <p>이름</p>
+          <input class="memberInfoNameInput" type="text" name="Name"  th:field="${user.name}" />
+          <p class="infoGuide">오류 메세지 입니다.</p>
+        </div>
+        <div class="memberInfoTellInputWrap">
+          <p>휴대전화</p>
+          <input class="memberInfoTellInput" type="text" name="lastPhoneNum"  th:field="${user.phone}"/>
+          <p class="infoGuide">오류 메세지 입니다.</p>
+        </div>
+        <div class="emailGetRadio">
+          <div>
+            <input type="radio" name="EmailGet" id="emailGet" defaultValue="Get" />
+            <label htmlFor="emailGet"><span class="radioImg"></span></label>
+            <label htmlFor="emailGet">이메일 수신함</label>
+          </div>
+          <div>
+            <input type="radio" name="EmailGet" id="emailNoGet" defaultValue="NoGet" defaultChecked />
+            <label htmlFor="emailNoGet"><span class="radioImg"></span></label>
+            <label htmlFor="emailNoGet">이메일 수신안함</label>
+          </div>
+        </div>
+        <div class="ButtonWrap">
+          <button class="memberInfoBtn">
+            취소
+          </button>
+          <button class="memberInfoBtn " id="memberInfoSubmitBtn" type="submit">
+            회원정보 수정
+          </button>
+        </div>
+      </form>
+    </article>
+  </section>
+</main>
+</body>
+</html>
