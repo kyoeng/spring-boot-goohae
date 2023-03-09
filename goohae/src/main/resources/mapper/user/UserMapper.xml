@@ -16,13 +16,33 @@
     </delete>
 
 
-
+    <!-- 유저 검색 시 참고 -->
     <sql id="search">
-        <bind name="" value=""/>
+        <bind name="searchKeyword" value="'%'+keyword+'%'"/>
+
+        <choose>
+            <when test="check == 'id'.toString()">
+                where id like #{searchKeyword}
+                order by join_date desc
+            </when>
+
+            <when test="check == 'name'.toString()">
+                where name like #{searchKeyword}
+                order by join_date desc
+            </when>
+
+            <otherwise>
+                order by join_date desc
+            </otherwise>
+        </choose>
     </sql>
 
+    <!-- 유저 데이터 가져오기 -->
     <select id="selectList" resultType="UserVO">
-        select id, name, phone_number, join_date, status from user
+        select id, name, phone_number, join_date, status
+        from user
+        <include refid="search" />
+        limit #{startNum}, #{rowsPerPage}
     </select>
 
     <!-- 유저 전체 데이터 갯수 -->
