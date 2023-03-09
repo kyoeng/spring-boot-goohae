@@ -8,15 +8,26 @@
     </insert>
 
     <select id="selectOne" resultType="UserVO">
-        select id, name, post_number, address, phone_number, join_date, status from user where id = #{id}
+        select * from user where id = #{id}
     </select>
 
     <delete id="delete">
         delete from user where id = #{id}
     </delete>
 
+
+
+    <sql id="search">
+        <bind name="" value=""/>
+    </sql>
+
     <select id="selectList" resultType="UserVO">
         select id, name, phone_number, join_date, status from user
+    </select>
+
+    <!-- 유저 전체 데이터 갯수 -->
+    <select id="getTotalData" resultType="int">
+        select count(*) from user
     </select>
 
 </mapper>

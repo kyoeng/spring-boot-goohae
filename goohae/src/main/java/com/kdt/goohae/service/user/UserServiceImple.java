@@ -25,4 +25,9 @@ public class UserServiceImple  implements UserService{
     public int delete(UserVO vo) {return mapper.delete(vo);}
     @Override
     public ArrayList<UserVO> selectList(SearchCri cri) { return mapper.selectList(cri);}
+
+    @Override
+    public int getTotalData() {
+        return mapper.getTotalData();
+    }
 }

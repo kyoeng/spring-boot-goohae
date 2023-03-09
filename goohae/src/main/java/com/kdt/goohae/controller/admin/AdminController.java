@@ -101,14 +101,26 @@ public class AdminController {
     }
 
 
-
+    /**
+     * 유저 관리 페이지를 위한 컨트롤러
+     * @param cri SearchCri
+     * @param pageMaker PageMaker
+     * @param model Model
+     * @return 유저 관리 페이지
+     */
     @GetMapping("/admin/user-list")
     public String userList(SearchCri cri, PageMaker pageMaker, Model model) {
         cri.setStartNum();
 
+        // 유져 정보 담기
         model.addAttribute("users", userService.selectList(cri));
 
-        return "";
+        // 페이징을 위한 정보 넣기
+        pageMaker.setCriteria(cri);
+        pageMaker.setTotalDataCount(userService.getTotalData());
+        model.addAttribute("pageMaker", pageMaker);
+
+        return "admin/userList";
     }
 
 }
