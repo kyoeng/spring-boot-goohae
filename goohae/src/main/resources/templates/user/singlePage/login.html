@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/singlePage/login.css">
+    <script defer src="/js/singlePage/login.js"></script>
+</head>
+<body>
+<main class="loginMain">
+    <div class="loginContainer">
+        <div class="loginInnerContainer">
+            <div class="loginHead">
+                <div class="loginHeadLogo">
+                    <a href="http://192.168.0.86:3000"> logo</a>
+                </div>
+                <ul class="loginHeadListWrap">
+                    <li class="loginHeadList">
+                        <a href="/Login" class="loginHeadLink">로그인</a>
+                    </li>
+                    <li class="loginHeadList">
+                        <a href="/nonMemberInquire" class="loginHeadLink">비회원 배송조회 </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="loginBody">
+                <form class='loginIdPwForm'  th:action="@{/login}" method="post" th:object="${login}">
+                    <div class="loginInputContainer">
+                        <!--아이디 , 비밀번호  최소 글자 안정함...-->
+                        <input type="text" id="loginId" class="loginInput" name="id" autofocus required
+                               placeholder="아이디" />
+                        <input type="password" id="loginPw" class="loginInput" name="password" autoFocus
+                               required placeholder="비밀번호"  />
+                    </div>
+                    <div class="idCheck">
+                        <input type="idCheckbox" class="idCheckInput" name="loginCheck" />
+                        <p>아이디저장</p>
+                    </div>
+
+                    <div th:if="${param.error}">
+                        <div class="errorMassageBox">
+                            <p class="loginError" th:text="${#strings.isEmpty(param.id) ? '아이디를 입력하세요.' : #strings.isEmpty(param.password) ? '비밀번호를 입력하세요.' : ''}"></p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="loginButton">로그인</button>
+                    <ul class="foot">
+                        <li><a href="/signUp">회원가입</a></li>
+                        <li><a href="/findId">아이디 비밀번호 찾기</a></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

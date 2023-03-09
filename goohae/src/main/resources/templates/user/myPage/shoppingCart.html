@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="userFragment :: head">
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/myPage/shoppingCart.css">
+<!--  <script defer src="/js/singlePage/login.js"></script>-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+   function increaseQuantity(element) {
+  var input = element.previousElementSibling;
+  var currentValue = parseInt(input.value);
+  input.value = currentValue + 1;
+  updatePrice(element, currentValue + 1);
+}
+
+function decreaseQuantity(element) {
+  var input = element.previousElementSibling.previousElementSibling;
+  var currentValue = parseInt(input.value);
+  if (currentValue > 1) {
+    input.value = currentValue - 1;
+    updatePrice(element, currentValue - 1);
+  }
+}
+
+function updatePrice(element, quantity) {
+  var productRow = element.parentNode.parentNode;
+  var price = productRow.querySelector('.shoppingCartTableFontSize').textContent;
+  var productPrice = parseInt(price.replace(/[^0-9]/g, ''));
+  var totalPrice = productPrice * quantity;
+  productRow.querySelector('.shoppingCartTableFontSize').textContent = totalPrice + '원';
+  calculateTotalPrice();
+}
+
+function calculateTotalPrice() {
+  var products = document.querySelectorAll('.shoppingCartTableLine');
+  var total = 0;
+  for (var i = 0; i < products.length; i++) {
+    var price = products[i].querySelector('.shoppingCartTableFontSize').textContent;
+    total += parseInt(price.replace(/[^0-9]/g, ''));
+  }
+  var shipping = 5000; // assuming a fixed shipping fee of 5000원
+  var totalPrice = total + shipping;
+  document.getElementById('totalPrice').textContent = totalPrice + '원';
+}
+</script>
+</head>
+<body>
+<main class="shoppingCartMain">
+  <section class="cartWrap">
+    <div class="ShoppingCartCategory">
+      <a th:href="@{/}" class="myPageLink">홈&nbsp;&nbsp;&gt;</a>
+      <a th:href="@{/MyPage}"  class="myPageLink">&nbsp;&nbsp;마이쇼핑&nbsp;&nbsp;&gt;</a>
+      <a th:href="@{/MyCart}"   class="myPageLink" id="shoppingCartLink">&nbsp;&nbsp;쇼핑카트&nbsp;&nbsp;</a>
+    </div>
+    <p class="shoppingCartTitle">cart</p>
+    <article class="shoppingCartTableContainer">
+      <form th:action="@{/cart}" method="post">
+      <table class="shoppingCartTable">
+        <colgroup>
+          <col width="4%" />
+          <col width="14%" />
+          <col width="52%" />
+          <col width="10%" />
+          <col width="10%" />
+          <col width="10%" />
+        </colgroup>
+        <thead class="shoppingCartTitleThaed">
+        <tr class="shoppingCartTableLine">
+          <th scope="col" class="shoppingCartTitleTh">
+            선택
+            <label>
+              <input type="checkbox" name="checkAll"  id="allCart" class="shoppingCartCheck" checked="" value="selectAll" onclick="selectAll(this.checked)" />
+            </label>
+          </th>
+          <th scope="cos" class="shoppingCartTitleTh">이미지</th>
+          <th scope="col" class="shoppingCartTitleTh">상품정보</th>
+          <th scope="col" class="shoppingCartTitleTh">수량</th>
+          <th scope="col" class="shoppingCartTitleTh">상품금액</th>
+          <th scope="col" class="shoppingCartTitleTh">삭제</th>
+        </tr>
+        </thead>
+        <tbody class="shoppingCartTableTbody">
+        <tr class="shoppingCartTableLine"  th:each="cart : ${cart}">
+          <td class="shoppingCartTableRow">
+            <input  type="checkbox" th:name="selectedProducts" th:value="${cart.productCode}"  class="shoppingCartTableCheck" />
+          </td>
+          <td class="shoppingCartTableRow">
+            <a href="#"><img th:src="@{/images/staticImages/__${imageName}__}" alt="상품이미지" class="shoppingCartTableProductImage" /></a>
+          </td>
+          <td class="shoppingCartTableRow">
+            <a href="#" class="cartName">
+              <p class="shoppingCartTableProductName shoppingCartTableFontSize" th:text="${cart.productName}"><!--제품이름--></p>
+              <p class="shoppingCartTableProductName shoppingCartTableFontSize" th:text="${cart.productOption}"><!--제품옵션--></p>
+            </a>
+          </td>
+          <td class="shoppingCartTableRow">
+            <span class="shoppingCartTableFontSize" th:text="${cart.ProductEa}"> <!--상품갯수--></span>
+            <input type="button" class="shoppingCartTableCount shoppingCartTableFontSize"  value="+" onclick="increaseQuantity(this)"  >
+            <input type="button" class="shoppingCartTableCount shoppingCartTableFontSize"  value="-" onclick="decreaseQuantity(this)"  />
+          </td>
+          <td class="shoppingCartTableRow">
+            <div class="shoppingCartTableFontSize" th:text="${cart.price}"><!--상품가격--></div>
+          </td>
+          <td class="shoppingCartTableRow">
+            <form th:action="@{'/product/' + ${product.code}}" method="post">
+              <input type="hidden" name="_method" value="DELETE" />
+              <button type="submit"  class="shoppingCartTableBtn">삭제하기</button>
+            </form>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="shoppingCartTotalPriceContainer">
+        <div class="shoppingCartTotalPrcieInner">
+          <p class="shoppingCartTotalPrice totals"/>
+
+          <p class="shoppingCartTotalPrice plusImg"/>
+          <th:block th:with="deliveryFee=2500"></th:block>
+          <p class="shoppingCartTotalPrice equalImg" />
+
+        </div>
+        <div class="shoppingCartOrderButtonBox">
+          <button class="btnDisabled shoppingCartOrderButton" href="../memberPayment/memberPayment.html">선택상품 주문</button>
+          <button class="btnDisabled shoppingCartOrderButton" href="../memberPayment/memberPayment.html">전체상품 주문</button>
+        </div>
+      </div>
+      </form>
+    </article>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="userFragment :: head">
+  <title>myPost</title>
+  <link rel="stylesheet" href="/css/myPage/myPost.css">
+  <!--  <script defer src="/js/singlePage/login.js"></script>-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function(){
+        $(".accordion").click(function(){
+            $(this).next().slideToggle("fast");
+        });
+    });
+</script>
+
+</head>
+<body>
+<main class=" myPostMain">
+  <section id="myPostWrap">
+    <div class="myPostTableCategory">
+      <a th:href="@{/}" class="myPageLink">홈&nbsp;&nbsp;&gt;</Link>
+      <a th:href="@{/MyPage}"  class="myPageLink">&nbsp;&nbsp;마이쇼핑&nbsp;&nbsp;&gt;</Link>
+      <a th:href="@{/MyPost}"  class="myPageLink" id="myPageSubLink">&nbsp;&nbsp;나의리뷰&nbsp;&nbsp;</Link>
+    </div>
+    <p class="myPostTitle">나의 리뷰</p>
+    <article class="myPostTableWrap">
+      <select name="#" id="myPostTableSelect">
+        <option value="1" class="myPostTableOption">작성최신순</option>
+        <option value="2" class="myPostTableOption">작성오래된순</option>
+      </select>
+      <table class="myPostTable">
+        <colgroup>
+          <col width="15%" />
+          <col width="70%" />
+          <col width="15%" />
+        </colgroup>
+        <thead class="myPostTablThead">
+        <tr class="myPostTableTr">
+          <th scope="col" class="myPostTableTh">번호</th>
+          <th scope="col" class="myPostTableTh">제목</th>
+          <th scope="col" class="myPostTableTh">작성일</th>
+        </tr>
+        </thead>
+        <tbody class="myPostTablTbody">
+        <tr class="myPostTableTr" th:each="review : ${review}">
+          <td class="myPostTableRow" >
+            <span class="myPostTableContentInner" th:text="${review.reviewSeq}" ></span>
+          </td>
+          <td class="myPostTableRow">
+            <a class="myPostSubject myPostTableContentInner" th:text="${review.title}"></a>
+            <div class="panel">
+              <p th:text="${review.content}"></p>
+            </div>
+          </td>
+          <td class="myPostTableRow">
+            <span class="myPostTableContentInner" th:text="${review.regDate}"></span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+</main>
+</body>
+</html>
