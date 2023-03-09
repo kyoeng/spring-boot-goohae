@@ -264,6 +264,7 @@ input[type="checkbox"] + label + label:hover{
 
 .btnDisable{
     pointer-events: none;
+    color: #1A1B23;
 }
 
 /* .ButtonWrap>button>a {
