@@ -2,10 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="/css/user/singlePage/signUp.css">
 <!--  <script defer src="/js/singlePage/login.js"></script>-->
 <!--</head>-->
+
+<!--
+  할 일
+  1. 로고 연결
+  2. 에러메세지 일단은 지워놓기
+-->
 <body>
 <main class="signUpContainer">
   <section id="MemberInfoWrap">
@@ -13,53 +20,65 @@
       <a href="/" th:href="@{/}"><img src={logo} alt="img" /></a>
     </div>
     <article class="FormWrap">
-      <form class="InfoForm" name="memberJoin"  th:action="@{/account/signUp}" method="post" th:object="${signUp}">
+      <form class="InfoForm" name="memberJoin"  th:action="@{/user/join}" method="post" th:object="${vo}">
         <div class="idInputWrap">
           <p>아이디</p>
-          <input type="text" name="id" class="signUpId" minLength={5} maxLength={16} value={signUpId}
+          <input type="text" name="id" class="signUpId" minLength={5} maxLength={16}
                  placeholder="영문 대소문자와 숫자 5-19자 조합" />
           <p class="signUpErrorMassage" th:if="error">{signUpIdErrorMassage}</p>
           <p class="signUpErrorMassage" th:if="error">{signUpIdMassage}</p>
           <button class="signUpIdDuplicateConform signUpBtn"
                   disabled={!isSignUpId}>아이디 중복확인</button>
         </div>
-        <div class="emailInputWrap">
-          <p>이메일</p>
-          <div class="emailInput">
-            <input class="emailIdInput" value={signUpEmail} type="text" name="e_mailId"
-                   /><span>&nbsp;@&nbsp;</span>
-            <input class="emailDomainInput" type="text" name="e_mailDomain" />
-            <select class="emailDomainSelect" name="emailDomain" id="emailDomain">
-              <option>직접입력</option>
-              <option value="naver.com">naver.com</option>
-              <option value="hanmail.net">hanmail.net</option>
-              <option value="google.com">google.com</option>
-              <option value="nate.com">nate.com</option>
-            </select>
-          </div>
+<!--        <div class="emailInputWrap">-->
+<!--          <p>이메일</p>-->
+<!--          <div class="emailInput">-->
+<!--            <input class="emailIdInput"  type="text" name="e_mailId"-->
+<!--                   /><span>&nbsp;@&nbsp;</span>-->
+<!--            <input class="emailDomainInput" type="text" name="e_mailDomain" />-->
+<!--            <select class="emailDomainSelect" name="emailDomain" id="emailDomain">-->
+<!--              <option>직접입력</option>-->
+<!--              <option value="naver.com">naver.com</option>-->
+<!--              <option value="hanmail.net">hanmail.net</option>-->
+<!--              <option value="google.com">google.com</option>-->
+<!--              <option value="nate.com">nate.com</option>-->
+<!--            </select>-->
+<!--          </div>-->
           <p class="signUpErrorMassage" th:if="error">{signUpEmailMassage}</p>
           <button class="emailCertification signUpBtn" disabled={!isSignUpEmail}>이메일 인증하기</button>
         </div>
         <div class="pwInputWrap">
           <p>비밀번호</p>
-          <input class="pwInput" type="password" name="psw" value={signUpPassword}  minLength=8
+          <input class="pwInput" type="password" name="password"   minLength=8
           maxLength=16 placeholder=" 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합"/>
           <p class="signUpErrorMassage" th:if="error">{signUpPwMassage}</p>
         </div>
         <div class="pwConfirmInputWrap">
           <p>비밀번호 확인</p>
-          <input class="pwConfirmInput" type="password" name="psw" minLength={8} maxLength={16}
-                 value={signUpPasswordConfirm}/>
+          <input class="pwConfirmInput" type="password" minLength={8} maxLength={16}
+                 />
           <p class="signUpErrorMassage" th:if="error">{signUpPwConfirmMessage}</p>
         </div>
         <div class="nameInputWrap">
           <p>이름</p>
-          <input class="signUpName" type="text" name="Name" value={signUpName} />
+          <input class="signUpName" type="text" name="name"  />
           <p class="signUpErrorMassage" th:if="error">{signUpNameMassage}</p>
         </div>
         <div class="tellInputWrap">
           <p>휴대전화</p>
-          <input class="signUpPhone" type="text" name="signUpPhone" value={signUpPhone}
+          <input class="signUpPhone" type="text" name="phoneNumber"
+                 placeholder="'-'없이 입력해주세요" />
+          <p class="signUpErrorMassage" th:if="error">{signUpPhoneMassage}</p>
+        </div>
+        <div class="tellInputWrap">
+          <p>우편번호</p>
+          <input class="signUpPhone" type="text" name="postNumber"
+                 placeholder="'-'없이 입력해주세요" />
+          <p class="signUpErrorMassage" th:if="error">{signUpPhoneMassage}</p>
+        </div>
+        <div class="tellInputWrap">
+          <p>주소</p>
+          <input class="signUpPhone" type="text" name="address"
                  placeholder="'-'없이 입력해주세요" />
           <p class="signUpErrorMassage" th:if="error">{signUpPhoneMassage}</p>
         </div>
@@ -557,10 +576,10 @@
           <p class="signUpErrorMassage" th:if="error">{signUpMeCheckMessage}</p>
         </div>
         <div class="ButtonWrap">
-          <button class="signUpSubmitBtn signUpBtn" type="submit"
-                  disabled={!activeSinupbtn} >
+          <button class="signUpSubmitBtn signUpBtn" type="submit">
             회원가입 하기
           </button>
+          <input type="submit"/>
         </div>
       </form>
     </article>
