@@ -11,5 +11,6 @@ public class QnaBoardVO {
     private String title;
     private String content;
     private String boardPassword;
+    private String regDate;
 
 }

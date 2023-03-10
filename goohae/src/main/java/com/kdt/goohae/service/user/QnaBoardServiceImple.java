@@ -1,5 +1,6 @@
 package com.kdt.goohae.service.user;
 
+import com.kdt.goohae.domain.forPaging.Criteria;
 import com.kdt.goohae.domain.user.QnaBoardVO;
 import com.kdt.goohae.domain.user.UserVO;
 import com.kdt.goohae.mapper.user.QnaBoardMapper;
@@ -15,7 +16,7 @@ public class QnaBoardServiceImple implements QnaBoardService{
 
     public QnaBoardServiceImple(QnaBoardMapper mapper) {this.mapper = mapper;}
     @Override
-    public ArrayList<QnaBoardVO> selectlList() {return mapper.selectList();}
+    public ArrayList<QnaBoardVO> selectlList(Criteria cri) {return mapper.selectList(cri);}
     @Override
     public ArrayList<QnaBoardVO> userList(String loginId) {return mapper.userList(loginId);}
 
@@ -30,4 +31,6 @@ public class QnaBoardServiceImple implements QnaBoardService{
 
     @Override
     public int update(QnaBoardVO vo) { return mapper.update(vo); }
+
+    public int getTotalData(){return mapper.getTotalData();}
 }
