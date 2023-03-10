@@ -1,11 +1,15 @@
 package com.kdt.goohae.controller;
 
 
+import com.kdt.goohae.domain.forPaging.PageMaker;
+import com.kdt.goohae.domain.forPaging.SearchCri;
+import com.kdt.goohae.service.HomeService;
 import com.kdt.goohae.service.admin.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Slf4j
@@ -13,18 +17,72 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     // 필드
+    private final HomeService service;
     private final ProductService productService;
 
     // 생성자
-    public HomeController(ProductService productService) {
+    public HomeController(HomeService service, ProductService productService) {
+        this.service = service;
         this.productService = productService;
     }
 
+    /**
+     * 메인페이지를 위한 컨트롤러
+     * @param model Model
+     * @return 신상품, 베스트 상품과 함께 메인페이지로
+     */
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("newProduct", productService.getMainNew());
         model.addAttribute("bestProduct", productService.getMainBest());
         return "index";
+    }
+
+
+    /**
+     * 서브 페이지를 위한 컨트롤러
+     * @param model Model
+     * @return
+     */
+    @GetMapping("/sub")
+    public String sub(Model model, SearchCri cri, PageMaker pageMaker) {
+        String cate;
+        String subHeadImg = "/images/staticImages/";
+        int code = cri.getCategoryCode();
+
+        if (code < 5) {
+            cate = "거실";
+            subHeadImg += "livingTitle.png";
+        } else if (code < 8) {
+            cate = "침실";
+            subHeadImg += "BedroomTitle.png";
+        } else if (code < 10) {
+            cate = "주방";
+            subHeadImg += "DiningTitle.png";
+        } else {
+            cate = "드레스룸";
+            subHeadImg += "DressroomTitle.png";
+        }
+        model.addAttribute("headText", cate);
+        model.addAttribute("headImg", subHeadImg);
+
+        model.addAttribute("cate", service.selectList(cri.getCategoryCode()));
+
+        cri.setStartNum();
+
+        // 상품 데이터 넣기
+        model.addAttribute("product", productService.getProduct(cri));
+
+        // 페이징을 위한 정보들 넣기
+        model.addAttribute("code", code);
+        model.addAttribute("check", cri.getCheck());
+
+        // 페이징을 위한 객체에 cri 필드 setter로 채우기 및 전체 데이터 갯수 채우기
+        pageMaker.setCriteria(cri);
+        pageMaker.setTotalDataCount(productService.getTotalData(cri));
+        model.addAttribute("pageMake", pageMaker);
+
+        return "product/subPage";
     }
 
 }

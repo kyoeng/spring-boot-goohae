@@ -28,6 +28,7 @@
                             <img src="/images/icon/login_icon.png" alt="로그인">
                             <span>로그인</span>
                         </a>
+
                         <a href="/user/mypage" th:if="${session.loginId != null}">
                             <img src="/images/icon/join.png" alt="마이페이지">
                             <span>마이페이지</span>
@@ -39,6 +40,7 @@
                             <img src="/images/icon/join.png" alt="회원가입">
                             <span>회원가입</span>
                         </a>
+
                         <a href="/user/mycart" th:if="${session.loginId != null}">
                             <img src="/images/icon/cart.png" alt="카트">
                             <span>장바구니</span>
@@ -59,70 +61,88 @@
 
                     <li class="living-room">
                         <span>거실</span>
+
                         <ul class="living-category">
                             <li>
-                                <a th:href="@{/product/}">테이블</a>
+                                <a href="/sub?categoryCode=1&rowsPerPage=12">소파</a>
                             </li>
+
                             <li>
-                                <a href="#">의자</a>
+                                <a href="/sub?categoryCode=2&rowsPerPage=12">테이블</a>
                             </li>
+
                             <li>
-                                <a href="#">TV콘솔</a>
+                                <a href="/sub?categoryCode=3&rowsPerPage=12">의자</a>
+                            </li>
+
+                            <li>
+                                <a href="/sub?categoryCode=4&rowsPerPage=12">TV콘솔</a>
                             </li>
                         </ul>
                     </li>
 
                     <li class="bed-room">
                         <span>침실</span>
+
                         <ul class="bed-category">
                             <li>
-                                <a href="#">침대</a>
+                                <a href="/sub?categoryCode=5&rowsPerPage=12">침대</a>
                             </li>
+
                             <li>
-                                <a href="#">매트리스</a>
+                                <a href="/sub?categoryCode=6&rowsPerPage=12">매트리스</a>
                             </li>
+
                             <li>
-                                <a href="#">협탁</a>
+                                <a href="/sub?categoryCode=7&rowsPerPage=12">협탁</a>
                             </li>
                         </ul>
                     </li>
 
                     <li class="kitchen">
                         <span>침실</span>
+
                         <ul class="kitchen-category">
                             <li>
-                                <a href="#">식탁</a>
+                                <a href="/sub?categoryCode=8&rowsPerPage=12">식탁</a>
                             </li>
+
                             <li>
-                                <a href="#">의자</a>
+                                <a href="/sub?categoryCode=9&rowsPerPage=12">의자</a>
                             </li>
                         </ul>
                     </li>
 
                     <li class="dress-room">
                         <span>드래스룸</span>
+
                         <ul class="dress-category">
                             <li>
-                                <a href="#">행거</a>
+                                <a href="/sub?categoryCode=10&rowsPerPage=12">행거</a>
                             </li>
+
                             <li>
-                                <a href="#">수납장</a>
+                                <a href="/sub?categoryCode=11&rowsPerPage=12">수납장</a>
                             </li>
+
                             <li>
-                                <a href="#">화장대</a>
+                                <a href="/sub?categoryCode=12&rowsPerPage=12">화장대</a>
                             </li>
                         </ul>
                     </li>
 
                     <li class="customer">
                         <span>고객문의</span>
+
                         <ul class="customer-category">
                             <li>
                                 <a href="/customer/main">공지사항</a>
                             </li>
+
                             <li>
                                 <a href="/customer/inquiry">FAQ</a>
                             </li>
+
                             <li>
                                 <a href="#">상담문의</a>
                             </li>
