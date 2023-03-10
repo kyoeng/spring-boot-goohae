@@ -32,9 +32,6 @@ public class UserController {
         vo.setId("dbdb1114");
         log.info("{}",userService.delete(vo)); }
 
-    @GetMapping(value = "main")
-    public String main() { return "mainPage";}
-
     @GetMapping(value = "user/join")
     public ModelAndView joinF(UserVO vo, ModelAndView mv) {
         mv.setViewName("user/singlePage/signUp");
