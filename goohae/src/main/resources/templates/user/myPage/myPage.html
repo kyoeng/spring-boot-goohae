@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="userFragment :: head">
-  <title>myPost</title>
-  <link rel="stylesheet" href="/css/myPage/myPost.css">
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/user/myPage/myPage.css">
+  <link rel="stylesheet" href="/css/common/header.css">
+  <link rel="stylesheet" href="/css/common/footer.css">
+  <link rel="stylesheet" href="/css/common/config.css">
   <title>GooHae-myPage</title>
-  <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="./myPost.css">
 </head>
 
 <body>
+<header th:replace="common/header :: header"></header>
 <main class="myPageMain">
   <p class="myPageTitle">MY&nbsp;PAGE</p>
   <section class="myPageWrap">
     <div class="myPageWMent">
-      <p class="myPageMentContent"><span class="myPageMentContentName" ${user.name}>유정현</span>님 환영합니다.</p>
-      <span class="myPageInfoMenMinPrice">2%</span> 추가 적립을 받을 수 있습니다.</p>
+      <p class="myPageMentContent"><span class="myPageMentContentName" th:text="${session.name}"></span>님 환영합니다.</p>
+<!--      <span class="myPageInfoMenMinPrice">2%</span> 추가 적립을 받을 수 있습니다.</p>-->
     </div>
 
     <article class="myPageMyOrder">
@@ -67,6 +62,7 @@
           </p>
         </a>
         <a to="/myOrder" class="myPageOrderMenuMore">더보기&gt;</a>
+        <a href="/user/myorder" class="myPageMenuClickBtn"></a>
       </div>
       <div class="myPageMenu">
         <a to="/memberInfo" class="myPageMenuTitle">내정보
@@ -77,6 +73,7 @@
           </p>
         </a>
         <a to="/memberInfo" class="myPageOrderMenuMore"> 더보기&gt;</a>
+        <a href="/user/myinfo" class="myPageMenuClickBtn"></a>
       </div>
       <div class="myPageMenu">
         <a to="/shoppingCart" class="myPageMenuTitle">장바구니</a>
@@ -89,6 +86,7 @@
           </p>
         </a>
         <a to="/shoppingCart"><span class="myPageOrderMenuMore">더보기</span> &gt;</a>
+        <a href="/user/mycart" class="myPageMenuClickBtn"></a>
       </div>
       <div class="myPageMenu">
         <a to="/wishList" class="myPageMenuTitle">위시리스트</a>
@@ -98,29 +96,33 @@
           </p>
         </a>
         <a to="/wishList" class="myPageOrderMenuMore">더보기 &gt;</a>
+        <a href="/user/mywish" class="myPageMenuClickBtn"></a>
       </div>
       <div class="myPageMenu">
-        <a to="/myPost" class="myPageMenuTitle">내 리뷰</a>
+        <a to="/myPost" class="myPageMenuTitle">내 작성글</a>
         <a to="/myPost">
           <p class="myPageMenuContent">
             고객님께서 작성하신 게시물을 관리하는 공간입니다.
           </p>
         </a>
         <a to="/myPost" class="myPageOrderMenuMore">더보기 &gt;</a>
+        <a href="/user/mypost" class="myPageMenuClickBtn"></a>
       </div>
-      <div class="myPageMenu">
-        <a to="/myAddress" class="myPageMenuTitle">
-          내 주소록
-        </a>
-        <a to="/myAddress">
-          <p class="myPageMenuContent">
-            배송지를 등록하고 관리하실 수 있습니다.
-          </p>
-        </a>
-        <a to="/myAddress" class="myPageOrderMenuMore">더보기 &gt;</a>
-      </div>
+<!--      <div class="myPageMenu">-->
+<!--        <a to="/myAddress" class="myPageMenuTitle">-->
+<!--          내 주소록-->
+<!--        </a>-->
+<!--        <a to="/myAddress">-->
+<!--          <p class="myPageMenuContent">-->
+<!--            배송지를 등록하고 관리하실 수 있습니다.-->
+<!--          </p>-->
+<!--        </a>-->
+<!--        <a to="/myAddress" class="myPageOrderMenuMore">더보기 &gt;</a>-->
+<!--        <a href="/user/myaddress" class="myPageMenuClickBtn"></a>-->
+<!--      </div>-->
     </div>
   </article>
 </main>
+<footer th:replace="common/footer :: footer"></footer>
 </body>
 </html>

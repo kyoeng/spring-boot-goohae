@@ -17,10 +17,6 @@
             <nav class="user-navbar">
                 <ul class="user-list">
                     <li class="login-inner user-menu">
-                        <a href="/user/login" th:if="${session.loginId == null}">
-                            <img src="/images/icon/login_icon.png" alt="로그인">
-                            <span>로그인</span>
-                        </a>
                         <a href="/user/logout" th:if="${session.loginId != null}">
                             <img src="/images/icon/login_icon.png" alt="로그아웃">
                             <span>로그아웃</span>
@@ -28,9 +24,9 @@
                     </li>
 
                     <li class="join-inner user-menu">
-                        <a href="/user/join" th:if="${session.loginId == null}">
-                            <img src="/images/icon/join.png" alt="회원가입">
-                            <span>회원가입</span>
+                        <a href="/user/login" th:if="${session.loginId == null}">
+                            <img src="/images/icon/login_icon.png" alt="로그인">
+                            <span>로그인</span>
                         </a>
                         <a href="/user/mypage" th:if="${session.loginId != null}">
                             <img src="/images/icon/join.png" alt="마이페이지">
@@ -39,6 +35,10 @@
                     </li>
 
                     <li class="cart-inner user-menu">
+                        <a href="/user/join" th:if="${session.loginId == null}">
+                            <img src="/images/icon/join.png" alt="회원가입">
+                            <span>회원가입</span>
+                        </a>
                         <a href="/user/mycart" th:if="${session.loginId != null}">
                             <img src="/images/icon/cart.png" alt="카트">
                             <span>장바구니</span>

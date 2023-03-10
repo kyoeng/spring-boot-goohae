@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ProductPageController {
-
+    // 할 일
     ProductService productService;
 
     public ProductPageController(ProductService productService) {this.productService = productService; }

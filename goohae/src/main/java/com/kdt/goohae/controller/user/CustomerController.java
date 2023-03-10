@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 public class CustomerController {
 
-
     @GetMapping (value = "customer/main")
     public String customerMain() { return "customer/customerMain";}
     @GetMapping (value = "customer/inquiry")

@@ -19,4 +19,5 @@ public interface UserMapper {
     /* 유저 전체 데이터 갯수 */
     int getTotalData();
 
+
 }
