@@ -104,4 +104,31 @@
         select count(*) from product
         <include refid="search" />
     </select>
+
+
+
+
+    <!-- 메인페이지 새로운 상품 -->
+    <select id="getMainNew" resultType="GetProductDTO">
+        select product.product_code, product.product_name, product.price, product.discount, product_image.image_path
+        from product, product_image
+
+        where product_image.image_path like '%-1.%'
+        and product.product_code = product_image.product_code
+
+        order by product.upload_date desc
+        limit 0, 4
+    </select>
+
+    <!-- 메인페이지 베스트 상품 -->
+    <select id="getMainBest" resultType="GetProductDTO">
+        select product.product_code, product.product_name, product.price, product.discount, product_image.image_path
+        from product, product_image
+
+        where product_image.image_path like '%-1.%'
+        and product.product_code = product_image.product_code
+
+        order by product.view_count desc
+        limit 0, 8
+    </select>
 </mapper>
