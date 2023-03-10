@@ -70,7 +70,7 @@ public class UserController {
             if(passwordEncoder.matches(vo.getPassword(), dbVO.getPassword())){
                 httpSession.setAttribute("loginId",vo.getId());
                 httpSession.setAttribute("name",dbVO.getName());
-                mv.setViewName("/mainPage");
+                mv.setViewName("index");
             }else{
                 mv.addObject("message", "PW오류");
                 mv.setViewName("/user/singlePage/login");
@@ -91,27 +91,30 @@ public class UserController {
         return "/mainPage";
     }
 
-    // 아이디 찾기, 비밀번호 찾기
+    /**
+     * 아이디 찾기, 비밀번호 찾기
+     * */
     @GetMapping (value = "user/findid")
     public String findId () {return "user/singlePage/findId";}
+
     @GetMapping (value = "user/findpw")
     public String findPw (UserVO vo, ModelAndView mv) {
         mv.setViewName("user/singlePage/findPw");
         mv.addObject("findPw",vo);
-        return "user/singlePage/findPw";}
+        return "user/singlePage/findPw";
+    }
 
-    // 로그인 이후 기능
-    // 마이페이지는 로그인 해야함.
+
     @GetMapping (value = "user/mypage")
     public String myPage(HttpSession httpSession){
         return "user/myPage/myPage";
     }
     @GetMapping (value = "user/mypost")
-    public ModelAndView myPost(ModelAndView mv){
+    public String myPost(ModelAndView mv){
 
-        mv.setViewName("user/myPost");
+        mv.setViewName("user/myPage/myPost");
 //        mv.addObject("post",userService.getMyPost());
-        return mv;
+        return "user/myPage/myPost";
     }
     @GetMapping (value = "user/mycart")
     public String myCart(){ return "user/myPage/shoppingCart";}
