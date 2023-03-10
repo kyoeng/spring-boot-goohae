@@ -27,10 +27,15 @@
 
 
 /* ==========================  분류별문의 박스 공통   ======================== */
+#inquiryForm {
+    width: 70%;
+    margin: auto;
+}
 
 .optionBox {
     margin-top: 50px;
     text-align: left;
+    display: none;
 
 }
 
