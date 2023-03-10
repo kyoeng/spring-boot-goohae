@@ -113,8 +113,8 @@ public class UserController {
     public ModelAndView myPost(ModelAndView mv){
 
         mv.setViewName("user/myPost");
-        mv.addObject("post",userService.getMyPost());
-        return "user/myPage/mypost";
+//        mv.addObject("post",userService.getMyPost());
+        return mv;
     }
     @GetMapping (value = "user/mycart")
     public String myCart(){ return "user/myPage/shoppingCart";}
