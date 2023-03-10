@@ -38,3 +38,8 @@
 .tableTr td:nth-child(4) {
     width: 130px;
 }
+
+.accordion-header {
+    display: none;
+    padding: 10px;
+}

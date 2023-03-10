@@ -22,32 +22,34 @@
 
         <ul class="categoryBox">
             <li>
-                <a href="#">공지사항</a>
+                <a href="customer/main">공지사항</a>
             </li>
             <li>
-                <a href="#">FAQ</a>
+                <a href="qna-board/list">FAQ</a>
             </li>
             <li>
-                <a href="#">상담문의</a>
+                <a href="/customer/inquiry">상담문의</a>
             </li>
         </ul>
 
         <table class="customerTable">
             <thead class="tableList">
                 <tr>
-                    <th>head1</th>
-                    <th>제목</th>
                     <th>작성일</th>
+                    <th>제목</th>
                     <th>작성자</th>
+                    <th></th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr class="tableTr">
-                    <td class="tableTd">어쩌고 저쩌고</td>
-                    <td class="tableTd">어쩌고 저쩌고</td>
-                    <td class="tableTd">어쩌고 저쩌고</td>
-                    <td class="tableTd">어쩌고 저쩌고</td>
+                <tr th:each="qnaList : ${qnaList}" class="tableTr">
+                    <td th:text="${qnaList.reg_date}" class="tableTd"></td>
+                    <td th:text="${qnaList.title}" class="tableTd"></td>
+                    <td th:text="${qnaList.user_id}" class="tableTd"></td>
+                    <td colspan="4" class="acordian">
+                        <div class="acordianHeader" th:text="${qnaList.content}"></div>
+                    </td>
                 </tr>
             </tbody>
         </table>
