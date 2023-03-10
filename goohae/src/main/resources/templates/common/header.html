@@ -29,7 +29,7 @@
                             <span>로그인</span>
                         </a>
 
-                        <a href="/user/mypage" th:if="${session.loginId != null}">
+                        <a href="/logined-user/mypage" th:if="${session.loginId != null}">
                             <img src="/images/icon/join.png" alt="마이페이지">
                             <span>마이페이지</span>
                         </a>
@@ -41,7 +41,7 @@
                             <span>회원가입</span>
                         </a>
 
-                        <a href="/user/mycart" th:if="${session.loginId != null}">
+                        <a href="/logined-user/mycart" th:if="${session.loginId != null}">
                             <img src="/images/icon/cart.png" alt="카트">
                             <span>장바구니</span>
                         </a>

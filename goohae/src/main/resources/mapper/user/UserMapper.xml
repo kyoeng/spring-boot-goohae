@@ -15,6 +15,10 @@
         delete from user where id = #{id}
     </delete>
 
+    <update id="update">
+        update user set password = #{password} , name = #{name}, post_number = #{postNumber}, address = #{address}, phone_number = #{phoneNumber} where id = #{id}
+    </update>
+
     <!-- 유저 검색 시 참고 -->
     <sql id="search">
         <bind name="searchKeyword" value="'%'+keyword+'%'"/>

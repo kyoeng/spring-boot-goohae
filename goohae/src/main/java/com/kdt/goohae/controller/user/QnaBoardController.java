@@ -30,7 +30,6 @@ public class QnaBoardController {
     @GetMapping(value = "qna-board/list")
     public String selectList(Model model, PageMaker pageMaker, Criteria cri){
 
-
         cri.setStartNum();
 
         model.addAttribute("qnaList",qnaBoardService.selectlList(cri));
@@ -49,7 +48,7 @@ public class QnaBoardController {
      * 내 작성글 리스트
      * 로그인 했다면, model에 "userQnaList"에 담아서 리턴
      * */
-    @PostMapping(value = "qna-board/user-list")
+    @PostMapping(value = "logined-user/qna-board/user-list")
     public Model userList (Model model, HttpSession httpSession ){
         String loginId = (String) httpSession.getAttribute("loginId");
         model.addAttribute("userQnaList", qnaBoardService.userList(loginId));
@@ -83,7 +82,7 @@ public class QnaBoardController {
      * 성공 : success ( session )
      * 실패 : failed ( session )
      * */
-    @PostMapping(value = "qna-board/insert")
+    @PostMapping(value = "logined-user/qna-board/insert")
     public String insert (QnaBoardVO vo, HttpSession httpSession){
         if ( httpSession.getAttribute("loginId") == null ){
             httpSession.setAttribute("message", "login-required");
@@ -111,7 +110,7 @@ public class QnaBoardController {
      *  다른 id : wrongLoginId
      *  다른 pw : wrongPassword
      * */
-    @GetMapping(value = "qna-board/delete")
+    @PostMapping(value = "logined-user/qna-board/delete")
     public String delete ( QnaBoardVO vo, HttpSession httpSession ){
         String pw = qnaBoardService.selectOne(vo).getBoardPassword();
 //        vo.setUserId((String) httpSession.getAttribute("loginId"));

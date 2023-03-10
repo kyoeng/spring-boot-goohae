@@ -10,9 +10,8 @@ import java.util.ArrayList;
 @Service
 public class UserServiceImpl implements UserService{
 
-    public UserServiceImpl(UserMapper mapper) {this.mapper = mapper;}
-
     UserMapper mapper;
+    public UserServiceImpl(UserMapper mapper) {this.mapper = mapper;}
 
     @Override
     public int insert(UserVO vo) {
@@ -20,14 +19,12 @@ public class UserServiceImpl implements UserService{
     }
     @Override
     public UserVO selectOne(UserVO vo) {return mapper.selectOne(vo);}
-
     @Override
     public int delete(UserVO vo) {return mapper.delete(vo);}
     @Override
     public ArrayList<UserVO> selectList(SearchCri cri) { return mapper.selectList(cri);}
-
     @Override
-    public int getTotalData() {
-        return mapper.getTotalData();
-    }
+    public int getTotalData() { return mapper.getTotalData(); }
+    public int update(UserVO vo) { return mapper.update(vo); }
+
 }
