@@ -39,4 +39,13 @@ public interface ProductMapper {
     List<GetProductDTO> getSearchProduct(SearchCri cri);
     int getSearchTotalData(SearchCri cri);
 
+
+
+    /* 메인 페이지 상품 데이터 가져오기 */
+    /* new product */
+    List<GetProductDTO> getMainNew();
+
+    /* best product */
+    List<GetProductDTO> getMainBest();
+
 }
