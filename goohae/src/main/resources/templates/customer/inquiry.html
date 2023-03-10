@@ -49,13 +49,13 @@
         </div>
     </div>
 
-    <div th:replace="/customer/inquiryForm" id="inquiry"></div>
+    <div th:replace="/customer/inquiryForm"></div>
 
 
     <footer th:replace="common/footer :: footer"></footer>
 </body>
 
-<script>
+<script defer>
     const inquiryValues = document.querySelector('#inquiryValues');
     const inquiryForm = document.querySelector('#inquiryForm');
     const selectForm = [...inquiryForm.querySelectorAll('.optionBox')];
@@ -79,8 +79,9 @@
         nowForm.style.display = 'block';
         preForm = nowForm;
     })
-
 </script>
+
+<script async src=""></script>
 
 
 </html>
