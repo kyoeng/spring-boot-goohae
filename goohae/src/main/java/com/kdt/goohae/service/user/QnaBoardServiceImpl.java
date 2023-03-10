@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class QnaBoardServiceImple implements QnaBoardService{
+public class QnaBoardServiceImpl implements QnaBoardService{
 
 
     QnaBoardMapper mapper;
 
-    public QnaBoardServiceImple(QnaBoardMapper mapper) {this.mapper = mapper;}
+    public QnaBoardServiceImpl(QnaBoardMapper mapper) {this.mapper = mapper;}
     @Override
     public ArrayList<QnaBoardVO> selectlList(Criteria cri) {return mapper.selectList(cri);}
     @Override

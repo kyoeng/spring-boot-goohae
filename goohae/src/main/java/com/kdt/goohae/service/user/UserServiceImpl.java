@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class UserServiceImple  implements UserService{
+public class UserServiceImpl implements UserService{
 
-    public UserServiceImple(UserMapper mapper) {this.mapper = mapper;}
+    public UserServiceImpl(UserMapper mapper) {this.mapper = mapper;}
 
     UserMapper mapper;
 

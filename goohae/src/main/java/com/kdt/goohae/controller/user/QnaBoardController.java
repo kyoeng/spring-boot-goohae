@@ -42,7 +42,7 @@ public class QnaBoardController {
 
         log.info("{}",model.getAttribute("qnaList"));
 
-        return "user/mypage/mypage";
+        return "customer/customerFaq";
     }
 
     /**
