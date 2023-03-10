@@ -50,7 +50,7 @@ public class QnaBoardController {
      * 내 작성글 리스트
      * 로그인 했다면, model에 "userQnaList"에 담아서 리턴
      * */
-    @GetMapping(value = "qna-board/user-list")
+    @PostMapping(value = "qna-board/user-list")
     public Model userList (Model model, HttpSession httpSession ){
         String loginId = (String) httpSession.getAttribute("loginId");
         model.addAttribute("userQnaList", qnaBoardService.userList(loginId));
@@ -64,7 +64,7 @@ public class QnaBoardController {
      * param : boardSeq
      * param : boardPassword ( not required )
      * */
-    @GetMapping(value = "qna-board/detail")
+    @PostMapping(value = "qna-board/detail")
     public Model selectOne(QnaBoardVO vo, Model model){
         String pw = qnaBoardService.selectOne(vo).getBoardPassword();
         if (pw == null || pw.equals(vo.getBoardPassword())){
@@ -77,6 +77,10 @@ public class QnaBoardController {
      * qna 글 추가
      * 로그인한 상태인지 확인
      * 글 추가 실행
+     * param : userId
+     * param : title
+     * param : content
+     * param : boardPassword
      * 성공 : success ( session )
      * 실패 : failed ( session )
      * */
@@ -108,15 +112,14 @@ public class QnaBoardController {
      *  다른 id : wrongLoginId
      *  다른 pw : wrongPassword
      * */
-    @PostMapping(value = "qna-board/delete")
+    @GetMapping(value = "qna-board/delete")
     public String delete ( QnaBoardVO vo, HttpSession httpSession ){
         String pw = qnaBoardService.selectOne(vo).getBoardPassword();
-
+//        vo.setUserId((String) httpSession.getAttribute("loginId"));
         if (httpSession.getAttribute("adminID") != null) {
             if(qnaBoardService.delete(vo) > 0) httpSession.setAttribute("message", "success");
             return "admin/main";
         }
-
         if (pw == null || pw.equals(vo.getBoardPassword())){
             if( vo.getUserId() == httpSession.getAttribute("loginId")
                 && qnaBoardService.delete(vo)>0 ){
