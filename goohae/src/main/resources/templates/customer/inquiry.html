@@ -5,13 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/configCSS/config.css">
-    <link rel="stylesheet" href="/customer/customerMain.css">
-    <link rel="stylesheet" href="/customer/inquiry.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/common/header.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/common/config.css">
+    <link rel="stylesheet" href="/css/customer/customerMain.css">
+    <link rel="stylesheet" href="/css/customer/inquiry.css">
+    <title>문의하기</title>
+
+
 </head>
 
+
 <body>
+    <header th:replace="common/header :: header"></header>
     <div class="customerMain">
         <h1>상담문의</h1>
 
@@ -30,18 +36,51 @@
         <div class="inquiryContainer">
             <div class="selectBox">
                 <span>문의 구분</span>
-                <select name="" id="">
-                    <option name="문의를 선택해주세요" value="0">문의를 선택해주세요</option>
-                    <option name="제품문의" value="1">제품문의</option>
-                    <option name="배송/설치 문의" value="2">배송/설치 문의</option>
-                    <option name="주문/결제/취소 문의" value="3">주문/결제/취소 문의</option>
-                    <option name="교환/반품 문의" value="4">교환/반품 문의</option>
-                    <option name="이벤트/프로모션" value="5">이벤트/프로모션</option>
-                    <option name="통합회원/기타문의" value="6">통합회원/기타문의</option>
+                <select id="inquiryValues">
+                    <option name="문의를 선택해주세요" value="default">문의를 선택해주세요</option>
+                    <option name="제품문의" value="product">제품문의</option>
+                    <option name="배송/설치 문의" value="setUp">배송/설치 문의</option>
+                    <option name="주문/결제/취소 문의" value="payment">주문/결제/취소 문의</option>
+                    <option name="교환/반품 문의" value="refund">교환/반품 문의</option>
+                    <option name="이벤트/프로모션" value="event">이벤트/프로모션</option>
+                    <option name="통합회원/기타문의" value="etc">통합회원/기타문의</option>
                 </select>
             </div>
         </div>
     </div>
+
+    <div th:replace="/customer/inquiryForm" id="inquiry"></div>
+
+
+    <footer th:replace="common/footer :: footer"></footer>
 </body>
+
+<script>
+    const inquiryValues = document.querySelector('#inquiryValues');
+    const inquiryForm = document.querySelector('#inquiryForm');
+    const selectForm = [...inquiryForm.querySelectorAll('.optionBox')];
+
+    let preForm, nowForm = false;
+
+    inquiryValues.addEventListener('change', (e) => {
+        let value = e.target.value;
+
+        if (value == 'product') nowForm = selectForm[0];
+        if (value == 'setUp') nowForm = selectForm[1];
+        if (value == 'payment') nowForm = selectForm[2];
+        if (value == 'refund') nowForm = selectForm[3];
+        if (value == 'event') nowForm = selectForm[4];
+        if (value == 'etc') nowForm = selectForm[5];
+
+        if (preForm) {
+            preForm.style.display = 'none';
+        }
+
+        nowForm.style.display = 'block';
+        preForm = nowForm;
+    })
+
+</script>
+
 
 </html>
