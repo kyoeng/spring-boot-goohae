@@ -58,6 +58,13 @@ input {
     background: url(../../../stores/images/icon/logo.png) no-repeat center top/contain;
 }
 
+.findPwHead>.findPwHeadLogo>a{
+ display: block;
+    height: 70px;
+    width: 200px;
+}
+
+
 .findPwHeadListWrap {
     list-style-type: none;
     padding: 0;
@@ -82,6 +89,7 @@ input {
 .findPwHead>.findPwHeadListWrap>.findPwHeadList .findIdLink,
 .findPwHead>.findPwHeadListWrap>.findPwHeadList .findPwLink{
     font-size: 14px;
+    text:decoration:none;
     margin:0 auto ;
 }
 

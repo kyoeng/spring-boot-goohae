@@ -1,250 +1,138 @@
+*{
+    font-size: 10px;
+}
+
 body {
-  width: 100%;
-  margin: auto;
-}
-
-:root {
-  font-size: 10px;
+    width: 100%;
+    margin: auto;
 }
 
 /* ============================================================================================ */
 /* ============================================================================================ */
-/* .=================================myPageMain============================ .*/
-.myPageMain {
-  margin: 0 auto;
-  width: 70%;
-  margin-top: 258px;
+/* =================================.myPostMain============================ */
+
+
+.myPostTableCategory {
+    margin: 14px 0 12px;
+    margin-top: 170px;
 }
 
-.myPageTitle {
-  font-family:'Nanum Myeongjo';
-  margin-top: 130px;
-  margin-bottom: 40px;
-  font-size: 2rem;
-  text-align: center;
-  font-weight: bold;
+.myPostTableCategory .myPageLink {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #9497AB;
 }
 
-/* ==============================회원 인사 멘트 박스============================== */
-/* ==============================회원 인사 멘트 박스============================== */
-/* ==============================회원 인사 멘트 박스============================== .*/
-.myPageMain>.myPageWrap>.myPageWMent {
-  text-align: center;
-}
-
-.myPageMentContent,
-.myPageMentContent>.myPageMentContentName {
-  font-size: 2rem;
-  font-family: NanumMyeongjo;
-  font-weight: bold;
-}
-
-.myPageMentContent>.myPageMentContentName {
-  color: #505DD0;
-}
-
-.myPageMain>.myPageWrap>.myPageWMent>.myPageInfoMent {
-  margin: 40px 0;
-  font-size: 1.5rem;
+.myPostTableCategory #myPageSubLink {
+    color: #505DD0;
+    font-weight: bold;
 }
 
 
-.myPageMain>.myPageWrap>.myPageWMent>.myPageInfoMent>.myPageInfoMenMinPrice {
-  font-size: 1.5rem;
-  color: #505DD0;
+
+.myPostMain {
+    width: 70%;
+    /* padding: 0 5%; */
+    font-size: 1.4rem;
+    min-width: 700px;
 }
 
-/* ==============================적립금 박스============================== */
-/* ==============================적립금 박스============================== */
-/* ==============================적립금 박스============================== */
-
-.MyPoint {
-  width: 100%;
-  border: 1px solid  #9497AB;
-  text-align: center;
-  margin-bottom: 1.5rem;
+.myPostMain, 
+#myPostWrap,
+.myPostTableWrap {
+    margin: 0 auto;
 }
 
-.myPageMain>.myPageWrap>.MyPoint>p {
-  color: #505DD0;
-  font-size: 1.6rem;
-  margin-top: 30px;
-  margin-bottom: 40px;
-  font-weight: bold;
+.myPostUpper #myPostCategory {
+    font-size: 12px;
 }
 
-.myPageMain>.myPageWrap>.MyPoint>.myMileageCoupon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.myPostTitle {
+    width: 100%;
+    line-height: 2.5rem;
+    font-weight: 800;
+    font-size: 2rem;
+    font-family:'Nanum Myeongjo';
+    text-align: center;
+    color: #1A1B23;
+    padding: 100px 0px 38px;
 }
 
-.myPageMain>.myPageWrap>.MyPoint>.myMileageCoupon>div {
-  width: 20%;
-  text-align: center;
-  padding: 10px;
+.myPostTableWrap .myPostTableOption,
+.myPostTableWrap #myPostCategory  {
+    color:#1A1B23;
 }
 
-.myPageMain>.myPageWrap>.MyPoint>.myMileageCoupon>div:not(:first-of-type) {
-  border-left: solid 0.5px rgba(192, 192, 192, 0.833);
+.myPostTableWrap {
+    width: 100%;
+    /* margin: 50px auto;    */
+    margin-bottom: 200px;
 }
 
-.myPageMain>.myPageWrap>.MyPoint>.myMileageCoupon>div>p:first-of-type {
-  font-size: 1.2rem;
-  text-align: center;
-  color:  #9497AB;
-  margin-bottom: 5px;
+.myPostTableCategory {
+    margin-top: 170px;
+    margin-bottom: 1rem;
 }
 
-.myPageMain>.myPageWrap>.MyPoint>.myMileageCoupon>div>p:last-of-type {
-  font-size: 1.6rem;
-  text-align: right;
+.myPostTableCategory .myPageLink {
+    font-size: 1.2rem;
 }
 
-.myPageMain>.myPageWrap>.MyPoint>.myMileageCoupon>.myPossibleMileage .strong,
-myPageMain>.myPageWrap>.MyPoint>.myMileageCoupon>.myCouponWrap strong {
-  color: #505DD0;
+.myPostTableCategory #myPageSubLink {
+    color: #505DD0;
+    font-weight: bold;
 }
 
-.myPageMain>.myPageWrap>.MyPoint>.myCouponMileageButtonWrap>.myCouponMileageButton {
-  display: inline-block;
-  width: 200px;
-  height: 3.6rem;
-  margin: 30px 5px;
-  background-color: white;
-  border: 1px solid;
-  font-weight: bold;
+/* ====================Table=================== */
+/* ====================Table=================== */
+/* ====================Table=================== */
+
+
+.myPostTable {
+    width: 100%;
+    margin: 10px auto;
+    border-collapse: collapse;
 }
 
-/* ==============================주문 현황 박스============================== */
-/* ==============================주문 현황 박스============================== */
-/* ==============================주문 현황 박스============================== */
-
-.myPageMyOrder {
-  text-align: center;
-  border: 1px solid  #9497AB;
+.myPostTable .myPostTableTr {
+    height: 40px;
+    border-bottom: 1px solid #1A1B23;
 }
 
-.myPageMyOrder>.myPageOrederTitle {
-  margin-top: 30px;
-  margin-bottom: 40px;
+.myPostTable .myPostTableTh {
+    border-bottom: 2px solid #1A1B23;
+    text-align: center;
+    font-size: 1.4rem;
 }
 
-.myPageMyOrder>.myPageOrederTitle>.myPageOrderTitleContent:first-of-type {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #505DD0;
+.myPostTable .myPostTableRow {
+    border-bottom: 2px solid #1A1B23;
+    text-align: center;
 }
 
-.myPageMyOrder>.myPageOrederTitle>p.myPageOrderTitleContent:last-of-type {
-  font-size: 1.3rem;
-  color:  #9497AB;
-  margin-top: 6px;
+
+.myPostTable .myPostTablTbody .myPostTableRow{
+    height: 70px;
+}
+.myPostTable .myPostTablTbody .myPostTableRow .myPostTableContentInner{
+    font-size: 1.4rem;
 }
 
-.myPageMyOrder>.myPageOrderProcess {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  margin-bottom: 34px;
+.myPostTable .myPostTableRow .myPostSubject:hover{
+    color: #505DD0;
 }
 
-.myPageMyOrder>.myPageOrderProcess>.myPageOrderProcessInnerContainer:not(:last-of-type) {
-  width: 15%;
-  height: 80px;
-  border-right: 1px solid #9497AB;
+
+.panel {
+    display: none;
 }
 
-.myPageMyOrder>.myPageOrderProcess>.myPageOrderProcessInnerContainer:last-of-type {
-  border-left: 1px solid  #9497AB;
-  width: 15%;
-  height: 80px;
-}
-
-.myPageMyOrder>.myPageOrderProcess>.myPageOrderProcessInnerContainer:not(:last-of-type)>.myPageOrderCaseTitle{
-  font-size: 1.4rem;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.myPageMyOrder>.myPageOrderProcess>.myPageOrderProcessInnerContainer:last-of-type>.myPageOrderCaseTitle {
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.myPageMyOrder>.myPageOrderProcess>.myPageOrderProcessInnerContainer:last-of-type>.myPageOrderOtherCase>.myPageOrderOtherCaseTitle {
-  margin-bottom: 5px;
-}
-
-.myPageMyOrder>.myPageOrderProcess>.myPageOrderProcessInnerContainer:last-of-type>.myPageOrderOtherCase>.myPageOrderOtherCaseTitle>.myPageOrderOtherCaseList {
-  color: #505DD0;
-}
-
-.myPageMyOrder>.myPageOrderProcess>.myPageOrderProcessInnerContainer>.myPageOrderCase {
-  display: inline-block;
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #505DD0;
-}
-/*
-.myPageMyOrder>.myPageOrderProcess>img {
-  display: inline-block;
-  width: 10px;
-  height: 15px;
-  margin-bottom: 25px;
+/* .PostConmypostTableTrolButton {
+    margin: 0 auto;
+    width: 90%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 10px 5px;
 } */
-
-.delieveryEtc>ul>li {
-  font-size: 1.2rem;
-  color: #9497AB;
-}
-
-/* ==============================여러 메뉴============================== */
-/* ==============================여러 메뉴============================== */
-/* ==============================여러 메뉴============================== */
-
-.myPageMenuContainer {
-  margin-top: 40px;
-  width: 100%;
-  height: 900px;
-  display: grid;
-  grid-template: 30% 30% 30% / 30% 30% 30%;
-  row-gap: 3.3%;
-  column-gap: 3.3%;
-  justify-content: space-between;
-  margin-bottom: 100px;
-}
-
-.myPageMenuContainer>.myPageMenu {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  text-align: center;
-  padding: 0 25px;
-  padding-top: 34px;
-  border: 1px solid;
-}
-
-.myPageMenuContainer>.myPageMenu .myPageMenuTitle {
-  font-size: 2rem;
-  font-family: NanumMyeongjo;
-  color: #1A1B23;
-  font-weight: 700;
-}
-
-.myPageMenuContainer>.myPageMenu .myPageMenuContent {
-  font-size: 1.4rem;
-  color: #9497AB;
-  /* display: block; */
-}
-
-.myPageMenuContainer>.myPageMenu span {
-  font-size: 1.5rem;
-}
-
-.myPageMenuContainer>.myPageMenu>.myPageOrderMenuMore{
-  font-size: 1.4rem;
-  font-weight: bold;
-}

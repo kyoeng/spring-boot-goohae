@@ -128,14 +128,14 @@ body {
     font-size: 1.4rem
 }
 
-.OrderConditionDate {
+.myOrderConditionDate {
     display: flex;
     flex-flow: row nowrap;
     padding: 0 10px;
     padding-right: 5px;
 }
 
-.OrderConditionDate .myOrderSelectConditionDate {
+.myOrderConditionDate .myOrderSelectConditionDate {
     display: flex;
     justify-content: center;
     align-items: center;

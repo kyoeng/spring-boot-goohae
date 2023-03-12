@@ -41,13 +41,13 @@ input {
     height: 592px;
     background: #FFFFFF;
     border: 1px solid #F7F7FB;
-    box-shadow: 0px 2px 50px rgba(80, 93, 208, 0.4);
+    box-shadow: 0px 2px 50px rgba(6, 7, 10, 0.4);
     border-radius: 5px;
 
 }
 .loginInnerContainer{
     padding:54px 40px 0;
-    width: 400px;
+    width: 320px;
 }
 
 .loginHead>.loginHeadLogo {
@@ -56,7 +56,11 @@ input {
     width: 200px;
     margin: 0px 60px 34px;
     text-indent: -9999em;
-    background: url(../../../stores/images/icon/logo.png) center/cover;
+   }
+.loginHead>.loginHeadLogo>a{
+ display: block;
+    height: 70px;
+    width: 200px;
 }
 
 .loginHead>.loginHeadListWrap {
@@ -98,6 +102,7 @@ input {
     height: 36px;
     margin: 0 0 8px;
     border: #1A1B23 1px solid;
+    box-sizing: border-box;
 }
 .idCheck{
     text-align: start;
@@ -144,8 +149,13 @@ input {
     font-size: 1.4rem;
     background-color:#9497AB;
     color: whitesmoke;
+    font-family:Nanum Gothic;
 }
 
+.foot {
+    list-style: none;
+    padding: 0;
+}
 .foot li{
     margin:15px auto;
 }

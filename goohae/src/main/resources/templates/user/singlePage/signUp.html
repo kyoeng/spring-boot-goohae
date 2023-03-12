@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="../../../static/css/user/singlePage/signUp.css">
-  <script defer src="../../../static/js/user/singlePage/signUp.js"></script>
-  <!-- <link rel="stylesheet" href="/css/user/singlePage/signUp.css"> -->
-  <!-- <script defer src="/js/user/singlePage/signUp.js"></script> -->
-  <!--</head>-->
+  <title>SignUp</title>
+<!--  <link rel="stylesheet" href="../../../static/css/user/singlePage/config.css">-->
+<!--  <link rel="stylesheet" href="../../../static/css/user/singlePage/signUp.css">-->
+<!--  <script defer src="../../../static/js/user/singlePage/signUp.js"></script>-->
+   <link rel="stylesheet" href="/css/user/singlePage/config.css">
+   <link rel="stylesheet" href="/css/user/singlePage/signUp.css">
+   <script defer src="/js/user/singlePage/signUp.js"></script>
+  </head>
 
   <!--
   할 일
@@ -21,7 +23,7 @@
   <main class="signUpContainer">
     <section id="MemberInfoWrap">
       <div class="logoImage">
-        <a href="/" th:href="@{/}"><img src={logo} alt="img" /></a>
+        <a href="/"  style="background-image: url('/images/icon/logo.png')"></a>
       </div>
       <article class="FormWrap">
         <form class="InfoForm" name="memberJoin" th:action="@{/user/join}" method="post" th:object="${vo}">
@@ -29,40 +31,41 @@
             <p>아이디</p>
             <input type="text" name="id" class="signUpId" minLength=5 maxLength=16
               placeholder="영문 대소문자와 숫자 5-19자 조합" />
-            <p class="signUpErrorMassage" th:if="error">{signUpIdErrorMassage}</p>
-            <p class="signUpErrorMassage" th:if="error">{signUpIdMassage}</p>
-            <button class="signUpIdDuplicateConform signUpBtn" disabled={!isSignUpId}>아이디 중복확인</button>
+            <p class="signUpErrorMassage red hidden">아이디를 입력해주세요</p>
+            <button class="signUpIdDuplicateConform signUpBtn hidden" disabled={!isSignUpId}>아이디 중복확인</button>
           </div>
           <div class="pwInputWrap">
             <p>비밀번호</p>
             <input class="pwInput" type="password" name="password" minLength=8 maxLength=16
-              placeholder=" 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합" />
-            <p class="signUpErrorMassage" th:if="error">{signUpPwMassage}</p>
+              placeholder=" 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합"  />
+            <p class="signUpPwErrorMassage red nonDisplay">비밀번호를 입력해주세요.</p>
+            <p class="signUpPwErrorMsg red hidden">8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합해주세요</p>
           </div>
           <div class="pwConfirmInputWrap">
             <p>비밀번호 확인</p>
-            <input class="pwConfirmInput" type="password" minLength=8 maxLength=16 />
-            <p class="signUpErrorMassage" th:if="error">{signUpPwConfirmMessage}</p>
+            <input class="pwConfirmInput" type="password" minLength=8 maxLength=16  />
+            <p class="signUpPwConfirmErrorMassage red nonDisplay">비밀번호를 입력해주세요.</p>
+            <p class="signUpPwConfirmErrorMsg red hidden">비밀번호를 동일하게 입력해주세요.</p>
           </div>
           <div class="nameInputWrap">
             <p>이름</p>
             <input class="signUpName" type="text" name="name" />
-            <p class="signUpErrorMassage" th:if="error">{signUpNameMassage}</p>
+            <p class="signUpNameErrorMassage red hidden">이름를 입력해주세요</p>
           </div>
           <div class="tellInputWrap">
             <p>휴대전화</p>
-            <input class="signUpPhone" type="text" name="phoneNumber" placeholder="'-'없이 입력해주세요" />
-            <p class="signUpErrorMassage" th:if="error">{signUpPhoneMassage}</p>
+            <input class="signUpPhone" type="text" name="phoneNumber" placeholder="'-'없이 입력해주세요"  maxLength=11 />
+            <p class="signUpPhoneErrorMassage red hidden">전화번호를 입력해주세요.</p>
           </div>
           <div class="tellInputWrap">
             <p>우편번호</p>
-            <input class="signUpAddressNumber" type="text" name="postNumber" placeholder="'-'없이 입력해주세요" />
-            <p class="signUpErrorMassage" th:if="error">{signUpPhoneMassage}</p>
+            <input class="signUpAddressNumber" type="text" name="postNumber" placeholder="'-'없이 입력해주세요" maxLength=5 />
+            <p class="signUpAddressNumberErrorMassage  red hidden">우편번호를 입력해주세요.</p>
           </div>
           <div class="tellInputWrap">
             <p>주소</p>
             <input class="signUpAddress" type="text" name="address" placeholder="'-'없이 입력해주세요" />
-            <p class="signUpErrorMassage" th:if="error">{signUpPhoneMassage}</p>
+            <p class="signUpAddressErrorMassage red hidden">주소를 입력해주세요.</p>
           </div>
           <div class="emailGetRadio">
             <div>
@@ -555,13 +558,13 @@
                 <button>닫기</button>
               </div>
             </div>
-            <p class="signUpErrorMassage" th:if="error">{signUpMeCheckMessage}</p>
+            <p class="signUpCheckErrorMassage red hidden">모두 동의해주세요</p>
           </div>
           <div class="ButtonWrap">
-            <button class="signUpSubmitBtn signUpBtn" type="submit">
+            <button class="signUpSubmitBtn signUpBtn" type="submit"  >
               회원가입 하기
             </button>
-            <input type="submit" />
+            <input type="submit" disabled/>
           </div>
         </form>
       </article>
