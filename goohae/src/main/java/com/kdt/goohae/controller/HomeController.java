@@ -1,6 +1,7 @@
 package com.kdt.goohae.controller;
 
 
+import com.kdt.goohae.domain.admin.ProductVO;
 import com.kdt.goohae.domain.forPaging.PageMaker;
 import com.kdt.goohae.domain.forPaging.SearchCri;
 import com.kdt.goohae.service.HomeService;
@@ -83,6 +84,15 @@ public class HomeController {
         model.addAttribute("pageMake", pageMaker);
 
         return "product/subPage";
+    }
+
+
+    @GetMapping("/detail")
+    public String detail(ProductVO vo, Model model) {
+        model.addAttribute("productCode", vo.getProductCode());
+        model.addAttribute("productName", vo.getProductName());
+
+        return "product/detailPage";
     }
 
 }
