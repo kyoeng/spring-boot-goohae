@@ -1,60 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/configCSS/config.css">
-    <link rel="stylesheet" href="/detailPage/detailPage.css">
-    <link rel="stylesheet" href="/detailPage/detailImgBox.css">
-    <link rel="stylesheet" href="/detailPage/productInfo.css">
-    <link rel="stylesheet" href="/detailPage/productOption.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/common/config.css">
+    <link rel="stylesheet" href="/css/common/header.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/product/detailPage.css">
+    <title>Goohae</title>
+    <script src="/js/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
-    <div class="DetailContainer">
-        <div class="ImgBoxContainer">
-            <img src="" alt="상품이미지">
 
-            <span class="mouseMoveBox"></span>
+    <!-- 헤더 -->
+    <header th:replace="common/header :: header"></header>
+
+    <!-- 디테일 페이지 메인 -->
+    <div class="detail_container">
+        <!-- 이미지 부분 -->
+        <div class="detail_image_box">
+            <div class="wide_img">
+
+            </div>
+
+            <div class="images">
+
+            </div>
         </div>
+
+        <!-- 상품 정보 부분 -->
+        <form class="detail_info_box" method="post">
+            <input type="hidden" th:value="${productCode}">
+
+            <h3 class="product_name">상품 이름</h3>
+
+            <div class="product_ea">
+                <span class="ea_btn">←</span>
+
+                <span class="ea_info">수량 : </span>
+                <input type="text" name="productEa" value="1" readonly>
+
+                <span class="ea_btn">→</span>
+            </div>
+
+            <div class="product_price">
+                <input type="text" name="price" th:value="${productPrice}" readonly>
+                <span>원</span>
+            </div>
+
+            <div class="btn_area">
+                <span class="cart_btn">장 바 구 니</span>
+
+                <input type="submit" value="구 매 하 기" class="order_btn">
+
+                <span class="wish_btn">wish</span>
+            </div>
+
+            <div class="deli_info">
+                <p>
+                    <span>카드혜택</span>
+                    <span>무이자할부</span>
+                </p>
+
+                <p>
+                    <span>배송정보</span>
+                    <span>
+                        주문 결제 후 가구, 조명은 영업일 기준<br>
+                        수도권 5~14일, 도서산간 지역 10~20일 소요
+                    </span>
+                </p>
+            </div>
+        </form>
     </div>
 
-    <div class="forWideImg"></div>
-
-    <div class="subImgContainer"></div>
-
-    <div class="OptionContainer">
-        <h2>옵션이름</h2>
-        
-        <ul>
-            
-        </ul>
+    <!-- 상품 배너 사진 -->
+    <div class="detail_banner">
+<!--        <img th:src="${}">-->
     </div>
 
-    <div class="ProductReviewContainer">
-        <h3>Review</h3>
-
-        <section class="ReviewContainer">
-            <article class="reviewBox">
-                <a href="#" class="AforReviewBox">:</a>
-
-                <img src="" alt="리뷰이미지" class="reviewImg">
-
-                <div class="reviewInfo">
-                    <p class="reviewProduct">1</p>
-                    <div class="reviewIdScore">
-                        <span class="reviewWriter">작성자</span>
-                        <span class="reviewScore">점수</span>
-                    </div>
-
-                    <p class="reviewTitle">리뷰제목</p>
-                </div>
-            </article>
-        </section>
+    <!-- 상품 사이즈 정보 -->
+    <div class="product_size_info">
+<!--        <img th:src="${}">-->
     </div>
+
+    <!-- 푸터 -->
+    <footer th:replace="common/footer :: footer"></footer>
 </body>
 
 </html>
