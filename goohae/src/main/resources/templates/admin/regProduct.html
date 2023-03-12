@@ -41,7 +41,7 @@
 
             <input type="text" name="productInfo" placeholder="상품 정보-공백 가능">
 
-            <input type="file" multiple name="files">
+            <input type="file" id="uploadImg" multiple name="files">
             <div class="preview">
 
             </div>
@@ -51,6 +51,7 @@
 
         <p class="message" th:text="${message}"></p>
     </div>
+    <script defer src="/js/admin/admin.js"></script>
 </body>
 
 </html>

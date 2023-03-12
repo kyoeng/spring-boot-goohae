@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -21,17 +21,7 @@
     <div class="customerMain">
         <h1>상담문의</h1>
 
-        <ul class="categoryBox">
-            <li>
-                <a href="/customer/main">공지사항</a>
-            </li>
-            <li>
-                <a href="/qna-board/list">FAQ</a>
-            </li>
-            <li>
-                <a href="/customer/inquiry">상담문의</a>
-            </li>
-        </ul>
+        <ul th:replace="/customer/customer-fragment :: categoryBox"></ul>
 
         <div class="inquiryContainer">
             <div class="selectBox">
@@ -49,7 +39,7 @@
         </div>
     </div>
 
-    <div th:replace="/customer/inquiryForm"></div>
+    <div th:replace="/customer/inquiryForm :: inquiry"></div>
 
 
     <footer th:replace="common/footer :: footer"></footer>
@@ -59,6 +49,20 @@
     const inquiryValues = document.querySelector('#inquiryValues');
     const inquiryForm = document.querySelector('#inquiryForm');
     const selectForm = [...inquiryForm.querySelectorAll('.optionBox')];
+    const fileUpload = document.querySelector('#fileUpload');
+
+    function setUploadImg(e) {
+        let imgReader = new FileReader();
+
+        imgReader.onload = (e) => {
+            let img = document.createElement("img");
+            img.setAttribute('src', e.target.result);
+            document.querySelector(".fileBox").appendChild(img);
+        };
+        imgReader.readAsDataURL(e.target.files[0]);
+    }
+
+    fileUpload.addEventListener('change', setUploadImg);
 
     let preForm, nowForm = false;
 
@@ -79,6 +83,7 @@
         nowForm.style.display = 'block';
         preForm = nowForm;
     })
+
 </script>
 
 <script async src=""></script>

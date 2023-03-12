@@ -42,6 +42,12 @@
     width: 100%;
     height: 100px;
     display: flex;
+    gap : 5px;
+}
+
+.preview > img{
+    width: 100px;
+    height : 50px;
 }
 
 
