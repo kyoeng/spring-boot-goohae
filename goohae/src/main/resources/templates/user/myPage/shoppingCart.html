@@ -108,11 +108,10 @@ function calculateTotalPrice() {
                                        class="shoppingCartTableCheck"/>
                             </td>
                             <td class="shoppingCartTableRow">
-<!--                                <a href="#"><img th:src="@{/images/staticImages/__${imageName}__}" alt="상품이미지"-->
-<!--                                                 class="shoppingCartTableProductImage"/></a>-->
+                                <a th:href="@{item.productUrl}">  <img th:src="@{${myOrder.image}}" /></a>
                             </td>
                             <td class="shoppingCartTableRow">
-                                <a href="#" class="cartName">
+                                <a th:href="@{item.productUrl}" class="cartName">
                                     <p class="shoppingCartTableProductName shoppingCartTableFontSize"
                                        th:text="${item.productName}"><!--제품이름--></p>
                                     <p class="shoppingCartTableProductName shoppingCartTableFontSize"

@@ -18,13 +18,14 @@
     <script th:inline="javascript">
             alert([[${session.message}]]);
 <!--            window.location.href = "/";-->
+
     </script>
 </div>
 <div th:unless="${session.loginId == null}">
     <header th:replace="common/header :: header"></header>
     <main class="myOrderMain">
         <div class="OrderHistoryCategory">
-<!--            <a th:href="@{/}" class="myPageLink">홈&nbsp;&nbsp;&gt;</a>-->
+            <!--            <a th:href="@{/}" class="myPageLink">홈&nbsp;&nbsp;&gt;</a>-->
             <a th:href="@{mypage}" class="myPageLink">&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&gt;</a>
             <a th:href="@{/myorder}" class="myPageLink" id="myPageSubLink">&nbsp;&nbsp;주문조회&nbsp;&nbsp;</a>
         </div>
@@ -90,11 +91,15 @@
                     <tr class="myOrderTableLine" th:each="myOrder : ${myOrder}">
                         <td class="myOrderTableRow orderDate" th:text="${myOrder.Date}"><!--날짜 출력--></td>
                         <td class="myOrderTableRow myOrderProductImage">
-                            <img src="./Esker82Sofa2-1.jpg" alt=""/><!--제품이미지-->
+                            <a th:href="@{myOrder.productUrl}">
+                                <img th:src="@{${myOrder.image}}"/><!--제품이미지-->
+                            </a>
                         </td>
                         <td class="myOrderTableRow">
-                            <p class="myOrderProductName" th:text="${myOrder.productName}"><!--제품명--></p>
-                            <p class="myOrderProductOption" th:text="${myOrder.productOption}"><!--제품옵션--></p>
+                            <a th:href="@{myOrder.productUrl}">
+                                <p class="myOrderProductName" th:text="${myOrder.productName}"><!--제품명--></p>
+                                <p class="myOrderProductOption" th:text="${myOrder.productOption}"><!--제품옵션--></p>
+                            </a>
                         </td>
                         <td class="myOrderTableRow myOrderProductEA" th:text="${myOrder.productEa}"><!--제품수량--></td>
                         <td class="myOrderTableRow myOrderProductPrice" th:text="${myOrder.price}"><!--제품가격--></td>
