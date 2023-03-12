@@ -20,17 +20,7 @@
     <div class="customerMain">
         <h1>FAQ</h1>
 
-        <ul class="categoryBox">
-            <li>
-                <a href="customer/main">공지사항</a>
-            </li>
-            <li>
-                <a href="qna-board/list">FAQ</a>
-            </li>
-            <li>
-                <a href="/customer/inquiry">상담문의</a>
-            </li>
-        </ul>
+        <ul th:replace="/cutomer/customer-fragment :: categoryBox"></ul>
 
         <table class="customerTable">
             <thead class="tableList">
