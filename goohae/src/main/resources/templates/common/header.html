@@ -48,8 +48,8 @@
                     </li>
                 </ul>
 
-                <form action="." class="search-form">
-                    <input type="text" placeholder="Search">
+                <form action="/search" method="get" class="search-form">
+                    <input type="text" name="keyword" placeholder="Search">
                     <button class="search-btn"></button>
                 </form>
             </nav>
@@ -136,15 +136,15 @@
 
                         <ul class="customer-category">
                             <li>
-                                <a th:href="/customer.main">공지사항</a>
+                                <a href="customer/main">공지사항</a>
                             </li>
 
                             <li>
-                                <a th:href="/qna-board/list">FAQ</a>
+                                <a href="qna-board/list">FAQ</a>
                             </li>
 
                             <li>
-                                <a th:href="/customer/inquiry">상담문의</a>
+                                <a href="customer/inquiry">상담문의</a>
                             </li>
                         </ul>
                     </li>

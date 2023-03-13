@@ -48,7 +48,9 @@
             </div>
 
             <div class="product_price">
-                <input type="number" id="price" name="price" th:value="${product.price}" style="font-size: 3rem" readonly>
+                <input type="number" id="price" name="price"
+                       th:value="${product.discount > 0 ? product.price - product.price / product.discount : product.price}"
+                       style="font-size: 3rem" readonly>
                 <span>원</span>
             </div>
 

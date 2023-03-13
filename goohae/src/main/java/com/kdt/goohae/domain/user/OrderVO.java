@@ -16,6 +16,5 @@ public class OrderVO {
     private int productCode;
     private int price;
     private int productEa;
-    private int discount;
     private String deliStatus;
 }

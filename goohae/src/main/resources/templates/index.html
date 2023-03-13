@@ -41,9 +41,10 @@
                     <p class="product_name" th:text="${newProduct.productName}"></p>
 
                     <div>
-                        <span th:text="|${newProduct.price}원|" th:if="${newProduct.discount > 0}"></span>
+                        <span th:text="|${#numbers.formatInteger(newProduct.price - newProduct.price / newProduct.discount, 3, 'COMMA')}원|"
+                              th:if="${newProduct.discount > 0}"></span>
 
-                        <span th:text="|${newProduct.price}원|"
+                        <span th:text="|${#numbers.formatInteger(newProduct.price, 3, 'COMMA')}원|"
                               th:style="${newProduct.discount > 0 ? 'color:#505dd0; text-decoration:line-through' : ''}"></span>
 
                         <span th:text="|${newProduct.discount}%|"></span>
@@ -67,9 +68,10 @@
                     <p class="product_name" th:text="${bestProduct.productName}"></p>
 
                     <div>
-                        <span th:text="|${bestProduct.price}원|" th:if="${bestProduct.discount > 0}"></span>
+                        <span th:text="|${#numbers.formatInteger(bestProduct.price - bestProduct.price / bestProduct.discount, 3, 'COMMA')}원|"
+                              th:if="${bestProduct.discount > 0}"></span>
 
-                        <span th:text="|${bestProduct.price}원|"
+                        <span th:text="|${#numbers.formatInteger(bestProduct.price, 3, 'COMMA')}원|"
                               th:style="${bestProduct.discount > 0 ? 'color:#505dd0; text-decoration:line-through' : ''}"></span>
 
                         <span th:text="|${bestProduct.discount}%|"></span>
