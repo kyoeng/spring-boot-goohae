@@ -18,17 +18,7 @@
     <div class="customerMain">
         <h1>고객 지원 안내</h1>
 
-        <ul class="categoryBox">
-            <li>
-                <a href="/customer/main">공지사항</a>
-            </li>
-            <li>
-                <a href="/qna-board/list">FAQ</a>
-            </li>
-            <li>
-                <a href="/customer/inquiry">상담문의</a>
-            </li>
-        </ul>
+        <ul th:replace="customer/cutomer-fragment :: categoryBox"></ul>
 
         <ul class="phoneBox">
             <li>
