@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/product/detailPage.css">
     <title>Goohae</title>
     <script src="/js/jquery-3.2.1.min.js"></script>
+    <script defer src="/js/product/detail.js"></script>
 </head>
 
 <body>
@@ -22,32 +23,32 @@
         <!-- 이미지 부분 -->
         <div class="detail_image_box">
             <div class="wide_img">
-                <img th:src="${main.imagePath}">
+                <img id="main_img" th:src="${main.imagePath}">
             </div>
 
             <div class="images">
                 <img th:each="images, stat : ${images}" th:src="${images.imagePath}"
-                     th:if="|${stat.count}| <= 4" th:class="|${stat.count}| == 1 ? 'selected' : ''">
+                     th:if="|${stat.count}| <= 4" th:class="|${stat.count}| == 1 ? 'selected product_imgs' : 'product_imgs'">
             </div>
         </div>
 
         <!-- 상품 정보 부분 -->
-        <form class="detail_info_box" method="post">
+        <form class="detail_info_box" action="" method="post">
             <input type="hidden" th:value="${product.productCode}">
 
             <h3 class="product_name" th:text="${product.productName}"></h3>
 
             <div class="product_ea">
-                <span class="ea_btn">←</span>
+                <span class="ea_btn">-</span>
 
                 <span class="ea_info">수량 : </span>
-                <input type="text" name="productEa" value="1" readonly>
+                <input type="number" id="productEa" name="productEa" value="1" readonly>
 
-                <span class="ea_btn">→</span>
+                <span class="ea_btn">+</span>
             </div>
 
             <div class="product_price">
-                <input type="text" name="price" th:value="${product.price}" style="font-size: 3rem" readonly>
+                <input type="number" id="price" name="price" th:value="${product.price}" style="font-size: 3rem" readonly>
                 <span>원</span>
             </div>
 

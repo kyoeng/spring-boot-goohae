@@ -129,6 +129,11 @@
     line-height: 50px;
 }
 
+.detail_container>.detail_info_box>.product_ea>.ea_btn:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
 
 
 .detail_container>.detail_info_box>.btn_area {
@@ -245,7 +250,7 @@
 
 /*  상품 사이즈 정보 */
 .product_size_info {
-    width: 700px;
+    width: 900px;
     height: 1100px;
     margin: 100px auto 0;
 }
