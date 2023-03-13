@@ -71,38 +71,42 @@
 
         <form class="search_box" action="/admin/get-pro" method="get">
             <select name="categoryCode">
-                <option value="1" selected>소파</option>
-                <option value="2">테이블</option>
-                <option value="3">의자-거실</option>
-                <option value="4">TV콘솔</option>
-                <option value="5">침대</option>
-                <option value="6">매트리스</option>
-                <option value="7">협탁</option>
-                <option value="8">식탁</option>
-                <option value="9">의자-주방</option>
-                <option value="10">행거</option>
-                <option value="11">수납장</option>
-                <option value="12">화장대</option>
+                <option value="1" th:selected="${code == 1}">소파</option>
+                <option value="2" th:selected="${code == 2}">테이블</option>
+                <option value="3" th:selected="${code == 3}">의자-거실</option>
+                <option value="4" th:selected="${code == 4}">TV콘솔</option>
+                <option value="5" th:selected="${code == 5}">침대</option>
+                <option value="6" th:selected="${code == 6}">매트리스</option>
+                <option value="7" th:selected="${code == 7}">협탁</option>
+                <option value="8" th:selected="${code == 8}">식탁</option>
+                <option value="9" th:selected="${code == 9}">의자-주방</option>
+                <option value="10" th:selected="${code == 10}">행거</option>
+                <option value="11" th:selected="${code == 11}">수납장</option>
+                <option value="12" th:selected="${code == 12}">화장대</option>
             </select>
 
             <div>
                 <div>
-                    <input type="radio" name="check" value="new" checked>
+                    <input type="radio" name="check" value="new"
+                           th:checked="${check.equals('new') || check.equals('')}">
                     최신순
                 </div>
 
                 <div>
-                    <input type="radio" name="check" value="old">
+                    <input type="radio" name="check" value="old"
+                           th:checked="${check == 'old'}">
                     오래된순
                 </div>
 
                 <div>
-                    <input type="radio" name="check" value="expen">
+                    <input type="radio" name="check" value="expen"
+                           th:checked="${check == 'expen'}">
                     가격순↑
                 </div>
 
                 <div>
-                    <input type="radio" name="check" value="cheap">
+                    <input type="radio" name="check" value="cheap"
+                           th:checked="${check == 'cheap'}">
                     가격순↓
                 </div>
             </div>
