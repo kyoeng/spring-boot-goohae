@@ -43,17 +43,15 @@
             </thead>
 
             <tbody>
-                <tr th:each="qnaList : ${qnaList}">
-                    <th scope="row" th:text="${qnaList.boardSeq}">1</th>
-                    <td th:text="${qnaList.title}"></td>
-                    <td th:text="${qnaList.userId}"><a href=""></a></td>
-                    <td th:text="${qnaList.refDate}"></td>
-                </tr>
+
             </tbody>
         </table>
     </div>
     <a class="userQna" href="/logined-user/qna-board/user-list">내 작성글보기</a>
     <footer th:replace="common/footer :: footer"></footer>
 </body>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/customer/qnaList.js"></script>
+
 
 </html>
