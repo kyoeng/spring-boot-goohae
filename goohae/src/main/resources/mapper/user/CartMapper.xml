@@ -8,9 +8,9 @@
         values ( #{productCode}, #{userId}, #{productEa} )
     </insert>
 
-    <select id="selectList" resultType="GetProductDTO">
-        select p.product_code, p.image_path, pr.product_name, pr.price from product pr , product_image p
-        where pr.product_code IN (select product_code from cart where user_id = #{loginId} ) and pr.product_code = p.product_code
+    <select id="selectList" resultType="GetCartDTO">
+        select p.product_code, c.product_ea, p.image_path, pr.product_name, pr.price from product pr , product_image p ,cart c
+        where c.user_id = #{loginId} and c.product_code = pr.product_code and pr.product_code = p.product_code;
     </select>
 
     <delete id="delete">

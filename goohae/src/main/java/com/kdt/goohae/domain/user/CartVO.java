@@ -7,7 +7,7 @@ public class CartVO {
 
     String userId;
     String productCode;
-    String productEA;
+    String productEa;
     String cartDate;
 
 }

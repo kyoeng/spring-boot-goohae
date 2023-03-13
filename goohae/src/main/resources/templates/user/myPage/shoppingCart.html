@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/common/header.css">
     <link rel="stylesheet" href="/css/common/footer.css">
     <link rel="stylesheet" href="/css/common/config.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>mycart</title>
 <!--      <script defer src="/js/user/singlePage/shoppingCart.js"></script>-->
 <!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
@@ -52,6 +53,7 @@
 
 
 <!--    </script>-->
+    <script src="/js/myPage/myAddress/shoppingCart.js" defer></script>
 </head>
 <body>
     <header th:replace="common/header :: header"></header>
@@ -77,10 +79,8 @@
                         <thead class="shoppingCartTitleThaed">
                         <tr class="shoppingCartTableLine">
                             <th scope="col" class="shoppingCartTitleTh">
+                                <label id="allCheck">
                                 선택
-                                <label>
-                                    <input type="checkbox" name="checkAll" id="allCart" class="shoppingCartCheck"
-                                           checked="" onchange="selectAllItems()"/>
                                 </label>
                             </th>
                             <th scope="col" class="shoppingCartTitleTh">이미지</th>
@@ -93,35 +93,29 @@
                         <tbody class="shoppingCartTableTbody">
                         <tr class="shoppingCartTableLine" th:each="item : ${userCart}">
                             <td class="shoppingCartTableRow">
-                                <input type="checkbox" name="selectedItems" th:value="${item.product_code}"
+                                <input type="checkbox" name="selectedItems" th:value="${item.productCode}"
                                        onchange="calculateTotalPrice()"
                                        class="shoppingCartTableCheck"/>
                             </td>
                             <td class="shoppingCartTableRow">
-<!--                                <a th:href="@{item.productUrl}">  <img th:src="@{${myOrder.image}}" /></a>-->
+                                <img th:src="${item.imagePath}">
                             </td>
                             <td class="shoppingCartTableRow">
 <!--                                <a th:href="@{item.productUrl}" class="cartName">-->
                                     <p class="shoppingCartTableProductName shoppingCartTableFontSize"
-                                       th:text="${item.product_name}"><!--제품이름--></p>
-                                    <p class="shoppingCartTableProductName shoppingCartTableFontSize"
-                                       th:text="${item.product_option}"><!--제품옵션--></p>
+                                       th:text="${item.productName}"><!--제품이름--></p>
 <!--                                </a>-->
                             </td>
                             <td class="shoppingCartTableRow">
                                 <input class="shoppingCartTableFontSize shoppingCartProductEa"
-                                       th:text="${item.product_code}" min="1" max="10"
-                                       th:attr="data-item-id=${item.product_code},data-item-price=${item.price}"
-                                       onchange="updateCartItemQuantity(this)"> <!--상품갯수--></input>
-                                <button type="button" class="plusBtn" value="+"/>
-                                <button type="button" class="minusBtn" value="-"/>
+                                       th:value="${item.productEa}"
+                                       type="number" min="1"/>
                             </td>
                             <td class="shoppingCartTableRow">
                                 <div class="shoppingCartTableFontSize" >
-<!--                                     th:text="${item.productEa * item.product.price}"-->
-
-
-                                    <!--상품가격--></div>
+                                    <p th:text="${item.price * item.productEa}"></p>
+                                    <!--상품가격-->
+                                </div>
                             </td>
                             <td class="shoppingCartTableRow">
                                 <!--                                <form th:action="@{'/product/' + ${product_code}}" method="post">-->

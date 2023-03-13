@@ -153,6 +153,11 @@ body {
     font-size: 1.4rem;
 }
 
+.shoppingCartProductEa {
+    padding-left: 10px;
+    width:50px
+}
+
 .shoppingCartTotalPrcieInner{
     visibility: hidden;
 }
