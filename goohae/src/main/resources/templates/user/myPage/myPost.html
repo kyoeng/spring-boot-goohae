@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="userFragment :: head">
+<head >
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,6 +88,7 @@ window.onload = function() {
 
 </head>
 <body>
+<header th:replace="common/header :: header"></header>
 <main class=" myPostMain">
     <!--로그인 안했을시 alert 창을 띄움 . */-->
     <div th:if="${session.loginId == null}">

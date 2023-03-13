@@ -15,4 +15,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public ArrayList<ReviewVO> getUserReview(String loginId) { return mapper.getUserReview(loginId); }
+    public ArrayList<ReviewVO> getProductReview(int productCode) { return mapper.getProductReview(productCode); }
+    @Override
+    public int insert(ReviewVO vo) { return mapper.insert(vo); }
 }

@@ -51,7 +51,7 @@ input {
 }
 
 #memberInfoWrap>.Ment>.memberInfoHeadText {
-    font-style: NanumMyeongjo;
+    /*font-style: NanumMyeongjo;*/
     font-size: 2rem;
     text-align: center;
     margin-bottom: 4rem;
@@ -99,7 +99,7 @@ input {
 }
 
 .memberInfoMain>section>.FormWrap>.memberInfoForm>div>p:first-of-type {
-    color: var(--DarkGray);
+    /*color: var(--DarkGray);*/
     font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 8px;
@@ -116,12 +116,12 @@ input {
 .memberInfoMain>section>.FormWrap>.memberInfoForm div input:not([type="radio"]) {
     display: inline-block;
     height: 40px;
-    border: 1px solid var(--DarkGray);
+    /*border: 1px solid var(--DarkGray);*/
 }
 
 .memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoIdInputWrap .memberInfoIdInput {
     width: 32rem;
-    background-color: var(--LightGray);
+    /*background-color: var(--LightGray);*/
 }
 
 .memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoEmailInputWrap>span {
@@ -225,8 +225,8 @@ input {
 } */
 .ButtonWrap>a:hover {
     background-color: white;
-    border: var(--PurpleBlue) 1px solid;
-    color: var(--PurpleBlue);
+    /*border: var(--PurpleBlue) 1px solid;*/
+    /*color: var(--PurpleBlue);*/
 }
 
 .btnDisable {

@@ -26,5 +26,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public int getTotalData() { return mapper.getTotalData(); }
     public int update(UserVO vo) { return mapper.update(vo); }
-
+    public String findId(UserVO vo) {return mapper.findId(vo);}
+    public int changePassword(UserVO vo) {return mapper.changePassword(vo);}
 }

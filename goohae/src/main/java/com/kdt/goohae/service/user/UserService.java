@@ -15,5 +15,7 @@ public interface UserService {
     /* 유저 전체 데이터 갯수 */
     int getTotalData();
     int update(UserVO vo);
+    String findId(UserVO vo);
+    int changePassword(UserVO vo);
 }
 

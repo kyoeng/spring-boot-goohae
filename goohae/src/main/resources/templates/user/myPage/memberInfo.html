@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="userFragment :: head">
+<head >
+  <meta charset="UTF-8">
   <title>memberInfoMain</title>
-  <link rel="stylesheet" href="/css/myPage/myPost.css">
+  <link rel="stylesheet" href="/css/myPage/memberInfo.css">
+  <link rel="stylesheet" href="/css/common/config.css">
+  <link rel="stylesheet" href="/css/common/header.css">
+  <link rel="stylesheet" href="/css/common/footer.css">
+<!--  <script>-->
+<!--    window.onload = function(){-->
+<!--      $.ajax({-->
+<!--        url:"/logined-user/myinfo",-->
+<!--        type:"post",-->
+<!--        success: function (resultData) {-->
+<!--          console.log(resultData)-->
+<!--        },-->
+<!--        error: function (result){-->
+<!--          console.log(result);-->
+<!--        }-->
+<!--      })-->
+<!--    }-->
+<!--  </script>-->
 </head>
 
 <body>
+<header th:replace="common/header :: header"></header>
 <main class="memberInfoMain">
   <section id="memberInfoWrap">
     <div class="myInfoCategory">
@@ -24,32 +43,27 @@
         <div class="memberInfoIdInputWrap">
           <p>아이디</p>
           <input type="text" class="memberInfoIdInput" name="id" th:field="${user.id}" disabled />
-          <p class="infoGuide">오류 메세지 입니다.</p>
         </div>
-        <div class="memberInfoEmailInputWrap">
-          <p>이메일</p>
-          <input class="memberINfoEmailIdInput" type="text" name="e_mailId"  th:field="${user.email}"  />
-          <p class="infoGuide">오류 메세지 입니다.</p>
-        </div>
+<!--        <div class="memberInfoEmailInputWrap">-->
+<!--          <p>이메일</p>-->
+<!--          <input class="memberINfoEmailIdInput" type="text" name="e_mailId"  th:field="${user.email}"  />-->
+<!--          <p class="infoGuide">오류 메세지 입니다.</p>-->
+<!--        </div>-->
         <div class="memberInfoPwInputWrap">
           <p>비밀번호</p>
           <input class="memberInfoPwInput" type="password" name="psw" minLength={10} maxLength={16} placeholder=" 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합" />
-          <p class="infoGuide">오류 메세지 입니다.</p>
         </div>
         <div class="memberInfoPwConfirmInputWrap">
           <p>비밀번호 확인</p>
           <input class="memberInfoPwConfirmInput" type="password" name="psw" minLength={7} maxLength={15} />
-          <p class="infoGuide">오류 메세지 입니다.</p>
         </div>
         <div class="memberInfoNameInputWrap">
           <p>이름</p>
           <input class="memberInfoNameInput" type="text" name="Name"  th:field="${user.name}" />
-          <p class="infoGuide">오류 메세지 입니다.</p>
         </div>
         <div class="memberInfoTellInputWrap">
           <p>휴대전화</p>
-          <input class="memberInfoTellInput" type="text" name="lastPhoneNum"  th:field="${user.phone}"/>
-          <p class="infoGuide">오류 메세지 입니다.</p>
+          <input class="memberInfoTellInput" type="text" name="lastPhoneNum"  th:field="${user.phoneNumber}"/>
         </div>
         <div class="emailGetRadio">
           <div>
@@ -75,5 +89,6 @@
     </article>
   </section>
 </main>
+<footer th:replace="common/footer :: footer"></footer>
 </body>
 </html>

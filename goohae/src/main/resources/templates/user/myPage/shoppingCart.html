@@ -12,46 +12,46 @@
     <title>mycart</title>
     <!--  <script defer src="/js/singlePage/login.js"></script>-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-   function increaseQuantity(element) {
-  var input = element.previousElementSibling;
-  var currentValue = parseInt(input.value);
-  input.value = currentValue + 1;
-  updatePrice(element, currentValue + 1);
-}
+<!--    <script>-->
+<!--   function increaseQuantity(element) {-->
+<!--  var input = element.previousElementSibling;-->
+<!--  var currentValue = parseInt(input.value);-->
+<!--  input.value = currentValue + 1;-->
+<!--  updatePrice(element, currentValue + 1);-->
+<!--}-->
 
-function decreaseQuantity(element) {
-  var input = element.previousElementSibling.previousElementSibling;
-  var currentValue = parseInt(input.value);
-  if (currentValue > 1) {
-    input.value = currentValue - 1;
-    updatePrice(element, currentValue - 1);
-  }
-}
+<!--function decreaseQuantity(element) {-->
+<!--  var input = element.previousElementSibling.previousElementSibling;-->
+<!--  var currentValue = parseInt(input.value);-->
+<!--  if (currentValue > 1) {-->
+<!--    input.value = currentValue - 1;-->
+<!--    updatePrice(element, currentValue - 1);-->
+<!--  }-->
+<!--}-->
 
-function updatePrice(element, quantity) {
-  var productRow = element.parentNode.parentNode;
-  var price = productRow.querySelector('.shoppingCartTableFontSize').textContent;
-  var productPrice = parseInt(price.replace(/[^0-9]/g, ''));
-  var totalPrice = productPrice * quantity;
-  productRow.querySelector('.shoppingCartTableFontSize').textContent = totalPrice + '원';
-  calculateTotalPrice();
-}
+<!--function updatePrice(element, quantity) {-->
+<!--  var productRow = element.parentNode.parentNode;-->
+<!--  var price = productRow.querySelector('.shoppingCartTableFontSize').textContent;-->
+<!--  var productPrice = parseInt(price.replace(/[^0-9]/g, ''));-->
+<!--  var totalPrice = productPrice * quantity;-->
+<!--  productRow.querySelector('.shoppingCartTableFontSize').textContent = totalPrice + '원';-->
+<!--  calculateTotalPrice();-->
+<!--}-->
 
-function calculateTotalPrice() {
-  var products = document.querySelectorAll('.shoppingCartTableLine');
-  var total = 0;
-  for (var i = 0; i < products.length; i++) {
-    var price = products[i].querySelector('.shoppingCartTableFontSize').textContent;
-    total += parseInt(price.replace(/[^0-9]/g, ''));
-  }
-  var shipping = 5000; // assuming a fixed shipping fee of 5000원
-  var totalPrice = total + shipping;
-  document.getElementById('totalPrice').textContent = totalPrice + '원';
-}
+<!--function calculateTotalPrice() {-->
+<!--  var products = document.querySelectorAll('.shoppingCartTableLine');-->
+<!--  var total = 0;-->
+<!--  for (var i = 0; i < products.length; i++) {-->
+<!--    var price = products[i].querySelector('.shoppingCartTableFontSize').textContent;-->
+<!--    total += parseInt(price.replace(/[^0-9]/g, ''));-->
+<!--  }-->
+<!--  var shipping = 5000; // assuming a fixed shipping fee of 5000원-->
+<!--  var totalPrice = total + shipping;-->
+<!--  document.getElementById('totalPrice').textContent = totalPrice + '원';-->
+<!--}-->
 
 
-    </script>
+<!--    </script>-->
 </head>
 <body>
 <!--로그인 안했을시 alert 창을 띄움 -->
@@ -74,7 +74,7 @@ function calculateTotalPrice() {
             </div>
             <p class="shoppingCartTitle">cart</p>
             <article class="shoppingCartTableContainer">
-                <form th:action="/cartOrder" method="post">
+                <form  method="post">
                     <table class="shoppingCartTable">
                         <colgroup>
                             <col width="4%"/>
@@ -101,7 +101,7 @@ function calculateTotalPrice() {
                         </tr>
                         </thead>
                         <tbody class="shoppingCartTableTbody">
-                        <tr class="shoppingCartTableLine" th:each="item : ${mycart.items}">
+                        <tr class="shoppingCartTableLine" th:each="item : ${userItem}">
                             <td class="shoppingCartTableRow">
                                 <input type="checkbox" name="selectedItems" th:value="${item.id}"
                                        onchange="calculateTotalPrice()"

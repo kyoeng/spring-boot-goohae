@@ -9,7 +9,7 @@
     <header th:fragment="header" id='header'>
         <div class="upper-header">
             <div class="logo-container">
-                <a href="#">
+                <a href="/">
                     <img src="/images/icon/logo.png" alt="로고이미지">
                 </a>
             </div>
@@ -17,7 +17,7 @@
             <nav class="user-navbar">
                 <ul class="user-list">
                     <li class="login-inner user-menu">
-                        <a href="/user/logout" th:if="${session.loginId != null}">
+                        <a href="/logined-user/logout" th:if="${session.loginId != null}">
                             <img src="/images/icon/login_icon.png" alt="로그아웃">
                             <span>로그아웃</span>
                         </a>

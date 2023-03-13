@@ -53,4 +53,34 @@
         select count(*) from user
     </select>
 
+
+    <!-- 아이디 중복확인 -->
+    <select id="idCheck" resultType="int">
+        select count(*)
+        from user
+        where id = #{id}
+    </select>
+
+    <!--  id 찾기  -->
+    <select id="findId" >
+        select id from user where phone_number = #{phoneNum} And name = #{name}
+    </select>
+
+    <!-- 패스워드 수정 -->
+    <update id="changePassword">
+        update user set password = #{password}
+        where id = #{id}
+    </update>
+
+    <!-- 배송지 수정 -->
+    <update id="changeAddress">
+        update user set post_number = #{postNumber}, address = #{address}
+        where id = #{id}
+    </update>
+
+    <!-- 회원 탈퇴 ( 휴면계정으로 ) -->
+    <update id="disabledUser">
+        update user set status = 'H', join_date = #{joinDate} where id = #{id}
+    </update>
+
 </mapper>

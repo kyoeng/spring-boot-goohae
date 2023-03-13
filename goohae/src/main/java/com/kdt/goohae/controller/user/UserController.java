@@ -5,7 +5,9 @@ import com.kdt.goohae.service.user.CartService;
 import com.kdt.goohae.service.user.QnaBoardService;
 import com.kdt.goohae.service.user.ReviewService;
 import com.kdt.goohae.service.user.UserService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,7 +88,7 @@ public class UserController {
             if(passwordEncoder.matches(vo.getPassword(), dbVO.getPassword())){
                 httpSession.setAttribute("loginId",vo.getId());
                 httpSession.setAttribute("name",dbVO.getName());
-                mv.setViewName("index");
+                mv.setViewName("/index");
             }else{
                 mv.addObject("message", "PW오류");
                 mv.setViewName("/user/singlePage/login");
@@ -98,6 +100,57 @@ public class UserController {
         return mv;
     }
 
+    /**
+     * User Id 찾기
+     * 회원가입 핸드폰 번호, 이름 확인 후 같으면
+     * ==> model에 id라고 담아서 전달.
+     * param = name ( 이름 )
+     * param = phoneNumber ( 핸드폰 번호 )
+     * */
+    @PostMapping ( value = "user/findId")
+    public String findId(UserVO vo, Model model ,HttpSession httpSession) {
+        String id = userService.findId(vo);
+        if ( id != null){
+            model.addAttribute("id",id);
+            return "user/login";
+        } else {
+            httpSession.setAttribute("message", "잘못된 정보입니다.");
+            return "user/singlePage/findId";
+        }
+    }
+
+    /**
+     *  UserPW 수정
+     *  입력값이랑 이름 , 전화번호 같으면
+     *  pw수정 페이지 전달
+     *  ( 수정하는 페이지 만들어야함. )
+     *  param : id
+     *  param : name
+     *  param : phoneNumber
+     **/
+    @PostMapping(value = "user/findPw")
+    public String findPw(UserVO vo){
+        UserVO dbVO = userService.selectOne(vo);
+        if ( dbVO != null &&
+                dbVO.getName().equals(vo.getName())&&
+                dbVO.getPhoneNumber().equals(vo.getPhoneNumber())){
+            return "수정페이지";
+        } else {
+            return "user/singlePage/findPw";
+        }
+    }
+
+    @PostMapping(value = "user/changePw")
+    public String chagePw(UserVO vo, HttpSession httpSession) {
+        vo.setId((String) httpSession.getAttribute("loginId"));
+        if (userService.changePassword(vo)>0) {
+            httpSession.setAttribute("message", "success");
+            return "user/singlePage/login";
+        } else {
+            httpSession.setAttribute("message","fail");
+            return "user/singlePage/findPw";
+        }
+    }
 
     /**
      * 로그인 폼
@@ -111,7 +164,7 @@ public class UserController {
     @GetMapping (value = "logined-user/logout")
     public String logout(HttpSession httpSession){
         httpSession.setAttribute("loginId",null);
-        return "/mainPage";
+        return "/index";
     }
 
     /**
@@ -128,16 +181,9 @@ public class UserController {
 
     /**
      * 마이페이지
-     * 로그인 안하면, message에 "로그인 해주세요." 전달.
      * */
     @GetMapping (value = "logined-user/mypage")
-    public String myPage(HttpSession httpSession){
-        if ( httpSession.getAttribute("loginId") == null) {
-            httpSession.setAttribute("message", "로그인 해주세요.");
-            return "/";
-        }
-        return "user/myPage/myPage";
-    }
+    public String myPage(){ return "user/myPage/myPage"; }
 
     /**
      * myPage에 myPost로 이동
@@ -154,4 +200,15 @@ public class UserController {
         model.addAttribute("reviewList",reviewService.getUserReview((String)httpSession.getAttribute("loginId")));
         return model;
     }
+
+//    @GetMapping(value = "logined-user/myinfo")
+//    public String myInfo (){return "user/myPage/memberInfo";}
+
+    @GetMapping (value = "logined-user/myinfo")
+    public String myInfo ( Model model, HttpSession httpSession,UserVO vo){
+        vo.setId((String) httpSession.getAttribute("loginId"));
+        model.addAttribute("user", userService.selectOne(vo));
+        return "user/myPage/memberInfo";
+    }
+
 }

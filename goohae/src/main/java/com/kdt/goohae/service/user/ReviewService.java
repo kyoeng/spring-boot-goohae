@@ -7,5 +7,7 @@ import java.util.ArrayList;
 public interface ReviewService {
 
      ArrayList<ReviewVO> getUserReview(String loginId);
+     ArrayList<ReviewVO> getProductReview(int porductCode);
+     int insert(ReviewVO vo);
 
 }

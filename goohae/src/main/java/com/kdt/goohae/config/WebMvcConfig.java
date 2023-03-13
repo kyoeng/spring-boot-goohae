@@ -16,5 +16,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/admin/**")
                 .excludePathPatterns("/admin-loginf")
                 .excludePathPatterns("/admin-login");
+
+        registry.addInterceptor(new UserCertificationInterceptor())
+                .addPathPatterns("/logined-user/*");
     }
 }
