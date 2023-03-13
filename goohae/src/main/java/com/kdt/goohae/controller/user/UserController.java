@@ -71,6 +71,7 @@ public class UserController {
         return mv;
     }
 
+
     /**
      * 로그인 처리
      * 1. 로그인 요청한 아이디로 DB에서 해당 계정 골라오기
@@ -201,14 +202,31 @@ public class UserController {
         return model;
     }
 
-//    @GetMapping(value = "logined-user/myinfo")
-//    public String myInfo (){return "user/myPage/memberInfo";}
-
     @GetMapping (value = "logined-user/myinfo")
     public String myInfo ( Model model, HttpSession httpSession,UserVO vo){
         vo.setId((String) httpSession.getAttribute("loginId"));
         model.addAttribute("user", userService.selectOne(vo));
         return "user/myPage/memberInfo";
+    }
+    /**
+     * 회원정보 수정 섬밋
+     * param : password
+     * param : name
+     * param : postNumber
+     * param : address
+     * param : phoneNumber
+     * */
+    @PostMapping (value = "logined-user/myinfo/update")
+            public String update (  HttpSession httpSession, UserVO vo ) {
+                vo.setId((String) httpSession.getAttribute("loginId"));
+                vo.setPassword(passwordEncoder.encode(vo.getPassword()));
+                if(userService.update(vo)>0){
+                    httpSession.setAttribute("message", "success");
+                    return "/user/myPage/myPage";
+                } else {
+                    httpSession.setAttribute("message", "fail");
+                    return "/user/myPage/memberInfo";
+                }
     }
 
 }
