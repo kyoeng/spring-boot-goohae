@@ -14,14 +14,7 @@ input {
     outline: none;
 }
 
- /* =================================.memberInfonMain============================ */
-
-.memberInfoMain {
-    font-size: 10px;
-    width: 85%;
-    margin: 0 auto;
-}
-
+/*=======================================================*/
 
 .myInfoCategory {
     margin-top: 170px;
@@ -38,6 +31,14 @@ input {
     color: #505DD0;
     font-weight: bold;
 }
+ /* =================================.memberInfonMain============================ */
+
+.memberInfoMain {
+ margin-top: 170px;
+    font-size: 10px;
+    width: 85%;
+    margin: 0 auto;
+}
 
  /* ===========내 정보 타이틀=========== */
 .memberInfoTitle {
@@ -50,36 +51,36 @@ input {
     font-weight: 800;
 }
 
-#memberInfoWrap>.Ment>.memberInfoHeadText {
+#memberInfoWrap>.ment>.memberInfoHeadText {
     /*font-style: NanumMyeongjo;*/
     font-size: 2rem;
     text-align: center;
     margin-bottom: 4rem;
 }
 
-#memberInfoWrap>.Ment .memberInfoMemberGrade,
-#memberInfoWrap>.Ment .memberInfoPoint,
-#memberInfoWrap>.Ment>p:last-of-type {
+#memberInfoWrap>.ment .memberInfoMemberGrade,
+#memberInfoWrap>.ment .memberInfoPoint,
+#memberInfoWrap>.ment>p:last-of-type {
     font-size: 1.5rem;
     text-align: center;
     margin-bottom: 4rem;
 }
 
-#memberInfoWrap>.Ment .memberInfoPoint {
+#memberInfoWrap>.ment .memberInfoPoint {
     color: #505DD0;
 }
 
-#memberInfoWrap>.Ment>.memberInfoHeadText>.memberInfoHeadTextName {
+#memberInfoWrap>.ment>.memberInfoHeadText>.memberInfoHeadTextName {
     color: #505DD0;
     font-size: 2rem;
 }
 
-.memberInfoMain>section>.FormWrap {
+.memberInfoMain>section>.formWrap {
     display: flex;
     justify-content: center;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm {
+.memberInfoMain>section>.formWrap>.memberInfoForm {
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -87,25 +88,25 @@ input {
     flex-flow: column wrap;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm>div:not(.ButtonWrap) {
+.memberInfoMain>section>.formWrap>.memberInfoForm>div:not(.buttonWrap) {
     margin-bottom: 20px;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm>div>p:last-of-type {
+.memberInfoMain>section>.formWrap>.memberInfoForm>div>p:last-of-type {
     color: red;
     padding-left: 5px;
     padding-top: 5px;
     visibility: hidden;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm>div>p:first-of-type {
+.memberInfoMain>section>.formWrap>.memberInfoForm>div>p:first-of-type {
     /*color: var(--DarkGray);*/
     font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 8px;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm .memberInfoTitle {
+.memberInfoMain>section>.formWrap>.memberInfoForm .memberInfoTitle {
     display: block;
     margin-top: 40px;
     color: #1A1B23;
@@ -113,85 +114,85 @@ input {
     font-weight: bold;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm div input:not([type="radio"]) {
+.memberInfoMain>section>.formWrap>.memberInfoForm div input:not([type="radio"]) {
     display: inline-block;
     height: 40px;
     /*border: 1px solid var(--DarkGray);*/
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoIdInputWrap .memberInfoIdInput {
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoIdInputWrap .memberInfoIdInput {
     width: 32rem;
     /*background-color: var(--LightGray);*/
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoEmailInputWrap>span {
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoEmailInputWrap>span {
     font-size: 1.4rem;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoEmailInputWrap>.emailInput {
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoEmailInputWrap>.emailInput {
     display: flex;
     align-items: center;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoEmailInputWrap>.memberINfoEmailIdInput,
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoEmailInputWrap select {
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoEmailInputWrap>.memberINfoEmailIdInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoEmailInputWrap select {
     width: 10rem;
     height: 40px;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoEmailInputWrap select {
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoEmailInputWrap select {
     margin-left: .8rem;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoPwInputWrap .memberInfoPwInput,
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoEmailInputWrap>.memberINfoEmailIdInput,
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoPwConfirmInputWrap>.memberInfoPwConfirmInput,
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoNameInputWrap>.memberInfoNameInput,
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoTellInputWrap>.memberInfoTellInput {
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoPwInputWrap .memberInfoPwInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoEmailInputWrap>.memberINfoEmailIdInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoPwConfirmInputWrap>.memberInfoPwConfirmInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoNameInputWrap>.memberInfoNameInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoTellInputWrap>.memberInfoTellInput {
     width: 32rem;
     background-color: white;
 }
 
-.memberInfonMain>section>.FormWrap>.memberInfoForm>.memberInfoIdInputWrap .memberInfoIdInput {
+.memberInfonMain>section>.formWrap>.memberInfoForm>.memberInfoIdInputWrap .memberInfoIdInput {
     background-color: #F5F5F5;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoIdInputWrap .memberInfoIdInput,
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoEmailInputWrap>.memberINfoEmailIdInput,
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoPwInputWrap .memberInfoPwInput,
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoPwConfirmInputWrap>.memberInfoPwConfirmInput,
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoNameInputWrap>.memberInfoNameInput,
-.memberInfoMain>section>.FormWrap>.memberInfoForm>.memberInfoTellInputWrap>.memberInfoTellInput {
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoIdInputWrap .memberInfoIdInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoEmailInputWrap>.memberINfoEmailIdInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoPwInputWrap .memberInfoPwInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoPwConfirmInputWrap>.memberInfoPwConfirmInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoNameInputWrap>.memberInfoNameInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoTellInputWrap>.memberInfoTellInput {
     padding-left: 5px;
     border: 1px solid #1A1B23;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm .emailGetRadio {
+.memberInfoMain>section>.formWrap>.memberInfoForm .emailGetRadio {
     display: flex;
     gap: 10px;
     height: 30px;
     line-height: 30px;
 }
 
-.memberInfoMain>section>.FormWrap>.memberInfoForm .emailGetRadio>label:first-of-type {
+.memberInfoMain>section>.formWrap>.memberInfoForm .emailGetRadio>label:first-of-type {
     margin-right: 10px;
 }
 
-.ButtonWrap {
+.buttonWrap {
     display: flex;
     justify-content: center;
     gap: 20px;
     margin-bottom: 100px;
 }
 
-.ButtonWrap>#memberInfoSubmitBtn {
+.buttonWrap>#memberInfoSubmitBtn {
     border: 1px solid #1A1B23;
     background-color: #1A1B23;
     color: white;
     /* font-weight: 700; */
 }
 
-.ButtonWrap>.memberInfoBtn {
+.buttonWrap>.memberInfoBtn {
     display: inline-block;
     text-align: center;
     width: 150px;
@@ -204,26 +205,26 @@ input {
     font-weight: normal;
 }
 
-.ButtonWrap>.memberInfoBtn>.memberInfoSubmitWhtBtn {
+.buttonWrap>.memberInfoBtn>.memberInfoSubmitWhtBtn {
     text-align: center;
 }
 
-.ButtonWrap>#memberInfoSubmitBtn:hover {
+.buttonWrap>#memberInfoSubmitBtn:hover {
     background-color: #505DD0;
     border-color: #505DD0;
 }
 
-.ButtonWrap>.memberInfoBtn:hover {
+.buttonWrap>.memberInfoBtn:hover {
     border: 1px solid #505DD0;
     color: #505DD0;
 }
 
- /* .ButtonWrap>button>span {
+ /* .buttonWrap>button>span {
     color: white;
     font-weight: normal;
     align-items: center;
 } */
-.ButtonWrap>a:hover {
+.buttonWrap>a:hover {
     background-color: white;
     /*border: var(--PurpleBlue) 1px solid;*/
     /*color: var(--PurpleBlue);*/
