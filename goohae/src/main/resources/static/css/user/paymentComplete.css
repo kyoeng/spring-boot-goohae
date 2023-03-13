@@ -1,0 +1,97 @@
+:root {
+    font-size: 10px;
+}
+
+main {
+    margin: 0 auto;
+    margin-top: 270px;
+    width: 70%;
+    position: relative;
+}
+
+main>section>p:first-of-type {
+    margin-top: 10rem;
+    padding-top: 5rem;
+    font-weight: 800;
+    font-family: NanumMyeongjo;
+    border-top: 2px solid #1A1B23;
+    font-size: 2rem;
+}
+
+section>.paymentCompleteWrap {
+    margin-top: 50px;
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 15rem;
+}
+
+section>.paymentCompleteWrap>ul>li {
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: 2rem;
+}
+
+section>.paymentCompleteWrap>ul>li>strong,
+section>.paymentCompleteWrap>ul>li>span {
+    font-size: 1.4rem;
+    margin-bottom: .5rem;
+}
+
+section>.paymentCompleteWrap>ul {
+    padding-left: 1rem;
+}
+
+main>section>.paymentCompleteInfoWrap {
+    position: absolute;
+    width: 40%;
+    right: 0;
+    top: 11rem;
+}
+
+main>section>.paymentCompleteInfoWrap>div:first-of-type {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--CoolGray);
+}
+
+main>section>.paymentCompleteInfoWrap>div:first-of-type>img {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+
+main>section>.paymentCompleteInfoWrap>div:first-of-type>div p {
+    font-size: 1.2rem;
+}
+
+main>section>.paymentCompleteInfoWrap>div:first-of-type>div>div {
+    padding-left: 5px;
+}
+
+main>section>.paymentCompleteInfoWrap>div:first-of-type>div {
+    display: flex;
+    gap: 5px;
+    flex-flow: column wrap;
+}
+
+main>section>.paymentCompleteInfoWrap>div:last-of-type {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    flex-flow: column wrap;
+}
+
+main>section>.paymentCompleteInfoWrap>div:last-of-type>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+main>section>.paymentCompleteInfoWrap>div:last-of-type>div span {
+    font-size: 1.4rem;
+}
+
+main>section>.paymentCompleteInfoWrap>div:last-of-type>div span:first-of-type {
+    font-size: 1.4rem;
+    font-weight: bold;
+}

@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="/css/common/footer.css">
     <link rel="stylesheet" href="/css/common/config.css">
     <title>mycart</title>
-    <!--  <script defer src="/js/singlePage/login.js"></script>-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--      <script defer src="/js/user/singlePage/shoppingCart.js"></script>-->
+<!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
 <!--    <script>-->
 <!--   function increaseQuantity(element) {-->
 <!--  var input = element.previousElementSibling;-->
@@ -54,16 +54,6 @@
 <!--    </script>-->
 </head>
 <body>
-<!--로그인 안했을시 alert 창을 띄움 -->
-<div th:if="${session.loginId == null}">
-    <script th:inline="javascript">
-            alert([[${session.message}]]);
-<!--            window.location.href = "/";-->
-
-
-    </script>
-</div>
-<div th:if="${session.loginId != null}">
     <header th:replace="common/header :: header"></header>
     <main class="shoppingCartMain">
         <section class="cartWrap">
@@ -74,7 +64,7 @@
             </div>
             <p class="shoppingCartTitle">cart</p>
             <article class="shoppingCartTableContainer">
-                <form  method="post">
+                <form  method="post" action="/cart">
                     <table class="shoppingCartTable">
                         <colgroup>
                             <col width="4%"/>
@@ -101,37 +91,40 @@
                         </tr>
                         </thead>
                         <tbody class="shoppingCartTableTbody">
-                        <tr class="shoppingCartTableLine" th:each="item : ${userItem}">
+                        <tr class="shoppingCartTableLine" th:each="item : ${userCart}">
                             <td class="shoppingCartTableRow">
-                                <input type="checkbox" name="selectedItems" th:value="${item.id}"
+                                <input type="checkbox" name="selectedItems" th:value="${item.product_code}"
                                        onchange="calculateTotalPrice()"
                                        class="shoppingCartTableCheck"/>
                             </td>
                             <td class="shoppingCartTableRow">
-                                <a th:href="@{item.productUrl}">  <img th:src="@{${myOrder.image}}" /></a>
+<!--                                <a th:href="@{item.productUrl}">  <img th:src="@{${myOrder.image}}" /></a>-->
                             </td>
                             <td class="shoppingCartTableRow">
-                                <a th:href="@{item.productUrl}" class="cartName">
+<!--                                <a th:href="@{item.productUrl}" class="cartName">-->
                                     <p class="shoppingCartTableProductName shoppingCartTableFontSize"
-                                       th:text="${item.productName}"><!--제품이름--></p>
+                                       th:text="${item.product_name}"><!--제품이름--></p>
                                     <p class="shoppingCartTableProductName shoppingCartTableFontSize"
-                                       th:text="${item.productOption}"><!--제품옵션--></p>
-                                </a>
+                                       th:text="${item.product_option}"><!--제품옵션--></p>
+<!--                                </a>-->
                             </td>
                             <td class="shoppingCartTableRow">
                                 <input class="shoppingCartTableFontSize shoppingCartProductEa"
-                                       th:text="${item.productEa}" min="1" max="10"
-                                       th:attr="data-item-id=${item.id},data-item-price=${item.product.price}"
+                                       th:text="${item.product_code}" min="1" max="10"
+                                       th:attr="data-item-id=${item.product_code},data-item-price=${item.price}"
                                        onchange="updateCartItemQuantity(this)"> <!--상품갯수--></input>
                                 <button type="button" class="plusBtn" value="+"/>
                                 <button type="button" class="minusBtn" value="-"/>
                             </td>
                             <td class="shoppingCartTableRow">
-                                <div class="shoppingCartTableFontSize" th:text="${item.quantity * item.product.price}">
+                                <div class="shoppingCartTableFontSize" >
+<!--                                     th:text="${item.productEa * item.product.price}"-->
+
+
                                     <!--상품가격--></div>
                             </td>
                             <td class="shoppingCartTableRow">
-                                <!--                                <form th:action="@{'/product/' + ${product.code}}" method="post">-->
+                                <!--                                <form th:action="@{'/product/' + ${product_code}}" method="post">-->
                                 <!--                                    <input type="hidden" name="_method" value="DELETE"/>-->
                                 <button type="submit" class="shoppingCartTableBtn" onclick="deleteCartItem(this)">삭제하기
                                 </button>
@@ -163,6 +156,5 @@
         </section>
     </main>
     <footer th:replace="common/footer :: footer"></footer>
-</div>
 </body>
 </html>

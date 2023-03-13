@@ -1,11 +1,10 @@
 'use strict';
-const
-    form = document.querySelector('form'),
-    loginId = document.querySelector('#loginId'),
-    loginPw = document.querySelector('#loginPw'),
-    loginInput = document.querySelector('.loginInput'),
-    loginButton = document.querySelector('.loginButton');
-
+window.onload = function() {
+ const form = document.querySelector('form');
+  const loginId = document.querySelector('#loginId');
+  const loginPw = document.querySelector('#loginPw');
+  const loginInput = document.querySelector('.loginInput');
+  const loginButton = document.querySelector('.loginButton');
 
 // // ----아이 비번 경고 활성/비활성
 function inputCheck() {
@@ -49,4 +48,4 @@ function validate() {
 
 loginId.addEventListener('keyup', validate);
 loginPw.addEventListener('keyup', validate);
-
+}
