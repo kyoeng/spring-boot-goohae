@@ -50,7 +50,7 @@
             <div class="product_price">
                 <input type="text" id="price" name="price"
                        th:value="${product.discount > 0 ? #numbers.formatDecimal(product.price - product.discount / 100.00 * product.price, 0, 0) : product.price}"
-                       style="font-size: 3rem" readonly>
+                       style="font-size: 3rem;" readonly>
                 <span>원</span>
             </div>
 
