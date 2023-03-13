@@ -88,6 +88,12 @@ public class HomeController {
     }
 
 
+    /**
+     * 디테일 페이지를 위한 컨트롤러
+     * @param vo ProductVO
+     * @param mv ModelAndView
+     * @return 디테일 페이지
+     */
     @GetMapping("/detail")
     public ModelAndView detail(ProductVO vo, ModelAndView mv) {
         String uri = "product/detailPage";
@@ -113,6 +119,29 @@ public class HomeController {
 
         mv.setViewName(uri);
         return mv;
+    }
+
+
+    /**
+     * 검색 페이지를 위한 컨트롤러
+     * @param cri SearchCri
+     * @param pageMaker PageMaker
+     * @param model Model
+     * @return 검색 페이지
+     */
+    @GetMapping("/search")
+    public String searchPage(SearchCri cri, PageMaker pageMaker, Model model) {
+        cri.setStartNum();
+        cri.setRowsPerPage(12);
+
+        model.addAttribute("keyword", cri.getKeyword());
+        model.addAttribute("product", productService.getSearchProduct(cri));
+
+        pageMaker.setCriteria(cri);
+        pageMaker.setTotalDataCount(productService.getSearchTotalData(cri));
+        model.addAttribute("pageMake", pageMaker);
+
+        return "product/searchPage";
     }
 
 }
