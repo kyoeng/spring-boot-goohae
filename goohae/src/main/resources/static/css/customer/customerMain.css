@@ -84,3 +84,11 @@
     font-weight: bold;
 
 }
+
+.preview{
+    height : 100%;
+}
+
+.preview > img{
+    width : 150px;
+    height : 50px;

@@ -1,45 +1,26 @@
-.FaqTable {
-    height: 535px;
+.table {
+    width: 720px;
     box-sizing: border-box;
 }
 
-.tableList {
-    height: 38px;
+thead{
+    width : 100%;
 }
 
-.tableList tr th:nth-child(1) {
-    width: 70px;
+thead > tr {
+    width : 100%;
+    display : flex;
+    justify-content : space-between;
+    border-bottom : 0.3px solid #c8c8c8;
 }
 
-.tableTr td:nth-child(1) {
-    width: 80px;
+thead > tr > th{
+    border : none;
+    font-size : 1.4rem;
+    margin : auto;
 }
 
-.tableList tr th:nth-child(2) {
-    width: 300px;
-}
 
-.tableTr td:nth-child(2) {
-    width: 310px;
-}
 
-.tableList tr th:nth-child(3) {
-    width: 100px;
-}
 
-.tableTr td:nth-child(3) {
-    width: 110px;
-}
 
-.tableList tr th:nth-child(4) {
-    width: 130px;
-}
-
-.tableTr td:nth-child(4) {
-    width: 130px;
-}
-
-.accordion-header {
-    display: none;
-    padding: 10px;
-}

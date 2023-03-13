@@ -21,72 +21,44 @@
     <div class="customerMain">
         <h1>상담문의</h1>
 
-        <ul th:replace="/customer/customer-fragment :: categoryBox"></ul>
+        <ul class="categoryBox">
+            <li>
+                <a href="/customer/main">공지사항</a>
+            </li>
+            <li>
+                <a href="/qna-board/list">FAQ</a>
+            </li>
+            <li>
+                <a href="/customer/inquiry">상담문의</a>
+            </li>
+        </ul>
 
-        <div class="inquiryContainer">
-            <div class="selectBox">
-                <span>문의 구분</span>
-                <select id="inquiryValues">
-                    <option name="문의를 선택해주세요" value="default">문의를 선택해주세요</option>
-                    <option name="제품문의" value="product">제품문의</option>
-                    <option name="배송/설치 문의" value="setUp">배송/설치 문의</option>
-                    <option name="주문/결제/취소 문의" value="payment">주문/결제/취소 문의</option>
-                    <option name="교환/반품 문의" value="refund">교환/반품 문의</option>
-                    <option name="이벤트/프로모션" value="event">이벤트/프로모션</option>
-                    <option name="통합회원/기타문의" value="etc">통합회원/기타문의</option>
-                </select>
+        <div id="inquiryForm">
+            <div class="optionBox">
+                <form action="/logined-user/qna-board/insert" method="post" id="etcForm">
+                    <ul>
+                        <li class="title">
+                            <label for="inquiry-title">제목</label>
+                            <input type="text" id="inquiry-title" name="title" />
+                        </li>
+                        <li>
+                            <label for="inquiry-content">상세 내용</label>
+                            <textarea name="content" id="inquiry-content"></textarea>
+                        </li>
+
+                        <li>
+                            <label for="password">비밀번호</label>
+                            <input id="password" type="password" placeholder="4자리 숫자만 가능합니다." minlength="4"
+                                name="boardPassword" />
+                        </li>
+                    </ul>
+                    <button type="submit">신청하기</button>
+                </form>
             </div>
         </div>
     </div>
 
-    <div th:replace="/customer/inquiryForm :: inquiry"></div>
-
-
     <footer th:replace="common/footer :: footer"></footer>
 </body>
-
-<script defer>
-    const inquiryValues = document.querySelector('#inquiryValues');
-    const inquiryForm = document.querySelector('#inquiryForm');
-    const selectForm = [...inquiryForm.querySelectorAll('.optionBox')];
-    const fileUpload = document.querySelector('#fileUpload');
-
-    function setUploadImg(e) {
-        let imgReader = new FileReader();
-
-        imgReader.onload = (e) => {
-            let img = document.createElement("img");
-            img.setAttribute('src', e.target.result);
-            document.querySelector(".fileBox").appendChild(img);
-        };
-        imgReader.readAsDataURL(e.target.files[0]);
-    }
-
-    fileUpload.addEventListener('change', setUploadImg);
-
-    let preForm, nowForm = false;
-
-    inquiryValues.addEventListener('change', (e) => {
-        let value = e.target.value;
-
-        if (value == 'product') nowForm = selectForm[0];
-        if (value == 'setUp') nowForm = selectForm[1];
-        if (value == 'payment') nowForm = selectForm[2];
-        if (value == 'refund') nowForm = selectForm[3];
-        if (value == 'event') nowForm = selectForm[4];
-        if (value == 'etc') nowForm = selectForm[5];
-
-        if (preForm) {
-            preForm.style.display = 'none';
-        }
-
-        nowForm.style.display = 'block';
-        preForm = nowForm;
-    })
-
-</script>
-
-<script async src=""></script>
-
 
 </html>
