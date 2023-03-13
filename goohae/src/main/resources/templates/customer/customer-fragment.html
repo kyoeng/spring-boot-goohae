@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="categoryBox">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<ul th:fragment="categoryBox" class="categoryBox">
+<ul class="categoryBox">
   <li>
-    <a th:href="customer/main">공지사항</a>
+    <a href="/customer/main">공지사항</a>
   </li>
   <li>
-    <a th:href="/qna-board/list">FAQ</a>
+    <a href="/qna-board/list">FAQ</a>
   </li>
   <li>
-    <a th:href="customer/inquiry">상담문의</a>
+    <a href="/customer/inquiry">상담문의</a>
   </li>
 </ul>
 
