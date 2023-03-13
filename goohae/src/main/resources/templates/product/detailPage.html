@@ -42,14 +42,14 @@
                 <span class="ea_btn">-</span>
 
                 <span class="ea_info">수량 : </span>
-                <input type="number" id="productEa" name="productEa" value="1" readonly>
+                <input type="text" id="productEa" name="productEa" value="1" readonly>
 
                 <span class="ea_btn">+</span>
             </div>
 
             <div class="product_price">
-                <input type="number" id="price" name="price"
-                       th:value="${product.discount > 0 ? product.price - product.price / product.discount : product.price}"
+                <input type="text" id="price" name="price"
+                       th:value="${product.discount > 0 ? #numbers.formatDecimal(product.price - product.discount / 100.00 * product.price, 0, 0) : product.price}"
                        style="font-size: 3rem" readonly>
                 <span>원</span>
             </div>
