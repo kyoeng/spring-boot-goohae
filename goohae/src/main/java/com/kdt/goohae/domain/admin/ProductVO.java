@@ -17,6 +17,7 @@ public class ProductVO {
     private String productInfo;
     private String productOption;
     private int discount;
+    private int viewCount;
 
     // 파일 객체를 위한 필드
     private List<MultipartFile> files;

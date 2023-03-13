@@ -1,8 +1,8 @@
 spring:
   servlet:
     multipart:
-      maxFileSize: 10MB
-      maxRequestSize: 10MB
+      maxFileSize: 30MB
+      maxRequestSize: 30MB
   datasource:
     username: root
     password: mysql

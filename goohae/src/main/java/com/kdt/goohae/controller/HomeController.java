@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Slf4j
@@ -88,11 +89,30 @@ public class HomeController {
 
 
     @GetMapping("/detail")
-    public String detail(ProductVO vo, Model model) {
-        model.addAttribute("productCode", vo.getProductCode());
-        model.addAttribute("productName", vo.getProductName());
+    public ModelAndView detail(ProductVO vo, ModelAndView mv) {
+        String uri = "product/detailPage";
 
-        return "product/detailPage";
+        /* 상품 정보 */
+        mv.addObject("product", service.selectOne(vo));
+
+        /* 상품 이미지들 */
+        mv.addObject("images", service.getImages(vo));
+
+        /* 상품 메인 이미지 */
+        mv.addObject("main", service.getMainImage(vo));
+
+        /* 상품 배너 이미지 */
+        mv.addObject("banner", service.getBannerImage(vo));
+
+        /* 상품 정보 이미지 */
+        mv.addObject("info", service.getInfoImage(vo));
+
+        if (service.updateCount(vo) < 1) {
+            uri = "refirect:/";
+        }
+
+        mv.setViewName(uri);
+        return mv;
     }
 
 }
