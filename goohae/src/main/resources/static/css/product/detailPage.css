@@ -157,7 +157,7 @@
 
 .detail_container>.detail_info_box>.btn_area>.wish_btn {
     width: 50px;
-    text-align: center;
+    background: url(../../images/icon/Favorit-lineicon.png) center/70% no-repeat;
 }
 
 .detail_container>.detail_info_box>.btn_area>input {
