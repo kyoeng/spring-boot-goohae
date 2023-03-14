@@ -43,14 +43,10 @@
                             <p>아이디저장</p>
                         </div>
 
-                        <p th:if="${message != null}" class="loginError"></p>
-
-                        <div th:if="${param.error}">
-<!--                            <div class="errorMassageBox">-->
-<!--                                <p class="loginError"-->
-<!--                                    th:text="${#strings.isEmpty(param.id) ? '아이디를 입력하세요.' : #strings.isEmpty(param.password) ? '비밀번호를 입력하세요.' : ''}">-->
-<!--                                </p>-->
-<!--                            </div>-->
+                        <div class="errorMassageBox">
+                            <p th:if="${message!=null}" th:text="${message}" class="loginError"></p>
+                            <p class="noneDisplay errormsg">아이디를 입력해주세요</p>
+                            <p class="noneDisplay errormsg">비밀번호를 입력해주세요</p>
                         </div>
 
                         <!-- 로그인 -->

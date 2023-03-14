@@ -5,18 +5,19 @@ window.onload = function() {
   const loginPw = document.querySelector('#loginPw');
   const loginInput = document.querySelector('.loginInput');
   const loginButton = document.querySelector('.loginButton');
+  const p=document.querySelectorAll('.errormsg');
 
 // // ----아이 비번 경고 활성/비활성
 function inputCheck() {
     if (loginId.value == "") {
-        // p[1].classList.remove('hidden');
-        // p[2].classList.add('hidden');
+         p[0].classList.remove('noneDisplay');
+         p[1].classList.add('noneDisplay');
         loginId.classList.add('redInputBox');
         loginPw.classList.remove('redInputBox');
         return false;
     } else if (loginPw.value == "") {
-        // p[1].classList.add('hidden');
-        // p[2].classList.remove('hidden');
+         p[0].classList.add('noneDisplay');
+         p[1].classList.remove('noneDisplay');
         loginId.classList.remove('redInputBox');
         loginPw.classList.add('redInputBox');
         return false;

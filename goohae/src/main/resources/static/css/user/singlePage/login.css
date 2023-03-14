@@ -125,26 +125,27 @@ input {
     height: 30px;
 }
 
-.loginIdPwForm  .errorMassageBox .loginError{
+.loginIdPwForm  .errorMassageBox .loginError,
+.loginIdPwForm  .errorMassageBox .errormsg{
+    font-size:12px;
     text-align: left;
-
     color: #FF655B;
-    font-size: 1.2rem;
+   text-aline:left;
 }
 
 .redInputBox{
     border: 1px solid #FF655B;
 }
 
-.hidden{
-    visibility: hidden;
+.noneDisplay{
+    display: none;
 }
 
 .loginButton {
     display: block;
     width: 320px;
     height: 36px;
-    margin: 30px auto 0px;
+    margin: 10px auto 0px;
     border: 0;
     font-size: 1.4rem;
     background-color:#9497AB;
