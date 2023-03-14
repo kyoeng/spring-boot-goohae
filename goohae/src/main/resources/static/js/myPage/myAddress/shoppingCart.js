@@ -50,5 +50,9 @@ for(let i=0; i<shoppinCartTableBtn.length; i++){
 }
 
 shoppingCartAllOrderButton.addEventListener('click', function (e){
+    let orderProduct;
+    for(let i = 0; i < checkBtn; i++){
+
+    }
     $.ajax("")
 })

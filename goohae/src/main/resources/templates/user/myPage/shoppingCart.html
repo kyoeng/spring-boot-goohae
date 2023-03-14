@@ -73,7 +73,7 @@
                             </td>
                             <td class="shoppingCartTableRow">
                                 <div class="shoppingCartTableFontSize" >
-                                    <p th:text="${item.price * item.productEa}"></p>
+                                    <p><span th:text="${item.price}"></span><span>/개</span></p>
                                     <!--상품가격-->
                                 </div>
                             </td>
@@ -97,10 +97,10 @@
                             <p>총 주문 금액: <span id="totalPrice"></span></p>
                         </div>
                         <div class="shoppingCartOrderButtonBox">
-                            <button class="btnDisabled shoppingCartCheckedOrderButton"
+                            <button class="btnDisabled shoppingCartOrderButton shoppingCartCheckedOrderButton"
                                     onclick="orderSelectedItems()">선택상품 주문
                             </button>
-                            <button class="btnDisabled shoppingCartAllOrderButton"
+                            <button class="btnDisabled shoppingCartOrderButton shoppingCartAllOrderButton"
                                     onclick="orderAllItems()">전체상품 주문
                             </button>
                         </div>

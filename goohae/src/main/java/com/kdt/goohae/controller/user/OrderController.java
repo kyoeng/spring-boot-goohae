@@ -35,10 +35,10 @@ public class OrderController {
      * param : productPrice,
      * param : productEa,
      * */
-    @PostMapping(value = "logined-user/order/start")
+    @GetMapping(value = "logined-user/order/start")
     public ModelAndView insert(ModelAndView mv, ArrayList<OrderVO> vo){
-        mv.setViewName("/user/myPage/memberPayment");
-        mv.addObject("orderVO",vo);
+        mv.setViewName("/user/memberPayment");
+//        mv.addObject("orderVO",vo);
         return mv;
     }
 
