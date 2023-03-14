@@ -1,281 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/common/common.css">
-    <link rel="stylesheet" href="/css/common/header/header.css">
-    <link rel="stylesheet" href="/css/common/footer/footer.css">
+    <link rel="stylesheet" href="/css/common/config.css">
+    <link rel="stylesheet" href="/css/common/header.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
     <link rel="stylesheet" href="/css/user/memberPayment.css">
+    <title>Goohae</title>
     <script defer src="/js/memberPayment.js"></script>
-    <title>GooHae-MemberPayPage</title>
 </head>
 
 <body>
+    <!-- 헤더 -->
+    <header th:replace="common/header :: header"></header>
 
     <main>
         <section>
-            <p class="paymentTitle">주문/결제</p>
-            <article class="memberPaymentWrap">
-                <form class="paymentForm" th:action="@{/payment}" method="post">
-                    <div class="memPayOrderInfo">
-                        <p class="memPayOrderSubtitle">배송지 정보</p>
-                        <div>
+            <p class="payment_title">주문/결제</p>
+
+            <article class="order_info_container">
+                <form method="post">
+                    <div class="order_info_box">
+                        <p class="deli_title">배송지 정보</p>
+
+                        <div class="name_box">
                             <label for="memPayOrderName">받는 사람</label>
-                            <input class="memPayOrderName" name="memPayOrderName" id="memPayOrderName" type="text"
-                                placeholder="이름을 입력하세요." required th:value="${paymentInfo.receiver}">
-                        </div>
-                        <div>
-                            <label>휴대폰번호</label>
-                            <input class="firstPhoneNum" name="firstPhoneNum" type="text"
-                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" minlength="2" maxlength="3" required th:value="${paymentInfo.phoneNumber}">
-                        </div>
-                        <div class="memPayOrderAddressInputWrap">
-                            <label>주소</label>
-                            <div class="addressInput">
-                                <div><input class="postNum" type="text" name="postNum" required th:value="${paymentInfo.postalCode}"><a href="#">우편번호 찾기</a></div>
-                                <div><input class="basicAddress" type="text" name="BasibasicAddresscAddress" required th:value="${paymentInfo.address}"><span>기본 주소를 입력해주세요.</span></div>
-                                <div><input class="detailedAddress" type="text" name="detailedAddress" required th:value="${paymentInfo.detailAddress}"><span>상세 주소를 입력해주세요.</span></div>
-                            </div>
-                        </div>
-                        <div class="postMemoInput">
-                            <label for="memOrderPostMemo">배송 메모</label>
-                            <select class="postMemo" name="memOrderPostMemo" id="memOrderPostMemo" th:value="${paymentInfo.deliveryMemo}">
-                                <option value="배송메모를 선택하세요.">배송메모를 선택하세요.</option>
-                                <option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
-                                <option value="빠른 배송 부탁드려요.">빠른 배송 부탁드려요.</option>
-                                <option value="부재시 연락 바랍니다.">부재시 연락 바랍니다.</option>
-                                <option value="배송전 연락 바랍니다.">배송전 연락 바랍니다.</option>
-                                <option value="6">직접 입력하기(20자 이내)</option>
-                            </select>
-                            <input class="postMemo" placeholder="직접입력" type="text" name="memOrderPostMemoInput" id="memOrderPostMemoInput">
-                        </div>
-                    </div>
-                    <div>
 
+                            <input class="order_name" name="" id="memPayOrderName" type="text"
+                                placeholder="이름을 입력하세요." required>
+                        </div>
 
+                        <div class="phone_box">
+                            <label for="firstPhoneNum">휴대폰번호</label>
 
-                        <div class="memPayOrderProductInfo" th:each="product : ${orderCart.products}">
-                            <p class="memPayOrderSubtitle">상품정보</p>
+                            <input class="order_phone" name="" id="firstPhoneNum" type="text" placeholder="'-'없이 입력"
+                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" minlength="11" maxlength="12" required>
+                        </div>
+
+                        <div class="address_num_box">
+                            <label for="postNum">우편번호</label>
+
                             <div>
-                                <img th:src="@{../images/icon/__${product.image}__}" alt="구매 상품 이미지">
-                                <div>
-                                    <p class="memPayOrderProductName" th:text="${product.productName}"></p>
-                                    <p>
-                                        <span class="memPayOrderProductOption">옵션</span>
-                                        <span th:text="${product.productOption}"></span>
-                                    </p>
-                                </div>
-                                <p class="mayOrderProductQuantity" th:text="${product.productEa + '개'}"></p>
-                                <p class="mayOrderProductPrice">
-                                    <span class="smallGuide">상품가격</span>
-                                    <span th:text="${product.productPrice }"></span>
-                                </p>
-                                <p>
-                                    <span class="smallGuide">배송료</span>
-                                    <span th:text="${orderCart.shippingFee}"></span>
-                                </p>
+                                <input class="post_num" type="text" name="" id="postNum" required>
+                                <a href="#">우편번호 찾기</a>
                             </div>
                         </div>
 
-                    <div class="memPayOrderPayMeth">
-                        <p class="memPayOrderSubtitle">결제수단</p>
-                        <div class="memPayOrderPayMethBtn">
-                            <label class="cardPayBtn" for="card">
-                                <img src="../images/credit-cards.png" alt="card">
-                                <span>신용/체크 카드</span>
-                            </label>
-                            <label class="accountPayBtn" for="account">
-                                <img src="../images/transaction.png" alt="account">
-                                <span>무통장 입금</span>
-                            </label>
-                            <label class="mobilePayBtn" for="mobilePay">
-                                <img src="../images/smartphone-call.png" alt="mobilePay">
-                                <span>핸드폰 결제</span>
-                            </label>
-                            <label class="kakaoPayBtn" for="kakao">
-                                <img src="../images/kakao-talk.png" alt="kakao">
-                                <span>카카오페이</span>
-                            </label>
+                        <div class="address_input_box">
+                            <label for="add_input">주소</label>
+
+                            <input class="post_address" type="text" name="" id="add_input" placeholder="주소를 입력해주세요." required>
                         </div>
 
-                        <div class="payBoxWrap ">
-                            <div class="memPayOrderCardPayment displayFlex">
-                                <div>
-                                    <p>카드 선택</p>
-                                    <div>
-                                        <select name="paymentMethcard" id="paymentMethcard" class="cardPaymentSelect">
-                                            <option value="1">카드를 선택하세요</option>
-                                            <option value="2">신한카드</option>
-                                            <option value="3">비씨카드</option>
-                                            <option value="4">국민카드</option>
-                                            <option value="5">삼성카드</option>
-                                            <option value="6">현대카드</option>
-                                            <option value="7">롯데카드</option>
-                                            <option value="8">하나카드</option>
-                                            <option value="9">외환카드</option>
-                                            <option value="10">농협카드</option>
-                                            <option value="11">씨티카드</option>
-                                            <option value="12">우리카드</option>
-                                            <option value="13">광주카드</option>
-                                            <option value="14">제주카드</option>
-                                            <option value="15">전북카드</option>
-                                            <option value="16">수협카드</option>
-                                            <option value="17">우체국카드</option>
-                                            <option value="18">MG새마을카드</option>
-                                            <option value="19">신협카드</option>
-                                            <option value="20">카카오뱅크카드</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p>할부 기간</p>
-                                    <div class="halbuWrap">
-                                        <select name="halbuMonth" id="halbuMonth" class="halbuMonth" disabled>
-                                            <option value="1">일시불</option>
-                                            <option value="2">1개월</option>
-                                            <option value="3">2개월</option>
-                                            <option value="4">3개월</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accountDepositeWrap displayNone">
-                                <div>
-                                    <p>은행 선택</p>
-                                    <div>
-                                        <select class="depositeBankSelect" name="depositeBankSelect"
-                                            id="depositeBankSelect">
-                                            <option value="1">카드를 선택하세요</option>
-                                            <option value="2">신한은행</option>
-                                            <option value="3">국민은행</option>
-                                            <option value="4">하나은행</option>
-                                            <option value="5">외환은행</option>
-                                            <option value="6">농협은행</option>
-                                            <option value="7">우리은행</option>
-                                            <option value="8">수협</option>
-                                            <option value="9">MG새마을금고</option>
-                                            <option value="10">카카오뱅크</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p>입금자명</p>
-                                    <div><input type="text" for="depositeCustomerName" class="depositeCustomerName"
-                                            placeholder="입금자명을 입력하세요"></div>
-                                </div>
-                                <div class="cashBillsWrap">
-                                    <p>현금영수증 발행</p>
-                                    <div class="cashBillInputWrap">
-                                        <div class="cashBillTypeWrap">
-                                            <span class="cashBillTypeIncome">소득공제</span>
-                                            <span class="cashBillTypeProve">지출증빙</span>
-                                            <span class="cashBillTypeNo">신청안함</span>
-                                        </div>
-                                        <div class="cashBillTypeIncomeNum displayBlock">
-                                            <input class="cashBillFirstPhoneNum" name="firstPhoneNum"
-                                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="text"
-                                                minlength="2" maxlength="3">-
-                                            <input class="cashBillSecondPhoneNum" name="secondPhoneNum"
-                                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="text"
-                                                minlength="4" maxlength="4" required>-
-                                            <input class="cashBillThirdPhoneNum" name="thirdPhoneNum"
-                                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="text"
-                                                minlength="4" maxlength="4" required>
-                                        </div>
-                                        <div class="cashBillTypeProveNumwrap displayNone">
-                                            <input class="cashBillTypeProveNum" type="text"
-                                                onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
-                                                placeholder="사업자등록번호를 입력해주세요.('-'제외)">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mobilePayWrap displayNone">
-                                <p>휴대폰 결제 한도 금액은 30만원입니다</p>
-                                <p>개인에 따라 이용 한도 금액이 상이할 수 있으니 정확한 이용 한도 금액은 이용 중인 통신사에 문의해 주세요 ( 휴대폰에서 114 문의 )
-                                </p>
-                            </div>
-                            <div class="kakaoPayBtn displayNone">
-                                결제하기 버튼을 눌러주시면 됩니다.
+
+                        <div class="memo_box">
+                            <label for="memOrderPostMemo">배송 메모</label>
+
+                            <div>
+                                <select class="post_memo" name="" id="memOrderPostMemo">
+                                    <option selected>직접 입력하기(20자 이내)</option>
+                                    <option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
+                                    <option value="빠른 배송 부탁드려요.">빠른 배송 부탁드려요.</option>
+                                    <option value="부재시 연락 바랍니다.">부재시 연락 바랍니다.</option>
+                                    <option value="배송전 연락 바랍니다.">배송전 연락 바랍니다.</option>
+                                </select>
+
+                                <input class="post_memo memo_input" placeholder="직접입력" type="text" name="">
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="product_container">
+                        <p class="pro_title">상품 정보</p>
+
+                        <div class="pro_info">
+                            <span>상품 이미지</span>
+                            <span>상품 이름</span>
+                            <span>상품 수량</span>
+                            <span>상품 가격</span>
+                        </div>
+
+                        <div class="product_box">
+                            <div class="product">
+                                <img src="" alt="구매 상품 이미지">
+
+                                <p class="product_name"></p>
+
+                                <p class="product_ea"></p>
+
+                                <p class="product_price">
+                                    <span class="smallGuide">상품가격</span>
+                                    <span></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="memberPayMentFinPrice">
                         <p>최종 결제금액</p>
+
                         <div>
                             <div class="memPayProductPriceWrap">
                                 <span>상품금액</span>
                                 <span><strong>1,150,000</strong>원</span>
                             </div>
+
                             <div class="memPayDiscountPriceWrap">
                                 <span>할인금액</span>
-                                <span>- <strong>0</strong>원</span>
+
+                                <span>
+                                    - <strong>0</strong>원
+                                </span>
                             </div>
-                            <div class="memPayDelieveryFeeWrapWrap">
-                                <span>배송비</span>
-                                <span>+ <strong>25,000</strong>원</span>
-                            </div>
+
                             <div class="memPayTotalPriceWrap">
-                                <span>총 결제 예상금액(1건)</span>
-                                <span><strong></strong>원</span>
-                            </div>
-                            <div>
-                                <span>적립예상 페이백</span>
-                                <span><strong>0</strong>원</span>
+                                <span>총 결제 금액</span>
+                                <span>
+                                    <strong></strong>원
+                                </span>
                             </div>
                         </div>
 
                         <p class="memPayOrderTotalAgree">
-                            <input type="checkbox" name="agree" id="agree" value="allAgree">
-                            <label for="agree">
-                                <img src="./unChecked.png" alt="img">
-                            </label>
+                            <input type="checkbox" id="agree">
+
                             <label for="agree">전체 동의하기</label>
                         </p>
+
                         <ul class="memPayOrderTotalAgreeSection">
                             <li>
-                                <input type="checkbox" name="agree" id="agree1" value="agree1">
-                                <label for="agree1">
-                                    <img src="./unChecked.png" alt="img">
-                                </label>
+                                <input type="checkbox" id="agree1" required>
+
                                 <label for="agree1">
                                     (필수)구매조건 확인 및 결제진행 동의
                                 </label>
                             </li>
+
                             <li>
-                                <input type="checkbox" name="agree" id="agree2" value="agree2">
-                                <label for="agree2">
-                                    <img src="./unChecked.png" alt="img">
-                                </label>
+                                <input type="checkbox" id="agree2" required>
+
                                 <label for="agree2">
                                     (필수)개인정보 수집 및 이용동의
                                 </label>
                             </li>
+
                             <li>
-                                <input type="checkbox" name="agree" id="agree3" value="agree3">
-                                <label for="agree3">
-                                    <img src="./unChecked.png" alt=""></label>
+                                <input type="checkbox" id="agree3" required>
+
                                 <label for="agree3">
                                     (필수)개인정보 제3자 제공동의
                                 </label>
                             </li>
                         </ul>
+
                         <div>
-                            <button class="paymentOrderBtn btnDisable"><a
-                                    href="./paymentComplete.html">주문하기</a></button>
+                            <input class="order_btn" type="submit" value="주 문 하 기">
                         </div>
                     </div>
                 </form>
             </article>
-
-
         </section>
     </main>
 
+    <footer th:replace="common/footer :: footer"></footer>
 </body>
 
 </html>

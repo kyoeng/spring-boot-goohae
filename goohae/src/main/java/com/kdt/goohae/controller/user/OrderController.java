@@ -21,10 +21,10 @@ public class OrderController {
      * OrderInfo에서 주문 일자 , 수량, 주문처리상태
      * Productdto로 이미지 경로, 이름, 옵션
      * */
-    @GetMapping(value = "logined-user/order/list")
+    @GetMapping(value = "/logined-user/order/list")
     public ModelAndView selectList(ModelAndView mv, HttpSession httpSession){
         String loginId = (String)httpSession.getAttribute("loginId");
-        mv.setViewName("/user/myPage/myOrder");
+        mv.setViewName("user/myPage/myOrder");
         mv.addObject("orderList", orderService.selectList(loginId));
         return mv;
     }
@@ -35,9 +35,9 @@ public class OrderController {
      * param : productPrice,
      * param : productEa,
      * */
-    @GetMapping(value = "logined-user/order/start")
-    public ModelAndView insert(ModelAndView mv, ArrayList<OrderVO> vo){
-        mv.setViewName("/user/memberPayment");
+    @GetMapping(value = "/logined-user/order/start")
+    public ModelAndView orderPage(ModelAndView mv){
+        mv.setViewName("user/memberPayment");
 //        mv.addObject("orderVO",vo);
         return mv;
     }
@@ -52,10 +52,10 @@ public class OrderController {
      * param : productEa
      * param : price
      * */
-    @PostMapping(value = "logined-user/order/payment")
+    @PostMapping(value = "/logined-user/order/payment")
     public ModelAndView pay ( ModelAndView mv, HttpSession httpSession, OrderVO vo){
         vo.setUserId((String) httpSession.getAttribute("loginId"));
-        mv.setViewName("/user/paymentComplete");
+        mv.setViewName("user/paymentComplete");
         return mv;
     }
 
