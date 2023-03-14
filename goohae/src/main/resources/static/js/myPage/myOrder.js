@@ -1,17 +1,16 @@
 'use strict';
 
 const myOrderWrap = document.querySelector(".myOrderWrap"),
-//  historyBtnWrap = myOrderWrap.querySelector(".myOrderSelectOrderCondition"),
-  orderConditionWrap = myOrderWrap.querySelector(".myOrderConditionWrap "),
-  orderSelectedAproxiDate = myOrderWrap.querySelector(".myOrderConditionDate"),
-  orderSelectedAproxiDateToday = orderSelectedAproxiDate.querySelector('a'),
-  orderSelectedDate = orderConditionWrap.querySelectorAll(".myOrderDateSelectContainer > .myOrderSelectDate"),
-  orderCinditionSelectOption = orderConditionWrap.querySelectorAll(".myOrderCondition > option"),
-  orderCondition = orderConditionWrap.querySelector(".myOrderCondition"),
-  orderConditionCheckBtn = orderConditionWrap.querySelector(".myOrderDateSelectContainer > button"),
+  orderConditionWrap = document.querySelector(".myOrderConditionWrap"),
+  orderSelectedAproxiDate = document.querySelector(".myOrderConditionDate"),
+  orderSelectedAproxiDateToday = document.querySelector('.myOrderSelectConditionDate'),
+  orderSelectedDate = document.querySelectorAll(".myOrderDateSelectContainer > .myOrderSelectDate"),
+  orderCinditionSelectOption = document.querySelectorAll(".myOrderCondition > option"),
+  orderCondition = document.querySelector(".myOrderCondition"),
+  orderConditionCheckBtn = document.querySelector("#myOrderSelectDateBtn"),
 //  [orderHistoryBtn, orderCancelHistoryBtn] = myOrderWrap.querySelectorAll(".myOrderSelectOrderCondition>p>span"),
-  orderTable = myOrderWrap.querySelector("tbody"),
-  orderProductList = orderTable.querySelectorAll("tr");
+  orderTable = document.querySelector("tbody"),
+  orderProductList = document.querySelectorAll("tr");
 
 let cancelOrderProduct = new Array();
 
@@ -20,33 +19,33 @@ for (let i = 0; i < orderProductList.length; i++) {
     cancelOrderProduct.push(orderProductList[i]);
   }
 }
-
-historyBtnWrap.addEventListener("click", function (e) {
-  const target = e.target.closest("p");
-
-  if (target == orderHistoryBtn.parentNode) {
-    orderCancelHistoryBtn.parentNode.style.borderBottom = "none";
-    orderCancelHistoryBtn.style.color = "#1A1B23";
-    orderHistoryBtn.parentNode.style.borderBottom =
-      "2px solid #505DD0";
-    orderHistoryBtn.style.color = "#505DD0";
-    for (let i = 0; i < cancelOrderProduct.length; i++) {
-      cancelOrderProduct[i].style.display = "table-row";
-    }
-    
-  } else if (target == orderCancelHistoryBtn.parentNode) {
-    orderHistoryBtn.parentNode.style.borderBottom = "none";
-    orderHistoryBtn.style.color = "#1A1B23";
-    orderCancelHistoryBtn.parentNode.style.borderBottom =
-      "2px solid #505DD0";
-    orderCancelHistoryBtn.style.color = "#505DD0";
-    for (let i = 0; i < cancelOrderProduct.length; i++) {
-      cancelOrderProduct[i].style.display = "none";
-    }
-
-    
-  }
-});
+//
+//historyBtnWrap.addEventListener("click", function (e) {
+//  const target = e.target.closest("p");
+//
+//  if (target == orderHistoryBtn.parentNode) {
+//    orderCancelHistoryBtn.parentNode.style.borderBottom = "none";
+//    orderCancelHistoryBtn.style.color = "#1A1B23";
+//    orderHistoryBtn.parentNode.style.borderBottom =
+//      "2px solid #505DD0";
+//    orderHistoryBtn.style.color = "#505DD0";
+//    for (let i = 0; i < cancelOrderProduct.length; i++) {
+//      cancelOrderProduct[i].style.display = "table-row";
+//    }
+//
+//  } else if (target == orderCancelHistoryBtn.parentNode) {
+//    orderHistoryBtn.parentNode.style.borderBottom = "none";
+//    orderHistoryBtn.style.color = "#1A1B23";
+//    orderCancelHistoryBtn.parentNode.style.borderBottom =
+//      "2px solid #505DD0";
+//    orderCancelHistoryBtn.style.color = "#505DD0";
+//    for (let i = 0; i < cancelOrderProduct.length; i++) {
+//      cancelOrderProduct[i].style.display = "none";
+//    }
+//
+//
+//  }
+//});
 
 orderConditionCheckBtn.addEventListener("click", function (e) {
   const selecDate1 = new Date(orderSelectedDate[0].value.toString()),

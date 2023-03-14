@@ -30,58 +30,33 @@
 
     <script>
 
-window.onload = function() {
-    let selectedCategory = '';
-    let category = document.getElementById('category');
-    let rows = document.getElementsByTagName('tr');
+<!--window.onload = function() {-->
+<!--    // 게시물 삭제-->
+<!--    let forms = document.getElementsByTagName('form');-->
+<!--    for (let i = 0; i < forms.length; i++) {-->
+<!--        forms[i].addEventListener('submit', function(event) {-->
+<!--            event.preventDefault();-->
+<!--            let form = event.target;-->
+<!--            let url = form.action;-->
+<!--            let row = form.closest('tr');-->
+<!--            let xhr = new XMLHttpRequest();-->
+<!--            xhr.open('POST', url, true);-->
+<!--            xhr.onload = function() {-->
+<!--                if (xhr.status === 200) {-->
+<!--                    // 삭제 성공 시, 해당 게시물을 화면에서 제거합니다.-->
+<!--                    row.remove();-->
+<!--                    // 알림창을 띄웁니다.-->
+<!--                    alert('게시물이 삭제되었습니다.');-->
+<!--                } else {-->
+<!--                    // 삭제 실패 시, 알림창을 띄웁니다.-->
+<!--                    alert('게시물 삭제에 실패하였습니다.');-->
+<!--                }-->
+<!--            };-->
+<!--            xhr.send();-->
+<!--        });-->
+<!--    }-->
+<!--};-->
 
-    // 카테고리 선택
-    category.onchange = function() {
-        selectedCategory = category.value;
-        if (selectedCategory === '') {
-            for (let i = 0; i < rows.length; i++) {
-                if (rows[i].tagName === 'TR') {
-                    rows[i].style.display = '';
-                }
-            }
-        } else {
-            for (let i = 0; i < rows.length; i++) {
-                if (rows[i].tagName === 'TR' && (rows[i].children[1].textContent === selectedCategory || rows[i].previousElementSibling.children[1].textContent === selectedCategory)) {
-                    rows[i].style.display = '';
-                    rows[i].previousElementSibling.style.display = '';
-                } else if (rows[i].tagName === 'TR') {
-                    rows[i].style.display = 'none';
-                    rows[i].previousElementSibling.style.display = 'none';
-                }
-            }
-        }
-    };
-
-    // 게시물 삭제
-    let forms = document.getElementsByTagName('form');
-    for (let i = 0; i < forms.length; i++) {
-        forms[i].addEventListener('submit', function(event) {
-            event.preventDefault();
-            let form = event.target;
-            let url = form.action;
-            let row = form.closest('tr');
-            let xhr = new XMLHttpRequest();
-            xhr.open('POST', url, true);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // 삭제 성공 시, 해당 게시물을 화면에서 제거합니다.
-                    row.remove();
-                    // 알림창을 띄웁니다.
-                    alert('게시물이 삭제되었습니다.');
-                } else {
-                    // 삭제 실패 시, 알림창을 띄웁니다.
-                    alert('게시물 삭제에 실패하였습니다.');
-                }
-            };
-            xhr.send();
-        });
-    }
-};
 
 
 
@@ -100,56 +75,57 @@ window.onload = function() {
         </div>
         <p class="myPostTitle">나의 리뷰</p>
         <article class="myPostTableWrap">
-<!--            <select name="#" id="myPostCategory">-->
-<!--                <option value="">All</option>-->
-<!--                <option value="Review">Review</option>-->
-<!--                <option value="QnA">QnA</option>-->
-<!--            </select>-->
+            <!--            <select name="#" id="myPostCategory">-->
+            <!--                <option value="">All</option>-->
+            <!--                <option value="Review">Review</option>-->
+            <!--                <option value="QnA">QnA</option>-->
+            <!--            </select>-->
             <table class="myPostTable">
                 <colgroup>
                     <col width="15%"/>
-                    <col width="70%"/>
-<!--                    <col width="15%"/>-->
+                    <col width="30%"/>
+                    <col width="55%"/>
+
                 </colgroup>
                 <thead class="myPostTablThead">
                 <tr class="myPostTableTr">
                     <th scope="col" class="myPostTableTh">no</th>
+                    <th scope="col" class="myPostTableTh">제품명</th>
                     <th scope="col" class="myPostTableTh">제목</th>
-<!--                    <th scope="col" class="myPostTableTh">번호</th>-->
-<!--                    <th scope="col" class="myPostTableTh">작성일</th>-->
+                    <!--                    <th scope="col" class="myPostTableTh">번호</th>-->
+                    <!--                    <th scope="col" class="myPostTableTh">작성일</th>-->
                 </tr>
                 </thead>
                 <tbody class="myPostTableTbody">
-                    <tr class="myPostTableTr" th:each="post : ${reviewList}">
-                        <span > </span>
-                        <td class="myPostTableRow">
-                            <span class="myPostTableContentInner" th:text="${post.reviewSeq}"></span>
-                        </td>
-                        <td class="myPostTableRow">
-                            <span class="myPostTableContentInner">
-                                제품명: <span class="myPostTableContentInner" th:text="${post.productName}"></span>
-                            </span>
-                            <button type="button" class="btn btn-link" data-toggle="collapse"
-                                    th:data-target="'#postContent'+${post.reviewSeq}" th:text="${post.title}"></button>
-<!--                            <p th:text="${post.title}"></p>-->
-                        </td>
-<!--                       <td class="myPostTableRow">-->
-<!--                               <span class="myPostTableContentInner"-->
-<!--                                     th:text="${#temporals.format(post.date, 'yyyy-MM-dd HH:mm:ss')}"></span>-->
-<!--                        </td>-->
-                    </tr>
-                   <tr th:each="post : ${reviewList}">
-                        <td colspan="4">
-                            <div th:if="${post != null}" th:id="'postContent'+${post.reviewSeq}" class="collapse">
-                                <div class="card-body">
-                                    <p th:text="${post.content}"></p>
-                                    <form th:action="@{/posts/delete/{reviewSeq}(reviewSeq=${post.reviewSeq})}" method="post">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </div>
+                <tr class="myPostTableTr" th:each="post : ${reviewList}">
+                    <td class="myPostTableRow">
+                        <span class="myPostTableContentInner" th:text="${post.reviewSeq}"></span>
+                    </td>
+                    <td class="myPostTableRow">
+                        <span class="myPostTableContentInner" th:text="${post.productName}"></span>
+                    </td>
+                    <td class="myPostTableRow">
+                        <button type="button" class="btn btn-link myPostTableContentInner" data-toggle="collapse"
+                                th:data-target="'#postContent'+${post.reviewSeq}" th:text="${post.title}"></button>
+                        <!--                            <p th:text="${post.title}"></p>-->
+                    </td>
+                    <!--                       <td class="myPostTableRow">-->
+                    <!--                               <span class="myPostTableContentInner"-->
+                    <!--                                     th:text="${#temporals.format(post.date, 'yyyy-MM-dd HH:mm:ss')}"></span>-->
+                    <!--                        </td>-->
+                </tr>
+                <tr th:each="post : ${reviewList}">
+                    <td colspan="4">
+                        <div th:if="${post != null}" th:id="'postContent'+${post.reviewSeq}" class="collapse">
+                            <div class="card-body">
+                                <p th:text="${post.content}"></p>
+                                <a th:href="@{/logined-user/review/delete(reviewSeq=${post.reviewSeq})}">
+                                    <button class="btn btn-danger">Delete</button>
+                                </a>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </article>
