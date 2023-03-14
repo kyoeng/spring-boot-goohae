@@ -36,6 +36,7 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("newProduct", productService.getMainNew());
+        model.addAttribute("newProductTwo", productService.getMainNewTwo());
         model.addAttribute("bestProduct", productService.getMainBest());
         return "index";
     }

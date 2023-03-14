@@ -8,6 +8,149 @@
     margin: 100px auto 0;
 }
 
+.slide_box {
+    position: relative;
+}
+
+
+
+/* new product */
+.pro_container>.main_new {
+    width: 100%;
+    margin-top: 50px;
+    overflow: hidden;
+    position: relative;
+    height: 405px;
+}
+
+#left_btn {
+    width: 40px;
+    height: 60px;
+    position: absolute;
+    left: 0%;
+    transform: translateX(-50px);
+    top: calc((100% - 60px) / 2 + 50px);
+    z-index: 1;
+    background: url(../images/icon/slideLeft.png) center/cover;
+}
+
+#right_btn {
+    width: 40px;
+    height: 60px;
+    position: absolute;
+    right: 0;
+    transform: translateX(50px);
+    top: calc((100% - 60px) / 2 + 50px);
+    z-index: 1;
+    background: url(../images/icon/slideRight.png) center/cover;
+}
+
+#left_btn:hover,
+#right_btn:hover {
+    border: 1px solid black;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+
+#new1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#new2 {
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
+
+
+
+.pro_container>.main_new>.product_ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1.5px;
+}
+
+.pro_container>.main_new>.product_ul>.product {
+    width: 300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.pro_container>.main_new>.product_ul>.product>img {
+    display: block;
+    width: 300px;
+    height: 300px;
+}
+
+.pro_container>.main_new>.product_ul>.product>div {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.pro_container>.main_new>.product_ul>.product>div>p {
+    width: 100%;
+    height: 40px;
+    line-height: 25px;
+    font-size: 1.6rem;
+    padding-left: 5px;
+}
+
+.pro_container>.main_new>.product_ul>.product>div>div {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    gap: 10px;
+}
+
+.pro_container>.main_new>.product_ul>.product>div>div>span {
+    line-height: 40px;
+    font-size: 1.5rem;
+}
+
+.pro_container>.main_new>.product_ul>.product>div>div>span:not(:last-of-type) {
+    width: 30%;
+    padding-left: 5px;
+}
+
+.pro_container>.main_new>.product_ul>.product>div>div>span:last-of-type {
+    width: 15%;
+    color: #505dd0;
+    padding-left: 5px;
+}
+
+.pro_container>.main_new>.product_ul>.product>a {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.pro_container>.main_new>.product_ul>.product>a:hover {
+    opacity: 0.5;
+    background-color: white;
+    box-shadow: 0px 0px 5px black;
+}
+
+
+
+
+
+
+
+
+
+/* 일반 상품 표시 */
 .pro_container>h2 {
     width: 100%;
     height: 50px;
@@ -21,6 +164,7 @@
     margin-top: 50px;
     display: flex;
     gap: 25px;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 

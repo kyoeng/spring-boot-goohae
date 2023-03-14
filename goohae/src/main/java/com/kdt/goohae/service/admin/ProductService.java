@@ -46,6 +46,10 @@ public interface ProductService {
     /* new product */
     List<GetProductDTO> getMainNew();
 
+    /* 메인 페이지 상품 데이터 가져오기 2 */
+    /* new product */
+    List<GetProductDTO> getMainNewTwo();
+
     /* best product */
     List<GetProductDTO> getMainBest();
 

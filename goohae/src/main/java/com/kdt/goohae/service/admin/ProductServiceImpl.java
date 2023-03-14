@@ -172,6 +172,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
+     * 메인페이지 신상품 가져오기 2
+     * @return 새로 등록된 상품 4개
+     */
+    @Override
+    public List<GetProductDTO> getMainNewTwo() {
+        return mapper.getMainNewTwo();
+    }
+
+    /**
      * 메인페이지 베스트 상품 가져오기
      * @return 조회수 높은 상품 8개
      */
