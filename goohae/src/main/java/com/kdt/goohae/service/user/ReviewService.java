@@ -10,4 +10,5 @@ public interface ReviewService {
      ArrayList<ReviewVO> getProductReview(int porductCode);
      int insert(ReviewVO vo);
 
+     int delete(ReviewVO vo);
 }

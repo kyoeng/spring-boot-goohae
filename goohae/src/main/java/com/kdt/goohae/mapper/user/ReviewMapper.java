@@ -12,5 +12,5 @@ public interface ReviewMapper {
     ArrayList<ReviewVO> getUserReview(String loginId);
     ArrayList<ReviewVO> getProductReview(int productCode);
     int insert(ReviewVO vo);
-
+    int delete(ReviewVO vo);
 }

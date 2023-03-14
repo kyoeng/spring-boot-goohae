@@ -5,21 +5,14 @@ import com.kdt.goohae.service.user.CartService;
 import com.kdt.goohae.service.user.QnaBoardService;
 import com.kdt.goohae.service.user.ReviewService;
 import com.kdt.goohae.service.user.UserService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 
 @Slf4j
 @Controller
@@ -203,6 +196,7 @@ public class UserController {
         model.addAttribute("user", userService.selectOne(vo));
         return "user/myPage/memberInfo";
     }
+
     /**
      * 회원정보 수정 섬밋
      * param : password
