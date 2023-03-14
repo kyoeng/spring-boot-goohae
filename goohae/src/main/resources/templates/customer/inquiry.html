@@ -35,7 +35,7 @@
 
         <div id="inquiryForm">
             <div class="optionBox">
-                <form action="/logined-user/qna-board/insert" method="post" id="etcForm">
+                <form id="etcForm">
                     <ul>
                         <li class="title">
                             <label for="inquiry-title">제목</label>
@@ -52,13 +52,18 @@
                                 name="boardPassword" />
                         </li>
                     </ul>
-                    <button type="submit">신청하기</button>
+
+                    <div class="message"></div>
                 </form>
+                <button class="go">신청하기</button>
             </div>
         </div>
     </div>
 
     <footer th:replace="common/footer :: footer"></footer>
 </body>
+
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/customer/inquiry.js"></script>
 
 </html>

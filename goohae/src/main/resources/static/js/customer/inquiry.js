@@ -1,18 +1,34 @@
-const form = document.querySelector('#etcForm');
+$(document).ready(function () {
+    const form = $('#etcForm');
+    const btn = $('.go');
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
+    btn.click(function () {
+        const formData = new FormData();
 
-    const payLoad = new FormData(form);
+        if ($('input[name="title"]').val() !== "" &&
+            $('textarea[name="content"]').val() !== "" &&
+            $('input[name="boardPassword"]').val() !== "") {
+            formData.append('title', $('input[name="title"]').val());
+            formData.append('content', $('textarea[name="content"]').val());
+            formData.append('boardPassword', $('input[name="boardPassword"]').val());
 
-    fetch('/logined-user/qna-board/insert', {
-        method: 'Post',
-        header: {
-            'Content-Type': 'json',
-            'sameSite': "None",
-            'Secure': 'true'
-        },
-        body: payLoad
+            $.ajax({
+                url: '/logined-user/qna-board/insert',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: formData
+            })
+                .done((data, status) => {
+                    location.href = '/qna-board/list';
+                })
+                .fail((err, status) => {
+                    console.log(err)
+                })
+        } else {
+            return alert('정보가 입력되지 않았습니다.');
+        }
     })
-        .catch(err => console.log(err))
 })
+
+
