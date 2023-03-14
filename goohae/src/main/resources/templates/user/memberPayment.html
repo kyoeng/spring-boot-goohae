@@ -77,89 +77,83 @@
                         <p class="pro_title">상품 정보</p>
 
                         <div class="pro_info">
-                            <span>상품 이미지</span>
-                            <span>상품 이름</span>
-                            <span>상품 수량</span>
-                            <span>상품 가격</span>
+                            <span class="img_text">상품 이미지</span>
+                            <span class="pro_text">상품명</span>
+                            <span class="ea_text">수량</span>
+                            <span class="price_text">가격</span>
+                            <span class="dis_text">할인율</span>
                         </div>
 
-                        <div class="product_box">
-                            <div class="product">
-                                <img src="" alt="구매 상품 이미지">
-
-                                <p class="product_name"></p>
-
-                                <p class="product_ea"></p>
-
-                                <p class="product_price">
-                                    <span class="smallGuide">상품가격</span>
-                                    <span></span>
-                                </p>
-                            </div>
+                        <div class="product" th:each="products : ${products}">
+                            <img th:src="${products.imagePath}" alt="구매 상품 이미지">
+                            <span class="prName" th:text="${products.productName}"></span>
+                            <span class="prEa" th:text="${products.productEa}"></span>
+                            <span class="prPrice" th:text="${products.discount > 0 ? (products.price - products.discount / 100.00 * products.price) * products.productEa : products.price * products.productEa}"></span>
+                            <span class="prDis" th:text="|${products.discount}%|"></span>
                         </div>
                     </div>
 
 
-                    <div class="memberPayMentFinPrice">
+                    <!-- 결제 fixed box -->
+                    <div class="payment_container">
                         <p>최종 결제금액</p>
 
-                        <div>
-                            <div class="memPayProductPriceWrap">
-                                <span>상품금액</span>
-                                <span><strong>1,150,000</strong>원</span>
-                            </div>
-
-                            <div class="memPayDiscountPriceWrap">
-                                <span>할인금액</span>
+                        <div class="payment_info">
+                            <div class="pay_price">
+                                <span>총 상품 금액</span>
 
                                 <span>
-                                    - <strong>0</strong>원
+                                    <strong></strong>원
                                 </span>
                             </div>
 
-                            <div class="memPayTotalPriceWrap">
-                                <span>총 결제 금액</span>
+                            <div class="pay_discount">
+                                <span>할인 금액</span>
+
+                                <span>
+                                    <strong></strong>원
+                                </span>
+                            </div>
+
+                            <div class="finish_pay">
+                                <span>최총 결제액</span>
                                 <span>
                                     <strong></strong>원
                                 </span>
                             </div>
                         </div>
 
-                        <p class="memPayOrderTotalAgree">
+                        <div class="agree_box">
                             <input type="checkbox" id="agree">
 
                             <label for="agree">전체 동의하기</label>
-                        </p>
-
-                        <ul class="memPayOrderTotalAgreeSection">
-                            <li>
-                                <input type="checkbox" id="agree1" required>
-
-                                <label for="agree1">
-                                    (필수)구매조건 확인 및 결제진행 동의
-                                </label>
-                            </li>
-
-                            <li>
-                                <input type="checkbox" id="agree2" required>
-
-                                <label for="agree2">
-                                    (필수)개인정보 수집 및 이용동의
-                                </label>
-                            </li>
-
-                            <li>
-                                <input type="checkbox" id="agree3" required>
-
-                                <label for="agree3">
-                                    (필수)개인정보 제3자 제공동의
-                                </label>
-                            </li>
-                        </ul>
-
-                        <div>
-                            <input class="order_btn" type="submit" value="주 문 하 기">
                         </div>
+
+                        <div class="agree_box sub_agree">
+                            <input type="checkbox" id="agree1" required>
+
+                            <label for="agree1">
+                                (필수)구매조건 확인 및 결제진행 동의
+                            </label>
+                        </div>
+
+                        <div class="agree_box sub_agree">
+                            <input type="checkbox" id="agree2" required>
+
+                            <label for="agree2">
+                                (필수)개인정보 수집 및 이용동의
+                            </label>
+                        </div>
+
+                        <div class="agree_box sub_agree">
+                            <input type="checkbox" id="agree3" required>
+
+                            <label for="agree3">
+                                (필수)개인정보 제3자 제공동의
+                            </label>
+                        </div>
+
+                        <input class="order_btn" type="submit" value="주 문 하 기">
                     </div>
                 </form>
             </article>

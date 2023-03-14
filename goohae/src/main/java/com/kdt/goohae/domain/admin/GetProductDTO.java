@@ -15,5 +15,6 @@ public class GetProductDTO {
     private int discount;
     private String productOption;
     private String imagePath;
+    private int productEa;
 
 }

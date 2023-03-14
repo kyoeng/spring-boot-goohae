@@ -22,4 +22,7 @@ public class ProductVO {
     // 파일 객체를 위한 필드
     private List<MultipartFile> files;
 
+    // 상품 갯수 데이터 전송을 위한 필드
+    private int productEa;
+
 }

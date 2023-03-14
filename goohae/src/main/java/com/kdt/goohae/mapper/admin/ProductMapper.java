@@ -52,4 +52,8 @@ public interface ProductMapper {
     /* best product */
     List<GetProductDTO> getMainBest();
 
+
+    /* 상품 단일 정보 가져오기 */
+    GetProductDTO getProductOne(ProductVO vo);
+
 }

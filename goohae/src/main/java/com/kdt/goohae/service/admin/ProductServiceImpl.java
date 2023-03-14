@@ -188,4 +188,15 @@ public class ProductServiceImpl implements ProductService {
     public List<GetProductDTO> getMainBest() {
         return mapper.getMainBest();
     }
+
+
+    /**
+     * 상품 단일 정보 ( 디테일에서의 주문 등 )을 위한 메서드
+     * @param vo ProductVO
+     * @return GetProductDTO
+     */
+    @Override
+    public GetProductDTO getProductOne(ProductVO vo) {
+        return mapper.getProductOne(vo);
+    }
 }
