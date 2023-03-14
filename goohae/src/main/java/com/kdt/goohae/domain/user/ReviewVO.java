@@ -6,6 +6,7 @@ import lombok.Data;
 public class ReviewVO {
 
     private String userId;
+    private String productName;
     private int productCode;
     private String title;
     private String content;

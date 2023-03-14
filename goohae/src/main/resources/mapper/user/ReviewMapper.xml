@@ -4,7 +4,9 @@
 <mapper namespace="com.kdt.goohae.mapper.user.ReviewMapper">
 
     <select id="getUserReview" resultType="ReviewVO">
-        select *  from review where user_id = #{loginId}
+        select r.user_id, p.product_name, r.product_code, r.title, r.content, r.review_seq
+        from review r, product p
+        where user_id = #{loginId}  and r.product_code = p.product_code
     </select>
 
     <select id="getProductReview" resultType="ReviewVO">
