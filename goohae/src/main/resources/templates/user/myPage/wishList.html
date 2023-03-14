@@ -12,85 +12,69 @@
     <title>wishList</title>
 </head>
 <body>
-<!--로그인 안했을시 alert 창을 띄움 . */-->
-<div th:if="${session.loginId == null}">
-    <script th:inline="javascript">
-            alert([[${session.message}]]);
-<!--            window.location.href = "/";-->
-    </script>
-</div>
-<div th:unless="${session.loginId == null}">
-    <header th:replace="common/header :: header"></header>
-    <section id="myWishListWrap">
+
+<header th:replace="common/header :: header"></header>
+<main id="wishListMain">
+    <section  id="myWishListWrap">
         <div class="OrderHistoryCategory">
-            <!--            <a th:href="@{/}" class="myPageLink">홈&nbsp;&nbsp;&gt;</a>-->
-            <a th:href="@{/mypage}" class="myPageLink">&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&gt;</a>
-            <a th:href="@{/mywish}" class="myPageLink" id="myPageSubLink">위시리스트</a>
+            <a href="/" class="myPageLink">홈&nbsp;&nbsp;&gt;</a>
+            <a href="/logined-user/mypage" class="myPageLink">&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&gt;</a>
+            <a href="/logined-user/mypage/mywish" class="myPageLink" id="myPageSubLink">위시리스트</a>
         </div>
         <p class="myWishListTitle">위시리스트</p>
-        <article class="wishListTableWrap">
-            <table class="wishListTable" th:if="${wishList}">
-                <colgroup>
-                    <col width="4%"/>
-                    <col width="14%"/>
-                    <col width="52%"/>
-                    <col width="10%"/>
-                    <col width="10%"/>
-                    <col width="10%"/>
-                </colgroup>
-                <thead id="wishListThead">
-                <tr class="wishListLine">
-                    <th scope="col" class="wishListTh">
-                        <input type="checkbox" class="wishListCheckBox" name="wishChkAll" chacked="chacked"
-                               onclick="allselect(this.checked);"/>
-                    </th>
-                    <th scope="col" class="wishListTh">이미지</th>
-                    <th scope="col" class="wishListTh">상품정보</th>
-                    <th scope="col" class="wishListTh">상품금액</th>
-                    <th scope="col" class="wishListTh">배송비</th>
-                    <th scope="col" class="wishListTh">선택</th>
-                </tr>
-                </thead>
-                <tbody id="wishListTbody">
-                <tr class="wishListLine" th:each="wishList : ${wishList}">
-                    <td class="wishListTd">
-                        <input type="checkbox" class="wishListCheckBox" name="wishChk" cheked="cheked"/>
-                    </td>
-                    <td class="wishListTd">
-                        <a href="#"><img src="../../images/icon/HunkerBed1-1.jpg" alt="상품이미지"/></a>
-                    </td>
-                    <td class="wishListTd">
-                        <p class="wishListProductName">월넛 빈티지 우드 프레임 침대 + 클라우드 매트리스 Queen set</p>
-                        <p class="wishListProductName">옵션: 화이트</p>
-                    </td>
-                    <td class="wishListTd">
-                        150000원
-                    </td>
-                    <td class="wishListTd">
-                        6,000원
-                    </td>
-                    <td class="wishListTd">
-                        <button type="submit" class="wishListTdBtn">주문하기</button>
-                        <button type="submit" class="wishListTdBtn">장바구니 담기</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
-        <article class="wishlistButtonWrap">
-            <div class="wishlistControlButtonWrap">
-                <span class="wishlistButtonLeftText">선택한 상품</span>
-                <button class="wishlistButton" id="wishListBlackButton">삭제하기</button>
-                <button class="wishlistButton">장바구니 담기</button>
-            </div>
-            <button class="wishlistButton" id="wishListBlackButton">
-                전체 상품 주문
-                <!-- <button href="#">관심상품 비우기</button>  -->
-            </button>
-        </article>
+        <form th:action="@{/logined-user/mycart}" method="post">
+            <article class="wishListTableWrap">
+                <table class="wishListTable">
+                    <colgroup>
+                        <col width="4%"/>
+                        <col width="14%"/>
+                        <col width="52%"/>
+                        <col width="10%"/>
+                        <col width="10%"/>
+                    </colgroup>
+                    <thead id="wishListThead">
+                    <tr class="wishListLine">
+                        <th scope="col" class="wishListTh">
+                            <input type="checkbox" class="wishListCheckBox" name="wishChkAll" chacked="chacked"
+                                   onclick="allselect(this.checked);"/>
+                        </th>
+                        <th scope="col" class="wishListTh">이미지</th>
+                        <th scope="col" class="wishListTh">상품정보</th>
+                        <th scope="col" class="wishListTh">상품금액</th>
+                        <th scope="col" class="wishListTh">선택</th>
+                    </tr>
+                    </thead>
+                    <tbody id="wishListTbody">
+                    <tr class="wishListLine" th:each="wishList : ${wishList}">
+                        <td class="wishListTd">
+                            <input type="checkbox" class="wishListCheckBox" name="wishChk" cheked="cheked"
+                                   th:values="${wishList.product_code}"/><!--제품코드로 체크-->
+                        </td>
+                        <td class="wishListTd">
+                            <a href="#"><img th:src="@{${wishList.productImage}}"/><!--제품이미지--></a>
+                        </td>
+                        <td class="wishListTd">
+                            <p class="wishListProductName" th:text="${wishList.productName}"><!--제품이름--></p>
+                            <p class="wishListProductName" th:text="${wishList.productOption}"><!--옵션--></p>
+                        </td>
+                        <td class="wishListTd" th:text="${wishList.price}"><!--제품가격--></td>
+                        <td class="wishListTd">
+                            <a th:href="@{/logined-user/mywish/delete(product_code=${post.product_code})}">삭제하기</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="wishlistButtonWrap">
+                <div class="wishlistControlButtonWrap">
+                    <span class="wishlistButtonLeftText">선택한 상품</span>
+                    <!--                    <button type="submit" value="checked-delete" class="wishlistButton" id="wishListBlackButton">삭제하기</button>-->
+                    <button type="submit" class="wishlistButton">장바구니 담기</button>
+                </div>
+            </article>
+        </form>
     </section>
-    </main>
-    <footer th:replace="common/footer :: footer"></footer>
-</div>
+</main>
+<footer th:replace="common/footer :: footer"></footer>
 </body>
 </html>

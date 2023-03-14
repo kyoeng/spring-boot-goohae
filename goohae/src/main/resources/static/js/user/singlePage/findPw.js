@@ -58,19 +58,19 @@ function fpMobileCheck() {
     }
 }
 
-function findPwEmailCheck() {
-    if (findPwEmail.value == "") {
-        errorMassage[3].classList.remove('hidden');
-        findPwEmail.classList.add('redInputBox');
-        findPwEmailSel.classList.add('redInputBox');
-        return false;
-    } else {
-        errorMassage[3].classList.add('hidden');
-        findPwEmail.classList.remove('redInputBox');
-        findPwEmailSel.classList.remove('redInputBox');
-        return true;
-    }
-}
+//function findPwEmailCheck() {
+//    if (findPwEmail.value == "") {
+//        errorMassage[3].classList.remove('hidden');
+//        findPwEmail.classList.add('redInputBox');
+//        findPwEmailSel.classList.add('redInputBox');
+//        return false;
+//    } else {
+//        errorMassage[3].classList.add('hidden');
+//        findPwEmail.classList.remove('redInputBox');
+//        findPwEmailSel.classList.remove('redInputBox');
+//        return true;
+//    }
+//}
 
 document.addEventListener('keydown', function (e) {
     if (e.keyCode === 13) {
@@ -78,7 +78,7 @@ document.addEventListener('keydown', function (e) {
         fpIdCheck();
         fpNameCheck();
         fpMobileCheck();
-        findPwEmailCheck();
+//        findPwEmailCheck();
 
     };
 });
@@ -88,14 +88,16 @@ findPwBtn.addEventListener('click', function (e) {
     fpIdCheck();
     fpNameCheck();
     fpMobileCheck();
-    findPwEmailCheck();
-    if (fiNameCheck() && fiEmailCheck() && fiMobileCheck()) {
-            form.submit();
+//    findPwEmailCheck();
+//    if (fiNameCheck() && fiEmailCheck() && fiMobileCheck()) {
+    if (fiNameCheck() && fiEmailCheck()) {
+        form.submit();
     }
 });
 
 function validate() {
-    if (fpId.value && fpName.value &&findPwEmail.value && fpMobile[1].value.length == "4"&&fpMobile[2].value.length == "4") {
+//    if (fpId.value && fpName.value &&findPwEmail.value && fpMobile[1].value.length == "4"&&fpMobile[2].value.length == "4") {
+    if (fpId.value && fpName.value&& fpMobile[1].value.length == "4"&&fpMobile[2].value.length == "4") {
         findPwBtn.style.cursor = 'pointer';
         findPwBtn.classList.add('buttonLogin');
     } else {

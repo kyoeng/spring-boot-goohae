@@ -28,50 +28,16 @@
     <title>myPost</title>
     <!--  <script defer src="/js/singlePage/login.js"></script>-->
 
-    <script>
-
-<!--window.onload = function() {-->
-<!--    // 게시물 삭제-->
-<!--    let forms = document.getElementsByTagName('form');-->
-<!--    for (let i = 0; i < forms.length; i++) {-->
-<!--        forms[i].addEventListener('submit', function(event) {-->
-<!--            event.preventDefault();-->
-<!--            let form = event.target;-->
-<!--            let url = form.action;-->
-<!--            let row = form.closest('tr');-->
-<!--            let xhr = new XMLHttpRequest();-->
-<!--            xhr.open('POST', url, true);-->
-<!--            xhr.onload = function() {-->
-<!--                if (xhr.status === 200) {-->
-<!--                    // 삭제 성공 시, 해당 게시물을 화면에서 제거합니다.-->
-<!--                    row.remove();-->
-<!--                    // 알림창을 띄웁니다.-->
-<!--                    alert('게시물이 삭제되었습니다.');-->
-<!--                } else {-->
-<!--                    // 삭제 실패 시, 알림창을 띄웁니다.-->
-<!--                    alert('게시물 삭제에 실패하였습니다.');-->
-<!--                }-->
-<!--            };-->
-<!--            xhr.send();-->
-<!--        });-->
-<!--    }-->
-<!--};-->
-
-
-
-
-    </script>
-
 </head>
 <body>
 <header th:replace="common/header :: header"></header>
 <main class="myPostMain">
     <section id="myPostWrap">
         <div class="myPostTableCategory">
-            <!--                    <a th:href="@{/}" class="myPageLink">홈&nbsp;&nbsp;&gt;</a>-->
-            <a th:href="@{mypage}" class="myPageLink">&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&gt;</a>
-            <a th:href="@{mypost}" class="myPageLink"
-               id="myPageSubLink">&nbsp;&nbsp;나의리뷰&nbsp;&nbsp;</a>
+            <a href="/" class="myPageLink">홈&nbsp;&nbsp;&gt;</a>
+            <a href="/logined-user/mypage" class="myPageLink">&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&gt;</a>
+            <a href="/logined-user/mypage/mypost" class="myPageLink"
+               id="myPageSubLink">&nbsp;&nbsp;나의 리뷰&nbsp;&nbsp;</a>
         </div>
         <p class="myPostTitle">나의 리뷰</p>
         <article class="myPostTableWrap">
@@ -105,8 +71,7 @@
                         <span class="myPostTableContentInner" th:text="${post.productName}"></span>
                     </td>
                     <td class="myPostTableRow">
-                        <button type="button" class="btn btn-link myPostTableContentInner" data-toggle="collapse"
-                                th:data-target="'#postContent'+${post.reviewSeq}" th:text="${post.title}"></button>
+                        <button type="button" class="btn btn-link myPostTableContentInner" data-toggle="collapse" th:data-target="'#postContent'+${post.reviewSeq}" th:text="${post.title}"></button>
                         <!--                            <p th:text="${post.title}"></p>-->
                     </td>
                     <!--                       <td class="myPostTableRow">-->

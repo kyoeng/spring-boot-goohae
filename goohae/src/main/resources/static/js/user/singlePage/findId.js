@@ -22,19 +22,19 @@ function fiNameCheck() {
     }
 }
 
-function fiEmailCheck() {
-    if (fiEmail.value == "") {
-        errorMassage[1].classList.remove('hidden');
-        fiEmail.classList.add('redInputBox');
-        fIEmailDomain.classList.add('redInputBox');
-        return false;
-    } else {
-        errorMassage[1].classList.add('hidden');
-        fiEmail.classList.remove('redInputBox');
-        fIEmailDomain.classList.remove('redInputBox');
-        return true;
-    }
-}
+//function fiEmailCheck() {
+//    if (fiEmail.value == "") {
+//        errorMassage[1].classList.remove('hidden');
+//        fiEmail.classList.add('redInputBox');
+//        fIEmailDomain.classList.add('redInputBox');
+//        return false;
+//    } else {
+//        errorMassage[1].classList.add('hidden');
+//        fiEmail.classList.remove('redInputBox');
+//        fIEmailDomain.classList.remove('redInputBox');
+//        return true;
+//    }
+//}
 
 function fiMobileCheck() {
     if ((fiMobile[1].value == "") && (fiMobile[2].value == "")) {
@@ -77,9 +77,10 @@ function fiMobileCheck() {
 findIdBtn.addEventListener('click', function (e) {
     e.preventDefault();
     fiNameCheck();
-    fiEmailCheck();
+//    fiEmailCheck();
     fiMobileCheck();
-    if (fiNameCheck() && fiEmailCheck() && fiMobileCheck()) {
+//    if (fiNameCheck() && fiEmailCheck() && fiMobileCheck()) {
+    if (fiNameCheck() && fiMobileCheck()) {
         // if (form) {
             form.submit();
         // }
@@ -88,7 +89,8 @@ findIdBtn.addEventListener('click', function (e) {
 
 // 전부 입력시 로그인버튼 색깔 변경
 function validate() {
-    if (fiName.value && fiEmail.value && fiMobile[1].value.length == 4 && fiMobile[2].value.length == 4) {
+// if (fiName.value && fiEmail.value && fiMobile[1].value.length == 4 && fiMobile[2].value.length == 4) {
+    if (fiName.value && fiMobile[1].value.length == 4 && fiMobile[2].value.length == 4) {
         findIdBtn.style.cursor = 'pointer';
         findIdBtn.classList.add('buttonLogin');
     } else {

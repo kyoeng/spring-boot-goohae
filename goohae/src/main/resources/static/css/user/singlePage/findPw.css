@@ -91,6 +91,7 @@ input {
     font-size: 14px;
     text:decoration:none;
     margin:0 auto ;
+    text-decoration:none;
 }
 
 .findPwHead>.findPwHeadListWrap .findPwHeadList:last-of-type .findPwLink {

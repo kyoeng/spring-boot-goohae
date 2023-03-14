@@ -5,7 +5,7 @@ const myOrderWrap = document.querySelector(".myOrderWrap"),
   orderSelectedAproxiDate = document.querySelector(".myOrderConditionDate"),
   orderSelectedAproxiDateToday = document.querySelector('.myOrderSelectConditionDate'),
   orderSelectedDate = document.querySelectorAll(".myOrderDateSelectContainer > .myOrderSelectDate"),
-  orderCinditionSelectOption = document.querySelectorAll(".myOrderCondition > option"),
+  orderConditionSelectOption = document.querySelectorAll(".myOrderCondition > option"),
   orderCondition = document.querySelector(".myOrderCondition"),
   orderConditionCheckBtn = document.querySelector("#myOrderSelectDateBtn"),
 //  [orderHistoryBtn, orderCancelHistoryBtn] = myOrderWrap.querySelectorAll(".myOrderSelectOrderCondition>p>span"),
@@ -13,6 +13,7 @@ const myOrderWrap = document.querySelector(".myOrderWrap"),
   orderProductList = document.querySelectorAll("tr");
 
 let cancelOrderProduct = new Array();
+console.log(orderConditionSelectOption);
 
 for (let i = 0; i < orderProductList.length; i++) {
   if (orderProductList[i].lastElementChild.innerText == "") {
@@ -120,7 +121,7 @@ function checkValue(params) {
   }
 }
 
-let beforOrderSelectedDateBtn = orderSelectedAproxiDateToday ;
+let beforeOrderSelectedDateBtn = orderSelectedAproxiDateToday ;
 
 orderSelectedAproxiDate.addEventListener("click", function (e) {
   e.preventDefault();
@@ -128,49 +129,49 @@ orderSelectedAproxiDate.addEventListener("click", function (e) {
 
     switch (`${e.target.innerText}`) {
       case "오늘": 
-        beforOrderSelectedDateBtn.style.border = '1px solid #1A1B23'
-        beforOrderSelectedDateBtn.style.color = '#1A1B23'
+        beforeOrderSelectedDateBtn.style.border = '1px solid #1A1B23'
+        beforeOrderSelectedDateBtn.style.color = '#1A1B23'
         e.target.style.border = '1px solid #505DD0'
         e.target.style.color = '#505DD0'
         orderSelectedDate[0].value = convertDateFormat(new Date());
         orderSelectedDate[1].value = convertDateFormat(new Date());
-        beforOrderSelectedDateBtn = e.target;
+        beforeOrderSelectedDateBtn = e.target;
         break;
       case "1주일":
-        beforOrderSelectedDateBtn.style.border = '1px solid #1A1B23'
-        beforOrderSelectedDateBtn.style.color = '#1A1B23'
+        beforeOrderSelectedDateBtn.style.border = '1px solid #1A1B23'
+        beforeOrderSelectedDateBtn.style.color = '#1A1B23'
         e.target.style.border = '1px solid #505DD0'
         e.target.style.color = '#505DD0'
         orderSelectedDate[0].value = convertDateFormat(new Date(today.setDate(today.getDate() - 7)));
         orderSelectedDate[1].value = convertDateFormat(new Date());
-        beforOrderSelectedDateBtn = e.target;
+        beforeOrderSelectedDateBtn = e.target;
         break;
       case "1개월":
-        beforOrderSelectedDateBtn.style.border = '1px solid #1A1B23'
-        beforOrderSelectedDateBtn.style.color = '#1A1B23'
+        beforeOrderSelectedDateBtn.style.border = '1px solid #1A1B23'
+        beforeOrderSelectedDateBtn.style.color = '#1A1B23'
         e.target.style.border = '1px solid #505DD0'
         e.target.style.color = '#505DD0'
         orderSelectedDate[0].value = convertDateFormat(new Date(today.setMonth(today.getMonth() - 1)));
         orderSelectedDate[1].value = convertDateFormat(new Date());
-        beforOrderSelectedDateBtn = e.target;
+        beforeOrderSelectedDateBtn = e.target;
         break;
       case "3개월":
-        beforOrderSelectedDateBtn.style.border = '1px solid #1A1B23'
-        beforOrderSelectedDateBtn.style.color = '#1A1B23'
+        beforeOrderSelectedDateBtn.style.border = '1px solid #1A1B23'
+        beforeOrderSelectedDateBtn.style.color = '#1A1B23'
         e.target.style.border = '1px solid #505DD0'
         e.target.style.color = '#505DD0'
         orderSelectedDate[0].value = convertDateFormat(new Date(today.setMonth(today.getMonth() - 3)));
         orderSelectedDate[1].value = convertDateFormat(new Date());
-        beforOrderSelectedDateBtn = e.target;
+        beforeOrderSelectedDateBtn = e.target;
         break;
       case "6개월":
-        beforOrderSelectedDateBtn.style.border = '1px solid #1A1B23'
-        beforOrderSelectedDateBtn.style.color = '#1A1B23'
+        beforeOrderSelectedDateBtn.style.border = '1px solid #1A1B23'
+        beforeOrderSelectedDateBtn.style.color = '#1A1B23'
         e.target.style.border = '1px solid #505DD0'
         e.target.style.color = '#505DD0'
         orderSelectedDate[0].value = convertDateFormat(new Date(today.setMonth(today.getMonth() - 6)));
         orderSelectedDate[1].value = convertDateFormat(new Date());
-        beforOrderSelectedDateBtn = e.target;
+        beforeOrderSelectedDateBtn = e.target;
         break;
 
         default:
