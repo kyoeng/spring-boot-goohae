@@ -32,6 +32,7 @@
     top: calc((100% - 60px) / 2 + 50px);
     z-index: 1;
     background: url(../images/icon/slideLeft.png) center/cover;
+    visibility: hidden;
 }
 
 #right_btn {
@@ -63,6 +64,11 @@
     position: absolute;
     top: 0;
     left: 100%;
+}
+
+#new1,
+#new2 {
+    transition: 1s all;
 }
 
 
