@@ -46,7 +46,7 @@ public class ReviewController {
      * 리뷰 삭제 메서드
      * param : reviewSeq
      * */
-    @PostMapping(value = "logined-user/review/delete")
+    @GetMapping(value = "logined-user/review/delete")
     public String delete (ReviewVO vo, HttpSession httpSession){
         vo.setUserId( (String) httpSession.getAttribute("loginId"));
         if( reviewService.delete(vo)>0 ){

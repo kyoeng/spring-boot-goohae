@@ -22,5 +22,4 @@
         delete from review where review_seq = #{reviewSeq} and user_id = #{userId};
     </delete>
 
-
 </mapper>
