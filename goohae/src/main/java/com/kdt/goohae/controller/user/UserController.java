@@ -89,7 +89,7 @@ public class UserController {
             if(passwordEncoder.matches(vo.getPassword(), dbVO.getPassword())){
                 httpSession.setAttribute("loginId",vo.getId());
                 httpSession.setAttribute("name",dbVO.getName());
-                mv.setViewName("/index");
+                mv.setViewName("redirect:/");
             }else{
                 mv.addObject("message", "PW오류");
                 mv.setViewName("/user/singlePage/login");
