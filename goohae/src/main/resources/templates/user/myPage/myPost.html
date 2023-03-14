@@ -121,13 +121,16 @@ window.onload = function() {
                 </thead>
                 <tbody class="myPostTableTbody">
                     <tr class="myPostTableTr" th:each="post : ${reviewList}">
-
+                        <span > </span>
                         <td class="myPostTableRow">
-                            <span class="myPostTableContentInner" th:text="${post.productCode}"></span>
+                            <span class="myPostTableContentInner" th:text="${post.reviewSeq}"></span>
                         </td>
                         <td class="myPostTableRow">
-                           <button type="button" class="btn btn-link" data-toggle="collapse"
-                                    th:data-target="'#postContent'+${post.productCode}" th:text="${post.title}"></button>
+                            <span class="myPostTableContentInner">
+                                제품명: <span class="myPostTableContentInner" th:text="${post.productName}"></span>
+                            </span>
+                            <button type="button" class="btn btn-link" data-toggle="collapse"
+                                    th:data-target="'#postContent'+${post.reviewSeq}" th:text="${post.title}"></button>
 <!--                            <p th:text="${post.title}"></p>-->
                         </td>
 <!--                       <td class="myPostTableRow">-->
@@ -137,11 +140,10 @@ window.onload = function() {
                     </tr>
                    <tr th:each="post : ${reviewList}">
                         <td colspan="4">
-                            <div th:if="${post != null}" th:id="'postContent'+${post.productCode}" class="collapse">
+                            <div th:if="${post != null}" th:id="'postContent'+${post.reviewSeq}" class="collapse">
                                 <div class="card-body">
-                                    <span> </span>
                                     <p th:text="${post.content}"></p>
-                                    <form th:action="@{/posts/delete/{productCode}(productCode=${post.productCode})}" method="post">
+                                    <form th:action="@{/posts/delete/{reviewSeq}(reviewSeq=${post.reviewSeq})}" method="post">
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </div>
