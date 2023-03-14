@@ -108,8 +108,10 @@
                             </td>
                             <td class="shoppingCartTableRow">
                                 <input class="shoppingCartTableFontSize shoppingCartProductEa"
+                                       th:attr="productCode=${item.productCode}"
                                        th:value="${item.productEa}"
-                                       type="number" min="1"/>
+                                       type="number"
+                                       min="1"/>
                             </td>
                             <td class="shoppingCartTableRow">
                                 <div class="shoppingCartTableFontSize" >
@@ -120,8 +122,8 @@
                             <td class="shoppingCartTableRow">
                                 <!--                                <form th:action="@{'/product/' + ${product_code}}" method="post">-->
                                 <!--                                    <input type="hidden" name="_method" value="DELETE"/>-->
-                                <button type="submit" class="shoppingCartTableBtn" onclick="deleteCartItem(this)">삭제하기
-                                </button>
+                                <p class="shoppingCartTableBtn" th:attr="productCode=${item.productCode}">삭제하기
+                                </p>
                                 <!--                                </form>-->
                             </td>
                         </tr>

@@ -141,7 +141,9 @@ body {
 } */
 
 .shoppingCartTable .shoppingCartTableRow:nth-of-type(6) .shoppingCartTableBtn {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 90px;
     margin: 0 auto;
     height: 25px;
@@ -151,6 +153,7 @@ body {
     border: 0;
     cursor: pointer;
     font-size: 1.4rem;
+
 }
 
 .shoppingCartProductEa {

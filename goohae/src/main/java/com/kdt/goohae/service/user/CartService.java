@@ -11,4 +11,6 @@ public interface CartService {
     int delete(CartVO vo);
     int checkedDelete(CartVO vo);
     ArrayList<GetProductDTO> selectList(String loginId);
+    int eaChange(CartVO vo);
+    CartVO selectOne(CartVO vo);
 }

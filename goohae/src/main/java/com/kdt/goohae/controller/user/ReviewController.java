@@ -1,12 +1,9 @@
 package com.kdt.goohae.controller.user;
 
 import com.kdt.goohae.domain.user.ReviewVO;
-import com.kdt.goohae.service.admin.PostBoardService;
-import com.kdt.goohae.service.user.QnaBoardService;
 import com.kdt.goohae.service.user.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;

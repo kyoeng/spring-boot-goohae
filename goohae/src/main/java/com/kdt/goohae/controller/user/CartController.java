@@ -72,6 +72,9 @@ public class CartController {
      * */
     @PostMapping(value = "logined-user/mycart/insert")
     public Model insert(CartVO vo, HttpSession httpSession, Model model){
+        if ( cartService.selectOne(vo) != null) {
+            return model.addAttribute("message", "duplicate");
+        }
         vo.setUserId((String) httpSession.getAttribute("loginId") );
         if (cartService.insert(vo)>0){
             model.addAttribute("message","success");
@@ -79,6 +82,15 @@ public class CartController {
             model.addAttribute("message","fail");
         }
         return model;
+    }
+
+    @PostMapping(value = "logined-user/mycart/changeea")
+    public String eaChange(CartVO vo,HttpSession httpSession, Model model){
+        vo.setUserId((String) httpSession.getAttribute("loginId"));
+        if( cartService.eaChange(vo)>0 ){
+            model.addAttribute("changeEa", vo.getProductEa());
+        }
+        return "user/myPage/shoppingCart";
     }
 
 }

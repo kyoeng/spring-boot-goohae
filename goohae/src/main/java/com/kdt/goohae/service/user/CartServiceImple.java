@@ -24,4 +24,6 @@ public class CartServiceImple implements CartService {
 
     @Override
     public ArrayList<GetProductDTO> selectList(String loginId) {return mapper.selectList(loginId);}
+    public int eaChange(CartVO vo){return mapper.eaChange(vo);}
+    public CartVO selectOne(CartVO vo){return mapper.selectOne(vo);}
 }
