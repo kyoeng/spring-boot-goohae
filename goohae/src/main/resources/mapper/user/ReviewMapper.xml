@@ -16,4 +16,6 @@
         values ( #{userId}, #{productCode}, #{title}, #{content} );
     </insert>
 
+
+
 </mapper>

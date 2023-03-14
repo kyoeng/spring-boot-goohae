@@ -1,7 +1,6 @@
 package com.kdt.goohae.config;
 
 
-import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 

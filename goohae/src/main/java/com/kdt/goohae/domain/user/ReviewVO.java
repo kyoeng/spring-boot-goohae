@@ -9,6 +9,6 @@ public class ReviewVO {
     private int productCode;
     private String title;
     private String content;
-
+    private int reviewSeq;
 
 }

@@ -190,16 +190,11 @@ public class UserController {
      * myPage에 myPost로 이동
      * */
     @GetMapping (value = "logined-user/mypost")
-    public String myReview(){return "user/myPage/myPost";}
-
-    /**
-     * model에 유저의 qnaList, reviewList를 담아서 전달.
-     * */
-    @PostMapping (value = "logined-user/mypost")
-    public Model myReview(Model model,HttpSession httpSession) {
-        model.addAttribute("qnaList",qnaBoardService.userList((String)httpSession.getAttribute("loginId")));
+    public String myReview(Model model,HttpSession httpSession){
         model.addAttribute("reviewList",reviewService.getUserReview((String)httpSession.getAttribute("loginId")));
-        return model;
+
+        log.info("{}",reviewService.getUserReview((String)httpSession.getAttribute("loginId")));
+        return "user/myPage/myPost";
     }
 
     @GetMapping (value = "logined-user/myinfo")
