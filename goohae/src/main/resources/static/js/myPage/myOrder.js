@@ -1,7 +1,7 @@
 'use strict';
 
 const myOrderWrap = document.querySelector(".myOrderWrap"),
-  historyBtnWrap = myOrderWrap.querySelector(".myOrderSelectOrderCondition"),
+//  historyBtnWrap = myOrderWrap.querySelector(".myOrderSelectOrderCondition"),
   orderConditionWrap = myOrderWrap.querySelector(".myOrderConditionWrap "),
   orderSelectedAproxiDate = myOrderWrap.querySelector(".myOrderConditionDate"),
   orderSelectedAproxiDateToday = orderSelectedAproxiDate.querySelector('a'),
@@ -9,13 +9,11 @@ const myOrderWrap = document.querySelector(".myOrderWrap"),
   orderCinditionSelectOption = orderConditionWrap.querySelectorAll(".myOrderCondition > option"),
   orderCondition = orderConditionWrap.querySelector(".myOrderCondition"),
   orderConditionCheckBtn = orderConditionWrap.querySelector(".myOrderDateSelectContainer > button"),
-  [orderHistoryBtn, orderCancelHistoryBtn] = myOrderWrap.querySelectorAll(".myOrderSelectOrderCondition>p>span"),
+//  [orderHistoryBtn, orderCancelHistoryBtn] = myOrderWrap.querySelectorAll(".myOrderSelectOrderCondition>p>span"),
   orderTable = myOrderWrap.querySelector("tbody"),
   orderProductList = orderTable.querySelectorAll("tr");
 
 let cancelOrderProduct = new Array();
-
-console.log(orderCinditionSelectOption);
 
 for (let i = 0; i < orderProductList.length; i++) {
   if (orderProductList[i].lastElementChild.innerText == "") {

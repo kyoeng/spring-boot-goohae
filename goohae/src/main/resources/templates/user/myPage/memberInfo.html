@@ -8,20 +8,72 @@
   <link rel="stylesheet" href="/css/common/config.css">
   <link rel="stylesheet" href="/css/common/header.css">
   <link rel="stylesheet" href="/css/common/footer.css">
-<!--  <script>-->
-<!--    window.onload = function(){-->
-<!--      $.ajax({-->
-<!--        url:"/logined-user/myinfo",-->
-<!--        type:"post",-->
-<!--        success: function (resultData) {-->
-<!--          console.log(resultData)-->
-<!--        },-->
-<!--        error: function (result){-->
-<!--          console.log(result);-->
-<!--        }-->
-<!--      })-->
-<!--    }-->
-<!--  </script>-->
+<!--  <script defer src="/js/user/myPage/memberInfo.js"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+  <script>
+$(document).ready(function() {
+  // 회원정보 수정 버튼 클릭 시
+  $("#memberInfoSubmitBtn").on("click", function(event) {
+    // 기본 동작 방지
+    event.preventDefault();
+
+    // 회원정보를 담을 FormData 객체 생성
+    var formData = new FormData();
+
+    // 비밀번호와 비밀번호 확인 값 비교
+    var password = $("#password").val();
+    if (password !== '') {
+        formData.append("password", password);
+           return;
+    }else if(password === ''&& confirmPassword!==""){
+        alert("비밀번호를 입력해주세요");
+           return;
+    }
+
+    var confirmPassword = $("#confirmPassword").val();
+     if (password !== confirmPassword && (confirmPassword!==""&&password!=="")) {
+      alert("비밀번호와 비밀번호 확인 값이 일치하지 않습니다.");
+
+    }
+
+    // 이름
+    var name = $("input[name=name]").val();
+    formData.append("name", name);
+
+    // 주소
+    var address = $("input[name=address]").val();
+    formData.append("address", address);
+
+    // 휴대전화번호
+    var phoneNumber = $("input[name=phoneNumber]").val();
+    formData.append("phoneNumber", phoneNumber);
+
+    // AJAX 요청 보내기
+    $.ajax({
+      type: "POST",
+      enctype: 'multipart/form-data',
+      url: "/logined-user/myinfo/update",
+      data: formData,
+      processData: false,
+      contentType: false,
+      cache: false,
+<!--      timeout: 600000,-->
+      success: function (data) {
+        console.log("회원정보 수정 완료");
+        // 회원정보 수정 완료 후 처리할 작업 수행
+        alert("회원정보 수정 성공!");
+      },
+      error: function (e) {
+        console.log("회원정보 수정 실패");
+        console.log("ERROR : ", e);
+         alert("회원정보 수정 실패!");
+      }
+    });
+  });
+});
+
+  </script>
 </head>
 
 <body>
@@ -50,22 +102,29 @@
 <!--          <p class="infoGuide">오류 메세지 입니다.</p>-->
 <!--        </div>-->
         <div class="memberInfoPwInputWrap">
-          <p>비밀번호</p>
+          <p class="errorMassage">비밀번호</p>
           <input class="memberInfoPwInput" type="password" name="psw" minLength={10} maxLength={16}
                  placeholder=" 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합"
                  th:id="password" th:name="password"/>
+<!--          <p class="errorMassage">" 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합" </p>-->
+          <p class="errorMassage">" 비밀번호를 입력해주세요  </p>
         </div>
         <div class="memberInfoPwConfirmInputWrap">
           <p>비밀번호 확인</p>
           <input class="memberInfoPwConfirmInput" type="password" name="psw" minLength={7} maxLength={15} />
+          <p class="errorMassage">" 비밀번호를 입력해주세요  </p>
         </div>
         <div class="memberInfoNameInputWrap">
           <p>이름</p>
-          <input class="memberInfoNameInput" type="text" name="Name"  th:field="${user.name}" />
+          <input class="memberInfoNameInput" type="text" name="name"  th:field="${user.name}" />
+        </div>
+        <div class="memberInfoNameInputWrap">
+          <p>주소</p>
+          <input class="memberInfoAddressInput" type="text" name="address"  th:field="${user.address}" />
         </div>
         <div class="memberInfoTellInputWrap">
           <p>휴대전화</p>
-          <input class="memberInfoTellInput" type="text" name="lastPhoneNum"  th:field="${user.phoneNumber}"/>
+          <input class="memberInfoTellInput" type="text" name="phoneNumber"  th:field="${user.phoneNumber}"/>
         </div>
         <div class="emailGetRadio">
           <div>

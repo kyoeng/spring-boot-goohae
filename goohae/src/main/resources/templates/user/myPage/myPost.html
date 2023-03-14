@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head >
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,8 +28,8 @@
     <title>myPost</title>
     <!--  <script defer src="/js/singlePage/login.js"></script>-->
 
-   <script>
-       
+    <script>
+
 window.onload = function() {
     let selectedCategory = '';
     let category = document.getElementById('category');
@@ -57,7 +57,7 @@ window.onload = function() {
         }
     };
 
-    // 게시물 삭제 
+    // 게시물 삭제
     let forms = document.getElementsByTagName('form');
     for (let i = 0; i < forms.length; i++) {
         forms[i].addEventListener('submit', function(event) {
@@ -82,86 +82,76 @@ window.onload = function() {
         });
     }
 };
-    
+
+
 
     </script>
 
 </head>
 <body>
 <header th:replace="common/header :: header"></header>
-<main class=" myPostMain">
-    <!--로그인 안했을시 alert 창을 띄움 . */-->
-    <div th:if="${session.loginId == null}">
-        <script th:inline="javascript">
-            alert([[${session.message}]]);
-<!--            window.location.href = "/";-->
+<main class="myPostMain">
+    <section id="myPostWrap">
+        <div class="myPostTableCategory">
+            <!--                    <a th:href="@{/}" class="myPageLink">홈&nbsp;&nbsp;&gt;</a>-->
+            <a th:href="@{mypage}" class="myPageLink">&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&gt;</a>
+            <a th:href="@{mypost}" class="myPageLink"
+               id="myPageSubLink">&nbsp;&nbsp;나의리뷰&nbsp;&nbsp;</a>
+        </div>
+        <p class="myPostTitle">나의 리뷰</p>
+        <article class="myPostTableWrap">
+<!--            <select name="#" id="myPostCategory">-->
+<!--                <option value="">All</option>-->
+<!--                <option value="Review">Review</option>-->
+<!--                <option value="QnA">QnA</option>-->
+<!--            </select>-->
+            <table class="myPostTable">
+                <colgroup>
+                    <col width="15%"/>
+                    <col width="70%"/>
+<!--                    <col width="15%"/>-->
+                </colgroup>
+                <thead class="myPostTablThead">
+                <tr class="myPostTableTr">
+                    <th scope="col" class="myPostTableTh">no</th>
+                    <th scope="col" class="myPostTableTh">제목</th>
+<!--                    <th scope="col" class="myPostTableTh">번호</th>-->
+<!--                    <th scope="col" class="myPostTableTh">작성일</th>-->
+                </tr>
+                </thead>
+                <tbody class="myPostTableTbody">
+                    <tr class="myPostTableTr" th:each="post : ${reviewList}">
 
-
-        </script>
-    </div>
-
-    <div th:if="${session.loginId != null}">
-        <section id="myPostWrap">
-            <div class="myPostTableCategory">
-                <!--                    <a th:href="@{/}" class="myPageLink">홈&nbsp;&nbsp;&gt;</a>-->
-                <a th:href="@{mypage}" class="myPageLink">&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&gt;</a>
-                <a th:href="@{mypost}" class="myPageLink"
-                   id="myPageSubLink">&nbsp;&nbsp;나의리뷰&nbsp;&nbsp;</a>
-            </div>
-            <p class="myPostTitle">나의 리뷰</p>
-            <article class="myPostTableWrap">
-                <select name="#" id="myPostCategory">
-                    <option value="">All</option>
-                    <option value="Review">Review</option>
-                    <option value="QnA">QnA</option>
-                </select>
-                <table class="myPostTable">
-                    <colgroup>
-                        <col width="15%"/>
-                        <col width="70%"/>
-                        <col width="15%"/>
-                    </colgroup>
-                    <thead class="myPostTablThead">
-                    <tr class="myPostTableTr">
-                        <th scope="col" class="myPostTableTh">no</th>
-                        <th scope="col" class="myPostTableTh">제목</th>
-                        <th scope="col" class="myPostTableTh">번호</th>
-                        <th scope="col" class="myPostTableTh">작성일</th>
+                        <td class="myPostTableRow">
+                            <span class="myPostTableContentInner" th:text="${post.productCode}"></span>
+                        </td>
+                        <td class="myPostTableRow">
+                           <button type="button" class="btn btn-link" data-toggle="collapse"
+                                    th:data-target="'#postContent'+${post.productCode}" th:text="${post.title}"></button>
+<!--                            <p th:text="${post.title}"></p>-->
+                        </td>
+<!--                       <td class="myPostTableRow">-->
+<!--                               <span class="myPostTableContentInner"-->
+<!--                                     th:text="${#temporals.format(post.date, 'yyyy-MM-dd HH:mm:ss')}"></span>-->
+<!--                        </td>-->
                     </tr>
-                    </thead>
-                    <tbody class="myPostTablTbody">
-                    <th:block th:each="post : ${posts}">
-                        <tr class="myPostTableTr" th:if="${post.category == '' || post.category == selectedCategory}">
-                            <td class="myPostTableRow">
-                                <span class="myPostTableContentInner" th:text="${post.postSeq}"></span>
-                            </td>
-                            <td class="myPostTableRow">
-                                <button type="button" class="btn btn-link" data-toggle="collapse"
-                                        th:data-target="'#postContent'+${post.postSeq}" th:text="${post.title}"></button>
-                            </td>
-                            <td class="myPostTableRow">
-                                <span class="myPostTableContentInner"
-                                      th:text="${#temporals.format(post.date, 'yyyy-MM-dd HH:mm:ss')}"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">
-                                <div id="postContent" th:id="'postContent'+${post.postSeq}" class="collapse">
-                                    <div class="card-body">
-                                        <p th:text="${post.content}"></p>
-                                        <form th:action="@{/posts/delete/{postSeq}(postSeq=${post.postSeq})}" method="post">
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
-                                    </div>
+                   <tr th:each="post : ${reviewList}">
+                        <td colspan="4">
+                            <div th:if="${post != null}" th:id="'postContent'+${post.productCode}" class="collapse">
+                                <div class="card-body">
+                                    <span> </span>
+                                    <p th:text="${post.content}"></p>
+                                    <form th:action="@{/posts/delete/{productCode}(productCode=${post.productCode})}" method="post">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </div>
-                            </td>
-                        </tr>
-                    </th:block>
-                    </tbody>
-                </table>
-            </article>
-        </section>
-    </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </section>
 </main>
 <footer th:replace="common/footer :: footer"></footer>
 </div>

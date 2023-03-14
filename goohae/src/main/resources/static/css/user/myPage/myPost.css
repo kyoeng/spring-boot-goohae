@@ -69,19 +69,7 @@ body {
     margin-bottom: 200px;
 }
 
-.myPostTableCategory {
-    margin-top: 170px;
-    margin-bottom: 1rem;
-}
 
-.myPostTableCategory .myPageLink {
-    font-size: 1.2rem;
-}
-
-.myPostTableCategory #myPageSubLink {
-    color: #505DD0;
-    font-weight: bold;
-}
 
 /* ====================Table=================== */
 /* ====================Table=================== */
@@ -111,10 +99,10 @@ body {
 }
 
 
-.myPostTable .myPostTablTbody .myPostTableRow{
+.myPostTable .myPostTableTbody .myPostTableRow{
     height: 70px;
 }
-.myPostTable .myPostTablTbody .myPostTableRow .myPostTableContentInner{
+.myPostTable .myPostTableTbody .myPostTableRow .myPostTableContentInner{
     font-size: 1.4rem;
 }
 

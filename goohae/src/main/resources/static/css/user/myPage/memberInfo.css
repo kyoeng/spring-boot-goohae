@@ -92,7 +92,7 @@ input {
     margin-bottom: 20px;
 }
 
-.memberInfoMain>section>.formWrap>.memberInfoForm>div>p:last-of-type {
+.memberInfoMain>section>.formWrap>.memberInfoForm>div>.errorMassage {
     color: red;
     padding-left: 5px;
     padding-top: 5px;
@@ -100,7 +100,7 @@ input {
 }
 
 .memberInfoMain>section>.formWrap>.memberInfoForm>div>p:first-of-type {
-    /*color: var(--DarkGray);*/
+    color:#1A1B23;
     font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 8px;

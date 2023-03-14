@@ -12,7 +12,7 @@ form.addEventListener('submit', function(event) {
 
   // Ajax 요청
   const xhr = new XMLHttpRequest();
-  xhr.open('PUT', 'logined-user/update'); // PUT 메서드로 회원 정보 수정 API 요청
+  xhr.open('POST', 'logined-user/myinfo/update'); // PUT 메서드로 회원 정보 수정 API 요청
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -23,7 +23,33 @@ form.addEventListener('submit', function(event) {
       }
     }
   };
-  xhr.send(JSON.stringify(Object.fromEntries(formData.entries())));
+  xhr.send(JSON.stringify(formData.entries()));
+
+
+//  const url = '/logined-user/myinfo/update';
+//  const requestData = Object.fromEntries(formData.entries());
+//
+//  fetch(url, {
+//    method: 'PATCH',
+//    headers: {
+//      'Content-Type': 'application/json',
+//    },
+//    body: JSON.stringify(requestData)
+//  })
+//    .then(response => {
+//      if (!response.ok) {
+//        throw new Error(response.status);
+//      }
+//      return response.json();
+//    })
+//    .then(data => {
+//      console.log(data); // 회원 정보 수정 성공시 서버로부터 받은 응답 데이터 출력
+//    })
+//    .catch(error => {
+//      console.error(error); // 회원 정보 수정 실패시 오류 메시지 출력
+//    });
+//});
+
 });
 
 function validateMemberInfoForm() {
