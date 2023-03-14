@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -62,13 +63,14 @@ public class QnaBoardController {
      * param : boardSeq
      * param : boardPassword ( not required )
      * */
-    @PostMapping(value = "qna-board/detail")
-    public Model selectOne(QnaBoardVO vo, Model model){
+    @GetMapping(value = "qna-board/detail")
+    public ModelAndView selectOne(QnaBoardVO vo, ModelAndView mv){
         String pw = qnaBoardService.selectOne(vo).getBoardPassword();
         if (pw == null || pw.equals(vo.getBoardPassword())){
-            model.addAttribute("qnaDetail",qnaBoardService.selectOne(vo));
+            mv.addObject("qnaDetail",qnaBoardService.selectOne(vo));
+            mv.setViewName("customer/qnaDetail");
         }
-        return model;
+        return mv;
     }
 
     /**
