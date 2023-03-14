@@ -11,6 +11,7 @@ public class OrderVO {
     private String address;
     private int phoneNumber;
     private int postNumber;
+    private String imagePath;
     private String orderDate;
     private int orderSeq;
     private int productCode;
