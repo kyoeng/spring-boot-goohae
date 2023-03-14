@@ -11,48 +11,6 @@
     <link rel="stylesheet" href="/css/common/config.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>mycart</title>
-<!--      <script defer src="/js/user/singlePage/shoppingCart.js"></script>-->
-<!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-<!--    <script>-->
-<!--   function increaseQuantity(element) {-->
-<!--  var input = element.previousElementSibling;-->
-<!--  var currentValue = parseInt(input.value);-->
-<!--  input.value = currentValue + 1;-->
-<!--  updatePrice(element, currentValue + 1);-->
-<!--}-->
-
-<!--function decreaseQuantity(element) {-->
-<!--  var input = element.previousElementSibling.previousElementSibling;-->
-<!--  var currentValue = parseInt(input.value);-->
-<!--  if (currentValue > 1) {-->
-<!--    input.value = currentValue - 1;-->
-<!--    updatePrice(element, currentValue - 1);-->
-<!--  }-->
-<!--}-->
-
-<!--function updatePrice(element, quantity) {-->
-<!--  var productRow = element.parentNode.parentNode;-->
-<!--  var price = productRow.querySelector('.shoppingCartTableFontSize').textContent;-->
-<!--  var productPrice = parseInt(price.replace(/[^0-9]/g, ''));-->
-<!--  var totalPrice = productPrice * quantity;-->
-<!--  productRow.querySelector('.shoppingCartTableFontSize').textContent = totalPrice + '원';-->
-<!--  calculateTotalPrice();-->
-<!--}-->
-
-<!--function calculateTotalPrice() {-->
-<!--  var products = document.querySelectorAll('.shoppingCartTableLine');-->
-<!--  var total = 0;-->
-<!--  for (var i = 0; i < products.length; i++) {-->
-<!--    var price = products[i].querySelector('.shoppingCartTableFontSize').textContent;-->
-<!--    total += parseInt(price.replace(/[^0-9]/g, ''));-->
-<!--  }-->
-<!--  var shipping = 5000; // assuming a fixed shipping fee of 5000원-->
-<!--  var totalPrice = total + shipping;-->
-<!--  document.getElementById('totalPrice').textContent = totalPrice + '원';-->
-<!--}-->
-
-
-<!--    </script>-->
     <script src="/js/myPage/myAddress/shoppingCart.js" defer></script>
 </head>
 <body>
@@ -139,10 +97,10 @@
                             <p>총 주문 금액: <span id="totalPrice"></span></p>
                         </div>
                         <div class="shoppingCartOrderButtonBox">
-                            <button class="btnDisabled shoppingCartOrderButton"
+                            <button class="btnDisabled shoppingCartCheckedOrderButton"
                                     onclick="orderSelectedItems()">선택상품 주문
                             </button>
-                            <button class="btnDisabled shoppingCartOrderButton"
+                            <button class="btnDisabled shoppingCartAllOrderButton"
                                     onclick="orderAllItems()">전체상품 주문
                             </button>
                         </div>

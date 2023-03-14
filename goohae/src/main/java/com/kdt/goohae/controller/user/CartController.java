@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
@@ -38,14 +39,16 @@ public class CartController {
      * param : productCode
      * */
     @PostMapping(value = "logined-user/mycart/delete")
-    public String delete (CartVO vo, HttpSession httpSession, Model model) {
+    public ModelAndView delete (CartVO vo, HttpSession httpSession, ModelAndView mv) {
         vo.setUserId((String) httpSession.getAttribute("loginId"));
         if ( cartService.delete(vo)>0 ){
             httpSession.setAttribute("message", "success");
         } else {
             httpSession.setAttribute("message", "fail");
         }
-        return "redirect:user/myPage/shoppingCart";
+        mv.setViewName("/user/myPage/shoppingCart");
+        mv.addObject("message","success");
+        return mv;
     }
 
     /**

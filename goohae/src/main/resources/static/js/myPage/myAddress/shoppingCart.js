@@ -4,7 +4,10 @@
 let allCheckBtn = document.getElementById("allCheck");
 let checkBtn = document.getElementsByClassName("shoppingCartTableCheck");
 let shoppinCartTableBtn = document.getElementsByClassName("shoppingCartTableBtn");
-
+let shoppingCartAllOrderButton = document.querySelector(".shoppingCartAllOrderButton");
+let shoppingCartCheckedOrderButton = document.querySelector(".shoppingCartCheckedOrderButton");
+console.log(shoppingCartAllOrderButton)
+console.log(shoppingCartCheckedOrderButton)
 allCheckBtn.addEventListener('click',function (){
 
     for (let i = 0; i<=checkBtn.length; i++){
@@ -25,9 +28,6 @@ for( let i = 0; i<productEaInput.length; i++){
             data : {
                 productCode: productCode,
                 productEa : productEa,
-            },
-            success: (res)=>{
-                console.log(res)
             }
         })
     })
@@ -36,7 +36,19 @@ for( let i = 0; i<productEaInput.length; i++){
 for(let i=0; i<shoppinCartTableBtn.length; i++){
     shoppinCartTableBtn[i].addEventListener("click", function (e) {
         let productCode = e.target.getAttribute("productCode");
-        $.{}
+        $.ajax("/logined-user/mycart/delete",{
+            type: "post",
+            data:{
+                productCode:productCode
+            },
+            success: (res)=>{
+                window.location.reload(true);
+            }
+        })
+
     })
 }
 
+shoppingCartAllOrderButton.addEventListener('click', function (e){
+    $.ajax("")
+})
