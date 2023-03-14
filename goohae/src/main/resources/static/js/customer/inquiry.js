@@ -20,7 +20,7 @@ $(document).ready(function () {
                 data: formData
             })
                 .done((data, status) => {
-                    location.href = '/qna-board/list';
+                    location.href = '/qna-board/list'
                 })
                 .fail((err, status) => {
                     console.log(err)
