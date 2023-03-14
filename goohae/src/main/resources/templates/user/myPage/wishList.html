@@ -48,7 +48,7 @@
                     <tr class="wishListLine" th:each="wishList : ${wishList}">
                         <td class="wishListTd">
                             <input type="checkbox" class="wishListCheckBox" name="wishChk" cheked="cheked"
-                                   th:values="${wishList.product_code}"/><!--제품코드로 체크-->
+                                   th:values="${wishList.productCode}"/><!--제품코드로 체크-->
                         </td>
                         <td class="wishListTd">
                             <a href="#"><img th:src="@{${wishList.productImage}}"/><!--제품이미지--></a>
@@ -59,7 +59,7 @@
                         </td>
                         <td class="wishListTd" th:text="${wishList.price}"><!--제품가격--></td>
                         <td class="wishListTd">
-                            <a th:href="@{/logined-user/mywish/delete(product_code=${post.product_code})}">삭제하기</a>
+                            <a th:href="@{/logined-user/mywish/delete(productCode=${post.productCode})}">삭제하기</a>
                         </td>
                     </tr>
                     </tbody>

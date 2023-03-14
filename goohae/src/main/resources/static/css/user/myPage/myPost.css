@@ -110,7 +110,10 @@ body {
     color: #505DD0;
 }
 
-
+.myPostBtnWrap{
+display:block;
+text-align:right;
+}
 .panel {
     display: none;
 }

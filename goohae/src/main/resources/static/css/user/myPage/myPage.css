@@ -245,11 +245,9 @@ myPageMain>.myPageWrap>.MyPoint>.myMileageCoupon>.myCouponWrap strong {
   /* display: block; */
 }
 
-/*
-.myPageMenuContainer>.myPageMenu span {
-  font-size: 1.5rem;
+.signUpBtnWrap{
+text-align:right;
 }
-*/
 
 .myPageMenuContainer>.myPageMenu .myPageOrderMenuMore{
   font-size: 1.5rem;

@@ -10,7 +10,13 @@
     <link rel="stylesheet" href="/css/common/footer.css">
     <link rel="stylesheet" href="/css/common/config.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script>
+        $(function () {
+            $('.collapse').on('show.bs.collapse', function () {
+                 $('.collapse.show').collapse('hide');
+            });
+        });
+    </script>
     <!-- 부트스트랩 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -48,9 +54,9 @@
             <!--            </select>-->
             <table class="myPostTable">
                 <colgroup>
-                    <col width="15%"/>
-                    <col width="30%"/>
-                    <col width="55%"/>
+                    <col width="10%"/>
+                    <col width="20%"/>
+                    <col width="70%"/>
 
                 </colgroup>
                 <thead class="myPostTablThead">
@@ -63,34 +69,36 @@
                 </tr>
                 </thead>
                 <tbody class="myPostTableTbody">
-                <tr class="myPostTableTr" th:each="post : ${reviewList}">
-                    <td class="myPostTableRow">
-                        <span class="myPostTableContentInner" th:text="${post.reviewSeq}"></span>
-                    </td>
-                    <td class="myPostTableRow">
-                        <span class="myPostTableContentInner" th:text="${post.productName}"></span>
-                    </td>
-                    <td class="myPostTableRow">
-                        <button type="button" class="btn btn-link myPostTableContentInner" data-toggle="collapse" th:data-target="'#postContent'+${post.reviewSeq}" th:text="${post.title}"></button>
-                        <!--                            <p th:text="${post.title}"></p>-->
-                    </td>
-                    <!--                       <td class="myPostTableRow">-->
-                    <!--                               <span class="myPostTableContentInner"-->
-                    <!--                                     th:text="${#temporals.format(post.date, 'yyyy-MM-dd HH:mm:ss')}"></span>-->
-                    <!--                        </td>-->
-                </tr>
-                <tr th:each="post : ${reviewList}">
-                    <td colspan="4">
-                        <div th:if="${post != null}" th:id="'postContent'+${post.reviewSeq}" class="collapse">
-                            <div class="card-body">
-                                <p th:text="${post.content}"></p>
-                                <a th:href="@{/logined-user/review/delete(reviewSeq=${post.reviewSeq})}">
-                                    <button class="btn btn-danger">Delete</button>
-                                </a>
+                <th:block th:each="post : ${reviewList}">
+                    <tr class="myPostTableTr">
+                        <td class="myPostTableRow">
+                            <span class="myPostTableContentInner" th:text="${post.reviewSeq}"></span>
+                        </td>
+                        <td class="myPostTableRow">
+                            <span class="myPostTableContentInner" th:text="${post.productName}"></span>
+                        </td>
+                        <td class="myPostTableRow">
+                            <button type="button" class="btn btn-link myPostTableContentInner" data-toggle="collapse"
+                                    th:data-target="'#postContent'+${post.reviewSeq}" th:text="${post.title}"></button>
+                        </td>
+                        <!--                       <td class="myPostTableRow">-->
+                        <!--                               <span class="myPostTableContentInner"-->
+                        <!--                                     th:text="${#temporals.format(post.date, 'yyyy-MM-dd HH:mm:ss')}"></span>-->
+                        <!--                        </td>-->
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <div th:if="${post != null}" th:id="'postContent'+${post.reviewSeq}" class="collapse">
+                                <div class="card-body">
+                                    <p th:text="${post.content}"></p>
+                                    <a th:href="@{/logined-user/review/delete(reviewSeq=${post.reviewSeq})}" class="myPostBtnWrap">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                </th:block>
                 </tbody>
             </table>
         </article>
