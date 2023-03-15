@@ -63,8 +63,8 @@ tbody>tr>td:nth-of-type(4) {
 }
 
 .modalWrap {
-    width: 800px;
-    height: 480px;
+    width: 360px;
+    height: 180px;
     background-color: white;
     z-index: 1;
 

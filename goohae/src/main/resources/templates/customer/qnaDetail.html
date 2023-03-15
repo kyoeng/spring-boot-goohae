@@ -38,25 +38,28 @@
                 <tr>
                     <th scope="row">제목</th>
                     <td colspan="3">
-                        <input type="text" id="title" name="title" th:value="${qnaDetail.title}" />
+                        <input type="text" id="title" name="title" th:value="${qnaDetail.title}" disabled />
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4" class="view_text">
-                        <textarea title="내용" ]]] id="contents" name="contents"
-                            th:text="${qnaDetail.content}"></textarea>
+                        <textarea title="내용" id="contents" name="contents" th:text="${qnaDetail.content}"
+                            disabled></textarea>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="delete">
+        <div th:if="${session.loginId} == null">
+            <span>로그인을 해주세요</span>
+        </div>
+
+        <div th:if="${session.loginId} != null" class="delete">
             <label for="password">비밀번호
                 <input id="password" type="password" name="password">
             </label>
             <span th:text="${session.message}"></span>
             <button id="deleteBtn">삭제하기</button>
-
         </div>
     </div>
 

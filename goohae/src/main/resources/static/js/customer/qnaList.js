@@ -1,6 +1,8 @@
 let boardSeq;
 
 $('tr[id^="qnaRow"]').click(function () {
+    $('html').scrollTop(0);
+
     $('.modal').show();
     let boardSeq = $(this).attr('id').replace('qnaRow', '');
 
@@ -10,22 +12,8 @@ $('tr[id^="qnaRow"]').click(function () {
         if ($('#password').val() == '') {
             boardPassword = null;
         }
-        location.href = `/qna-board/detail?boardSeq=${boardSeq}&boardPassword=${boardPassword}`
 
-        // $.ajax({
-        //     url: '/qna-board/detail',
-        //     type: 'post',
-        //     data: {
-        //         boardSeq: boardSeq,
-        //         boardPassword: boardPassword
-        //     },
-        // })
-        //     .done((data, status) => {
-        //     })
-        //     .fail((err, status) => {
-        //         console.log(err);
-        //         console.log(status);
-        //     })
+        location.href = `/qna-board/detail?boardSeq=${boardSeq}&boardPassword=${boardPassword}`
     })
 })
 
