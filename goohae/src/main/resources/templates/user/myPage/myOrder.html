@@ -11,17 +11,6 @@
     <link rel="stylesheet" href="/css/common/config.css">
     <!--    <script src="/js/myPage/myOrder.js"></script>-->
     <title>myOrder</title>
-
-    <script th:inline="javascript">
-
-
-        console.log(orderList);
-
-
-
-
-    </script>
-
 </head>
 <body>
 
@@ -41,44 +30,43 @@
             </p>
         </div>
         <div th:if="${not #lists.isEmpty(orderList)} ">
-        <article class="myOrderHistory">
-            <!--                <div class="myOrderSelectOrderCondition">-->
-            <!--                    <p class="myOrderInquireOrderCondition">주문내역조회 0</p>-->
-            <!--                    <p class="myOrderNegativeOrderCondition">취소&nbsp;·&nbsp;반품&nbsp;·&nbsp;교환 내역 0</p>-->
-            <!--                </div>-->
+            <article class="myOrderHistory">
+                <!--                <div class="myOrderSelectOrderCondition">-->
+                <!--                    <p class="myOrderInquireOrderCondition">주문내역조회 0</p>-->
+                <!--                    <p class="myOrderNegativeOrderCondition">취소&nbsp;·&nbsp;반품&nbsp;·&nbsp;교환 내역 0</p>-->
+                <!--                </div>-->
 
-            <div class="myOrderConditionWrap">
-                <select class="myOrderCondition" name="OrderCondition">
-                    <option value="totalOrderCondition">전체 주문처리상태</option>
-                    <option value="beforePay">입금전</option>
-                    <option value="readyDelivery">배송준비중</option>
-                    <option value="deliveryProcess">배송중</option>
-                    <option value="deliveryComplete">배송완료</option>
-                    <option value="orderCancel">취소</option>
-                    <option value="orderChange">교환</option>
-                    <option value="orderReturn">반품</option>
-                </select>
-                <div class="myOrderConditionDate">
-                    <a class="myOrderSelectConditionDate">오늘</a>
-                    <a class="myOrderSelectConditionDate">1주일</a>
-                    <a class="myOrderSelectConditionDate">1개월</a>
-                    <a class="myOrderSelectConditionDate">3개월</a>
-                    <a class="myOrderSelectConditionDate">6개월</a>
+                <div class="myOrderConditionWrap">
+                    <select class="myOrderCondition" name="OrderCondition">
+                        <option value="totalOrderCondition">전체 주문처리상태</option>
+                        <option value="beforePay">입금전</option>
+                        <option value="readyDelivery">배송준비중</option>
+                        <option value="deliveryProcess">배송중</option>
+                        <option value="deliveryComplete">배송완료</option>
+                        <option value="orderCancel">취소</option>
+                        <option value="orderChange">교환</option>
+                        <option value="orderReturn">반품</option>
+                    </select>
+                    <div class="myOrderConditionDate">
+                        <a class="myOrderSelectConditionDate">오늘</a>
+                        <a class="myOrderSelectConditionDate">1주일</a>
+                        <a class="myOrderSelectConditionDate">1개월</a>
+                        <a class="myOrderSelectConditionDate">3개월</a>
+                        <a class="myOrderSelectConditionDate">6개월</a>
+                    </div>
+                    <div class="myOrderDateSelectContainer">
+                        <input type="date" class="myOrderSelectDate"/>
+                        <span>&nbsp;~&nbsp;</span>
+                        <input type="date" class="myOrderSelectDate"/>
+                        <button type="submit" id="myOrderSelectDateBtn">조회</button>
+                    </div>
                 </div>
-                <div class="myOrderDateSelectContainer">
-                    <input type="date" class="myOrderSelectDate"/>
-                    <span>&nbsp;~&nbsp;</span>
-                    <input type="date" class="myOrderSelectDate"/>
-                    <button type="submit" id="myOrderSelectDateBtn">조회</button>
-                </div>
-            </div>
-            <ul id="myOrderHistoryNotices">
-                <li class="myOrderHistoryNotice">기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
-                <li class="myOrderHistoryNotice">주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
-            </ul>
-        </article>
-        <article class="myOrderTableWrap">
-
+                <ul id="myOrderHistoryNotices">
+                    <li class="myOrderHistoryNotice">기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
+                    <li class="myOrderHistoryNotice">주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
+                </ul>
+            </article>
+            <article class="myOrderTableWrap">
 
 
                 <table class="myOrderTable">
@@ -89,7 +77,7 @@
                         <col width="7%"/>
                         <col width="13%"/>
                         <col width="13%"/>
-                        <!--                        <col width="13%"/>-->
+<!--                        <col width="13%"/>-->
                     </colgroup>
                     <thead id="myOrderTableThead">
                     <tr class="myOrderTableLine">
@@ -106,7 +94,7 @@
                         <td class="myOrderTableRow orderDate" th:text="${myOrder.orderDate}"><!--날짜 출력--></td>
                         <td class="myOrderTableRow myOrderProductImage">
                             <!--                            <a th:href="@{myOrder.productUrl}">-->
-                                                            <img alt="img" th:src="${myOrder.imagePath}"/><!--제품이미지-->
+                            <img th:src="@{${myOrder.imagePath}}"/><!--제품이미지-->
                             <!--                            </a>-->
                         </td>
                         <td class="myOrderTableRow">
@@ -122,7 +110,7 @@
                     </tbody>
                 </table>
 
-        </article>
+            </article>
         </div>
     </section>
 </main>

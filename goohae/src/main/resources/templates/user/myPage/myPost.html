@@ -49,16 +49,11 @@
         <p class="myPostTitle">나의 리뷰</p>
         <div th:if="${ #lists.isEmpty(reviewList)}">
             <p style="font-size:1.4rem; padding:20% 0; text-align:center; font-weight:800;">
-                장바구니에 담긴 글이 없습니다
+                작성한 글이 없습니다
             </p>
         </div>
         <div th:if="${not #lists.isEmpty(reviewList)} ">
             <article class="myPostTableWrap">
-                <!--            <select name="#" id="myPostCategory">-->
-                <!--                <option value="">All</option>-->
-                <!--                <option value="Review">Review</option>-->
-                <!--                <option value="QnA">QnA</option>-->
-                <!--            </select>-->
                 <table class="myPostTable">
                     <colgroup>
                         <col width="10%"/>
@@ -71,8 +66,6 @@
                         <th scope="col" class="myPostTableTh">no</th>
                         <th scope="col" class="myPostTableTh">제품명</th>
                         <th scope="col" class="myPostTableTh">제목</th>
-                        <!--                    <th scope="col" class="myPostTableTh">번호</th>-->
-                        <!--                    <th scope="col" class="myPostTableTh">작성일</th>-->
                     </tr>
                     </thead>
                     <tbody class="myPostTableTbody">
@@ -90,10 +83,6 @@
                                         th:data-target="'#postContent'+${post.reviewSeq}"
                                         th:text="${post.title}"></button>
                             </td>
-                            <!--                       <td class="myPostTableRow">-->
-                            <!--                               <span class="myPostTableContentInner"-->
-                            <!--                                     th:text="${#temporals.format(post.date, 'yyyy-MM-dd HH:mm:ss')}"></span>-->
-                            <!--                        </td>-->
                         </tr>
                         <tr>
                             <td colspan="4">
