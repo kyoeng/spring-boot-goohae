@@ -1,6 +1,7 @@
 'use strict';
 const form=document.querySelector('form');
 const signUpId = document.querySelector('.signUpId');
+const duppleErrorMsg = document.querySelector('.duppleErrorMsg');
 const signUpPw = document.querySelector('.pwInput');
 const signUpPwConfirm = document.querySelector('.pwConfirmInput');
 const signUpName = document.querySelector('.signUpName');
@@ -10,6 +11,7 @@ const signUpAddress = document.querySelector('.signUpAddress');
 const signUpButton = document.querySelector('.signUpSubmitBtn');
 const checkBox1 = document.querySelector('#emailGet');
 const checkBox2 = document.querySelector('#emailNoGet');
+
 
 function signUpIdCheck() {
     const signUpErrorMassage=document.querySelector('.signUpErrorMassage');
@@ -117,6 +119,25 @@ function signUpAddressCheck() {
         return true;
     }
 }
+
+signUpId.addEventListener("focusout",(e)=>{
+    $.ajax("/user/join/id-duple-check",{
+        type:"post",
+        data:{
+            id:e.target.value
+        },
+        success: (data) => {
+            console.log(data)
+            console.log(duppleErrorMsg)
+            if(data == "duplicatedID"){
+                duppleErrorMsg.innerHTML="중복 ID";
+            } else {
+                duppleErrorMsg.innerHTML="";
+            }
+
+        }
+    })
+})
 
 function signUpCheckBox(){
 const signUpCheckErrorMassage=document.querySelector('.signUpCheckErrorMassage');

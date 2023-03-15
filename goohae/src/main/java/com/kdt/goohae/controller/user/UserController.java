@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 
@@ -35,6 +36,20 @@ public class UserController {
     @GetMapping(value = "user/join")
     public String joinF(UserVO vo) { return "user/singlePage/signUp";  }
 
+    @ResponseBody
+    @PostMapping(value = "user/join/id-duple-check")
+    public String idCheck(UserVO vo, ModelAndView mv){
+        String message;
+        if(userService.idCheck(vo)>0){
+            log.info("dupel");
+            message = "duplicatedID";
+        }else {
+            log.info("Nodupel");
+            message= "NotDuplicatedID";
+        }
+        return message;
+    }
+
     /**
      * 해당 id가 있는지 확인
      * 있으면 세션에 "ID중복" 메세지 전달
@@ -49,7 +64,7 @@ public class UserController {
      * */
     @PostMapping(value = "user/join")
     public ModelAndView join ( UserVO vo, ModelAndView mv) {
-        mv.setViewName("redirect:user/singlePage/join");
+        mv.setViewName("/user/singlePage/signUp");
         if(userService.selectOne(vo) == null){
             vo.setPassword(passwordEncoder.encode(vo.getPassword()));
             if ( userService.insert(vo)>0 ) {
@@ -60,7 +75,7 @@ public class UserController {
                 mv.addObject("message","fail");
             }
         } else {
-            mv.addObject("message","ID중복");
+            mv.addObject("message","duplicatedID");
         }
         return mv;
     }

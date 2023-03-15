@@ -17,5 +17,7 @@ public interface UserService {
     int update(UserVO vo);
     String findId(UserVO vo);
     int changePassword(UserVO vo);
+    int idCheck(UserVO vo);
+
 }
 
