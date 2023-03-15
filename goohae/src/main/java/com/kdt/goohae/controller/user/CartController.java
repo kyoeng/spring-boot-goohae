@@ -65,7 +65,7 @@ public class CartController {
         } else {
             httpSession.setAttribute("message", "fail");
         }
-        return "redirect:user/myPage/shoppingCart";
+        return "redirect:logined-user/mycart/list";
     }
 
     /**

@@ -122,7 +122,18 @@ public class QnaBoardController {
             return "admin/main";
         }
 
-        if (dbvo.getBoardPassword() == null || dbvo.getBoardPassword().equals(vo.getBoardPassword())){
+        log.info(vo.toString());
+        log.info(dbvo.toString());
+        log.info("dbvo.getBoardPassword() == null : {}",dbvo.getBoardPassword() == null);
+        log.info("dbvo.getBoardPassword() == \"\" : {}",dbvo.getBoardPassword() == "");
+        log.info("vo.getBoardPassword() == null : {}",vo.getBoardPassword() == null);
+        log.info("vo.getBoardPassword() == \"\" : {}",vo.getBoardPassword() == "");
+        log.info("dbvo.getUserId().equals((String)httpSession.getAttribute(\"loginId\")) : {}",dbvo.getUserId().equals((String)httpSession.getAttribute("loginId")));
+        log.info("{}",dbvo.getBoardPassword()=="null");
+        log.info("{}",dbvo.getBoardPassword().equals("null"));
+        log.info("{}","null".equals(dbvo.getBoardPassword()));
+
+        if ("null".equals(dbvo.getBoardPassword()) || dbvo.getBoardPassword().equals(vo.getBoardPassword())){
             if( dbvo.getUserId().equals((String)httpSession.getAttribute("loginId")) && qnaBoardService.delete(vo)>0 ){
                 httpSession.setAttribute("message", "success");
             } else {
