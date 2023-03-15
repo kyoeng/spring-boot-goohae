@@ -1,13 +1,28 @@
 package com.kdt.goohae.service.user;
 
-import com.kdt.goohae.domain.user.OrderVO;
+import com.kdt.goohae.domain.user.OrderDetailVO;
+import com.kdt.goohae.domain.user.OrderInfoVO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface OrderService {
 
-    public int insert(OrderVO vo);
-    public int delete(OrderVO vo);
-    OrderVO selectOne(OrderVO vo);
-    ArrayList<OrderVO> selectList(String loginId);
+    public int insert(OrderInfoVO vo);
+    public int delete(OrderInfoVO vo);
+    OrderInfoVO selectOne(OrderInfoVO vo);
+    ArrayList<OrderInfoVO> selectList(String loginId);
+
+
+    /* 주문 정보 테이블 */
+    int insertOrder(OrderInfoVO vo);
+
+    /* 주문 정보 가져오기 */
+    OrderInfoVO getOrderInfo(OrderInfoVO vo);
+
+    /* 주문 상세 테이블 */
+    int insertDetail(OrderDetailVO vo);
+
+    /* 주문 상세 가져오기 */
+    List<OrderDetailVO> getOrderDetail(OrderInfoVO vo);
 }

@@ -22,4 +22,35 @@
     </insert>
 
 
+
+    <!-- 주문 정보 테이블 입력 -->
+    <insert id="insertOrder">
+        insert into order_info(user_id, receiver_name, phone_number, post_number, address, memo)
+        values(#{userId}, #{receiverName}, #{phoneNumber}, #{postNumber}, #{address}, #{memo})
+    </insert>
+    
+    <!-- 주문 정보 가져오기 (입력 직후 가져오기) -->
+    <select id="getOrderInfo" resultType="OrderInfoVO">
+        select *
+        from order_info
+        where user_id = #{userId}
+        and postNumber = #{postNumber}
+        order by order_date desc
+        limit 0, 1
+    </select>
+
+    <!-- 주문 상세 입력 -->
+    <insert id="insertDetail">
+        insert into order_detail(order_seq, product_code, price, product_ea, discount)
+        values(#{orderSeq}, #{productCode}, #{price}, #{productEa}, #{discount})
+    </insert>
+
+    <!-- 주문 상세 가져오기 -->
+    <select id="getOrderDetail" resultType="OrderDetailVO">
+        select *
+        from order_detail
+        where order_seq = #{orderSeq}
+    </select>
+
+
 </mapper>
