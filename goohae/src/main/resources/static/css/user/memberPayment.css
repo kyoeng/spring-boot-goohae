@@ -59,12 +59,12 @@ section {
 }
 
 
-.order_info_container>form {
+.order_info_container>div {
     width: 100%;
 }
 
 /* 배송 입력 */
-.order_info_container>form>.order_info_box {
+.order_info_container>div>.order_info_box {
     width: 100%;
     height: 300px;
     display: flex;
@@ -216,7 +216,7 @@ section {
     margin-top: 50px;
 }
 
-.product_container > .pro_title {
+.product_container>.pro_title {
     width: 100%;
     height: 50px;
     line-height: 50px;
@@ -225,7 +225,7 @@ section {
 }
 
 
-.product_container > .pro_info {
+.product_container>.pro_info {
     width: 100%;
     height: 50px;
     display: flex;
@@ -233,34 +233,34 @@ section {
     border-bottom: 2px solid black;
 }
 
-.product_container > .pro_info > span {
+.product_container>.pro_info>span {
     height: 100%;
     line-height: 50px;
     text-align: center;
     font-size: 1.4rem;
 }
 
-.product_container > .pro_info > .img_text {
+.product_container>.pro_info>.img_text {
     width: 150px;
 }
 
-.product_container > .pro_info > .pro_text {
+.product_container>.pro_info>.pro_text {
     width: 200px;
 }
 
-.product_container > .pro_info > .ea_text {
+.product_container>.pro_info>.ea_text {
     width: 50px;
 }
 
-.product_container > .pro_info > .price_text {
+.product_container>.pro_info>.price_text {
     width: 150px;
 }
 
-.product_container > .pro_info > .dis_text {
+.product_container>.pro_info>.dis_text {
     width: 50px;
 }
 
-.product_container > .product {
+.product_container>.product {
     width: 100%;
     height: 150px;
     display: flex;
@@ -268,34 +268,34 @@ section {
     border-bottom: 1px solid black;
 }
 
-.product_container > .product > img {
+.product_container>.product>img {
     display: block;
     width: 150px;
     height: 100%;
 }
 
-.product_container > .product > span {
+.product_container>.product>span {
     line-height: 150px;
     text-align: center;
     font-size: 1.3rem;
 }
 
-.product_container > .product > .prName {
+.product_container>.product>.prName {
     width: 200px;
     height: 100%;
 }
 
-.product_container > .product > .prEa {
+.product_container>.product>.prEa {
     width: 50px;
     height: 100%;
 }
 
-.product_container > .product > .prPrice {
+.product_container>.product>.prPrice {
     width: 150px;
     height: 100%;
 }
 
-.product_container > .product > .prDis {
+.product_container>.product>.prDis {
     width: 50px;
     height: 100%;
 }
@@ -318,7 +318,7 @@ section {
     z-index: 1;
 }
 
-.payment_container > p {
+.payment_container>p {
     width: 100%;
     height: 40px;
     line-height: 40px;
@@ -326,7 +326,7 @@ section {
     font-size: 2rem;
 }
 
-.payment_container > .payment_info {
+.payment_container>.payment_info {
     width: 100%;
     height: 140px;
     display: flex;
@@ -335,25 +335,25 @@ section {
     font-size: 1.5rem;
 }
 
-.payment_container > .payment_info > div {
+.payment_container>.payment_info>div {
     width: 100%;
     height: 40px;
     display: flex;
     justify-content: space-between;
 }
 
-.payment_container > .payment_info > div > span {
+.payment_container>.payment_info>div>span {
     width: 45%;
     height: 100%;
     line-height: 40px;
 }
 
-.payment_container > .payment_info > div > span:last-of-type {
+.payment_container>.payment_info>div>span:last-of-type {
     text-align: right;
 }
 
 /* 동의 부분 */
-.payment_container > .agree_box {
+.payment_container>.agree_box {
     width: 100%;
     height: 20px;
     display: flex;
@@ -361,17 +361,17 @@ section {
     font-size: 1.3rem;
 }
 
-.payment_container > .sub_agree {
+.payment_container>.sub_agree {
     padding-left: 20px;
 }
 
-.payment_container > .agree_box > input {
+.payment_container>.agree_box>input {
     width: 12px;
     height: 12px;
     margin-top: 4px;
 }
 
-.payment_container > .agree_box > label {
+.payment_container>.agree_box>label {
     width: 250px;
     height: 100%;
     line-height: 20px;
@@ -389,10 +389,81 @@ section {
     color: white;
 }
 
+.order_btn:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
 
 
 
 
+/* 결제창 팝업 */
+.to_pay_container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+}
+
+.to_pay_container>form {
+    width: 500px;
+    height: 400px;
+    position: absolute;
+    top: calc((100% - 400px) / 2);
+    left: calc((100% - 500px) / 2);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    z-index: 200;
+    padding: 20px;
+}
+
+.to_pay_container>form>span {
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid black;
+    font-size: 2.4rem;
+    line-height: 50px;
+}
+
+.to_pay_container>form>div {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+}
+
+.to_pay_container>form>div>label,
+.to_pay_container>form>div>span {
+    width: 30%;
+    height: 100%;
+    line-height: 40px;
+}
+
+.to_pay_container>form>div>input,
+.to_pay_container>form>div>select {
+    width: 60%;
+    height: 100%;
+}
 
 
+.to_pay_container>form>#finish_btn {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 2rem;
+    color: white;
+    background-color: black;
+}
 
+.to_pay_container>form>#finish_btn:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}

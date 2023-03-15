@@ -197,3 +197,27 @@ input[class="radio"]:checked+label::after {
 .inquiryContainer {
     width: 100%;
 }
+
+.notLogin {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.notLogin>span {
+    font-size: 1.5rem;
+    padding: 5px;
+}
+
+.notLogin>a {
+    border: 1px solid black;
+    font-size: 1.3rem;
+    padding: 5px;
+    margin-top: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}

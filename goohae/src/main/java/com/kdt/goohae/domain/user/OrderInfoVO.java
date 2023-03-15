@@ -3,19 +3,20 @@ package com.kdt.goohae.domain.user;
 import lombok.Data;
 
 @Data
-public class OrderVO {
+public class OrderInfoVO {
 
-    private String userId;
-    private String productName;
-    private String receiverName;
-    private String address;
-    private int phoneNumber;
-    private int postNumber;
-    private String imagePath;
-    private String orderDate;
     private int orderSeq;
+    private String userId;
+    private String receiverName;
+    private String PhoneNumber;
+    private int postNumber;
+    private String address;
+    private String orderDate;
+    private String memo;
+    private String imagePath;
     private int productCode;
     private int price;
     private int productEa;
     private String deliStatus;
+
 }
