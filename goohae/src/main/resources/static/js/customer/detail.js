@@ -4,19 +4,22 @@ $(document).ready(function () {
     const seq = $('.seq');
 
     btn.click(() => {
-        console.log("click")
+
+        console.log($('.seq').text());
         $.ajax({
             url: "/logined-user/qna-board/delete",
             type: "post",
             data: {
                 boardSeq: $('.seq').text(),
-                boardPassword: password.val()
             }
         })
             .then((data, status) => {
-                console.log(data)
-                // location.href = '/customer/main';
-                console.log(status);
+                if (status === 'success') {
+                    location.href = '/qna-board/list';
+                } else {
+                    alert('삭제가 되지 않았습니다');
+                    location.href = '/customer/main';
+                }
             })
             .fail((err, status) => {
                 console.log(err);
