@@ -21,5 +21,6 @@ public class OrderInfoVO {
     private int price;
     private int productEa;
     private String deliStatus;
+    private String productName;
 
 }
