@@ -4,6 +4,7 @@ import com.kdt.goohae.domain.admin.GetProductDTO;
 import com.kdt.goohae.domain.admin.ProductVO;
 import com.kdt.goohae.domain.user.OrderDetailVO;
 import com.kdt.goohae.domain.user.OrderInfoVO;
+import com.kdt.goohae.domain.user.PaymentVO;
 import com.kdt.goohae.domain.user.UserVO;
 import com.kdt.goohae.service.admin.ProductService;
 import com.kdt.goohae.service.user.OrderService;
@@ -47,7 +48,7 @@ public class OrderController {
     }
 
     /**
-     * 결제 화면으로 가는 것
+     * 결제 화면으로 가는 것 ( 상품 상세 화면에서 )
      * param : productCode,
      * param : productPrice,
      * param : productEa,
@@ -91,14 +92,17 @@ public class OrderController {
             dto.setProductEa(product.getProductEa());
 
             mv.addObject("products", dto);
-            mv.addObject("totalPrice", dto.getPrice());
 
+            int totalPrice = dto.getPrice() * dto.getProductEa();
             int discount = 0;
 
             if (dto.getDiscount() > 0) {
-                discount = dto.getPrice() - dto.getDiscount() / 100 * dto.getPrice();
+                totalPrice = (dto.getPrice() - (int)(dto.getDiscount() / 100.00 * dto.getPrice())) * dto.getProductEa();
+                discount = (int)(dto.getDiscount() / 100.00 * dto.getPrice()) * dto.getProductEa();
             }
-                mv.addObject("totalDiscount", discount);
+
+            mv.addObject("totalPrice", totalPrice);
+            mv.addObject("totalDiscount", discount);
         }
 
         mv.setViewName("user/memberPayment");
@@ -161,8 +165,15 @@ public class OrderController {
      * param : price
      * */
     @PostMapping(value = "/logined-user/order/payment")
-    public ModelAndView pay( ModelAndView mv, HttpSession httpSession, OrderInfoVO vo){
-        vo.setUserId((String) httpSession.getAttribute("loginId"));
+    public ModelAndView pay(ModelAndView mv, PaymentVO vo){
+        if (orderService.insertPay(vo) > 0) {
+            mv.addObject("message", "success");
+            log.info("성공");
+        } else {
+            mv.addObject("message", "error");
+        }
+
+        mv.addObject("payInfo", orderService.getPay(vo));
         mv.setViewName("user/paymentComplete");
         return mv;
     }

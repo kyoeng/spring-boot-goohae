@@ -52,5 +52,17 @@
         where order_seq = #{orderSeq}
     </select>
 
+    <!-- 결제 -->
+    <insert id="insertPay">
+        insert into payment(order_seq, total_price, depositor, deposit_bank, pay_money)
+        values(#{orderSeq}, #{totalPrice}, #{depositor}, #{depositBank}, #{payMoney})
+    </insert>
+
+    <!-- 결제 가져오기 -->
+    <select id="getPay" resultType="PaymentVO">
+        select *
+        from payment
+        where order_seq = #{orderSeq}
+    </select>
 
 </mapper>

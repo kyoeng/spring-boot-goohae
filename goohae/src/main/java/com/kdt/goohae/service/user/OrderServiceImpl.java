@@ -2,6 +2,7 @@ package com.kdt.goohae.service.user;
 
 import com.kdt.goohae.domain.user.OrderDetailVO;
 import com.kdt.goohae.domain.user.OrderInfoVO;
+import com.kdt.goohae.domain.user.PaymentVO;
 import com.kdt.goohae.mapper.user.OrderMapper;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,15 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public List<OrderDetailVO> getOrderDetail(OrderInfoVO vo) {
         return orderMapper.getOrderDetail(vo);
+    }
+
+    @Override
+    public int insertPay(PaymentVO vo) {
+        return orderMapper.insertPay(vo);
+    }
+
+    @Override
+    public PaymentVO getPay(PaymentVO vo) {
+        return orderMapper.getPay(vo);
     }
 }

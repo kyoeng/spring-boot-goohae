@@ -168,10 +168,9 @@
 
     <!-- 송금을 위한 팝업 -->
     <div id="to_pay_container">
-        <form action="" method="post">
+        <form action="/logined-user/order/payment" method="post">
             <span>결제창</span>
             <input type="hidden" value="" id="order_seq" name="orderSeq">
-            <input type="hidden" value="" id="order_total" name="totalPrice">
 
             <div>
                 <label for="depositor">입금자명</label>
@@ -181,14 +180,15 @@
             <div>
                 <span>은행</span>
 
-                <select name="deposit_bank">
+                <select name="depositBank">
                     <option value="기업은행" selected>기업은행</option>
                 </select>
             </div>
 
-            <div>
+            <div class="input_container">
                 <label for="payMoney">지불액</label>
-                <input type="text" name="payMoney" id="payMoney" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+                <input type="text" value="" id="order_total" name="totalPrice" style="font-size: 1.6rem;" readonly>
+                <input type="text" name="payMoney" id="payMoney" style="font-size: 1.6rem;" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
             </div>
 
             <input type="submit" id="finish_btn" value="송금하기">

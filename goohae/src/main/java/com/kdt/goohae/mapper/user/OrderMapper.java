@@ -2,6 +2,7 @@ package com.kdt.goohae.mapper.user;
 
 import com.kdt.goohae.domain.user.OrderDetailVO;
 import com.kdt.goohae.domain.user.OrderInfoVO;
+import com.kdt.goohae.domain.user.PaymentVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;
@@ -27,5 +28,11 @@ public interface OrderMapper {
 
     /* 주문 상세 가져오기 */
     List<OrderDetailVO> getOrderDetail(OrderInfoVO vo);
+
+    /* 결제 */
+    int insertPay(PaymentVO vo);
+
+    /* 결제 정보 가져오기 */
+    PaymentVO getPay(PaymentVO vo);
 
 }
