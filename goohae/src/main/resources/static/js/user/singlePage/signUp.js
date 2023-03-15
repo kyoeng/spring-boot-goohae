@@ -12,6 +12,32 @@ const signUpButton = document.querySelector('.signUpSubmitBtn');
 const checkBox1 = document.querySelector('#emailGet');
 const checkBox2 = document.querySelector('#emailNoGet');
 
+const [usingServicePermitionContent, personalInfoPermitionContent] = document.querySelectorAll('.emailGetRadio a'),
+    [usingServicepermitionBtn, personalInfoPermitionBtn] = document.querySelectorAll('.emailGetRadio>div>div>button');
+console.log(usingServicepermitionBtn)
+console.log(personalInfoPermitionBtn)
+
+usingServicePermitionContent.addEventListener('click', function(e){
+    e.preventDefault();
+    e.target.nextElementSibling.style.display = 'flex'
+    e.target.nextElementSibling.classList.add('empasized')
+})
+
+personalInfoPermitionContent.addEventListener('click', function(e){
+    e.preventDefault();
+    e.target.nextElementSibling.style.display = 'flex'
+    e.target.nextElementSibling.classList.add('empasized')
+})
+
+usingServicepermitionBtn.addEventListener('click',function(e){
+    e.preventDefault();
+    e.target.parentNode.style.display = 'none'
+})
+
+personalInfoPermitionBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.target.parentNode.style.display = 'none'
+})
 
 function signUpIdCheck() {
     const signUpErrorMassage=document.querySelector('.signUpErrorMassage');
