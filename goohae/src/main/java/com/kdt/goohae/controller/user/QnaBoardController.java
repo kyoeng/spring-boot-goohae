@@ -115,6 +115,7 @@ public class QnaBoardController {
     @PostMapping(value = "logined-user/qna-board/delete")
     public String delete ( QnaBoardVO vo, HttpSession httpSession ){
         String pw = qnaBoardService.selectOne(vo).getBoardPassword();
+        log.info("{}",vo);
 //        vo.setUserId((String) httpSession.getAttribute("loginId"));
         if (httpSession.getAttribute("adminID") != null) {
             if(qnaBoardService.delete(vo) > 0) httpSession.setAttribute("message", "success");

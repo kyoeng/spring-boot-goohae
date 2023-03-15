@@ -48,3 +48,36 @@ tbody>tr>td:nth-of-type(3),
 tbody>tr>td:nth-of-type(4) {
     margin-right: 5px;
 }
+
+.modal {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: auto;
+
+    position: absolute;
+    top: 158px;
+    left: 0;
+    z-index: -9999rem;
+}
+
+.modalWrap {
+    width: 800px;
+    height: 480px;
+    background-color: white;
+    z-index: 1;
+
+    margin: auto;
+    vertical-align: middle;
+}
+
+.modalCancel {
+    color: white;
+    margin: 15px;
+    width: 75px;
+    height: 75px;
+    z-index: 1;
+
+    cursor: pointer;
+}
