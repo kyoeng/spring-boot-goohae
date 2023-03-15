@@ -44,11 +44,22 @@ public class WishController {
      * param : productCode의 배열 ( productCodes로 해주세요. )
      * */
     @PostMapping(value = "/logined-user/mywish/checked-delete")
-    public String checkedDelete (WishVO vo, HttpSession httpSession){
-        log.info("{}",vo);
+    public ModelAndView checkedDelete (WishVO vo, ModelAndView mv, HttpSession httpSession){
+
         vo.setUserId((String) httpSession.getAttribute("loginId"));
+        mv.setViewName("/user/myPage/wishList");
+
+        log.info("{}",vo.getProductCodes());
+
+        if(vo.getProductCodes() == null) {
+            mv.addObject("wishList",wishService.selectList((String) httpSession.getAttribute("loginId")));
+            return mv;
+        }
+
         wishService.checkedDelete(vo);
-        return "redirect:user/myPage/wishList";
+
+        mv.addObject("wishList",wishService.selectList((String) httpSession.getAttribute("loginId")));
+        return mv;
     }
 
 }

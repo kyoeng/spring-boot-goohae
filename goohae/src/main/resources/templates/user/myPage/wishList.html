@@ -38,7 +38,7 @@
 				if (wishChkedLength > 0) {
 					if (confirm("Do you want to delete it?")) {
 						let wishListForm = $("#wishListForm");
-						wishListForm.attr("action","mywish/checked-delete");
+						wishListForm.attr("action","/logined-user/mywish/checked-delete");
 						wishListForm.attr("method","post");
 						wishListForm.submit();
 					}
@@ -59,7 +59,7 @@
             <a href="/logined-user/mypage/mywish" class="myPageLink" id="myPageSubLink">위시리스트</a>
         </div>
         <p class="myWishListTitle">위시리스트</p>
-        <form th:action="@{/logined-user/mycart/checked-insert}"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    method="post" id="wishListForm">
+        <form th:action="@{/logined-user/mycart/checked-insert}" method="post" id="wishListForm">
             <article class="wishListTableWrap">
                 <table class="wishListTable">
                     <colgroup>
@@ -72,8 +72,7 @@
                     <thead id="wishListThead">
                     <tr class="wishListLine">
                         <th scope="col" class="wishListTh">
-                            <input type="checkbox" class="wishListCheckBox" name="wishwishChkAll" chacked="checked"
-                                   onclick="allselect(this.checked);"/>
+
                         </th>
                         <th scope="col" class="wishListTh">이미지</th>
                         <th scope="col" class="wishListTh">상품정보</th>

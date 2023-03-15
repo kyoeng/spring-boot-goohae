@@ -3,6 +3,7 @@ package com.kdt.goohae.controller.user;
 import com.kdt.goohae.domain.user.CartVO;
 import com.kdt.goohae.service.user.CartService;
 //import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.kdt.goohae.service.user.WishService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +19,12 @@ import javax.servlet.http.HttpSession;
 public class CartController {
 
     private final CartService cartService;
+    private final WishService wishService;
 
-    public CartController(CartService cartService) {this.cartService = cartService; }
+    public CartController(CartService cartService,WishService wishService) {
+        this.cartService = cartService;
+        this.wishService = wishService;
+    }
 
     /**
      * 내 장바구니
@@ -89,10 +94,21 @@ public class CartController {
     }
 
     @PostMapping(value = "logined-user/mycart/checked-insert")
-    public String checkedInsert (CartVO vo, HttpSession httpSession){
-        vo.setUserId((String) httpSession.getAttribute("loginId"));
-        cartService.checkedInsert(vo);
-        return "redirect:/logined-user/mycart";
+    public ModelAndView checkedInsert (CartVO vo, HttpSession httpSession, ModelAndView mv){
+
+        String loginId = (String) httpSession.getAttribute("loginId");
+
+        if(vo.getProductCodes() == null) {
+            mv.setViewName("/user/myPage/wishList");
+            mv.addObject("wishList",wishService.selectList(loginId));
+            return mv;
+        } else {
+            vo.setUserId((String) httpSession.getAttribute("loginId"));
+            mv.setViewName("/user/myPage/shoppingCart");
+            mv.addObject("userCart",cartService.selectList(loginId));
+            cartService.checkedInsert(vo);
+        }
+        return mv;
     }
 
     @PostMapping(value = "logined-user/mycart/changeea")
