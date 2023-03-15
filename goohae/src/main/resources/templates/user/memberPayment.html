@@ -89,11 +89,11 @@
                         </div>
 
                         <div class="product" th:each="products : ${products}">
-                            <input type="hidden" class="product_code" th:value="${products.productCode}">
+                            <input type="text" class="product_code" th:value="${products.productCode}" style="display: none;">
                             <img th:src="${products.imagePath}" alt="구매 상품 이미지">
                             <span class="prName" th:text="${products.productName}"></span>
                             <span class="prEa" th:text="${products.productEa}"></span>
-                            <span class="prPrice" th:text="${products.discount > 0 ? (products.price - products.discount / 100.00 * products.price) * products.productEa : products.price * products.productEa}"></span>
+                            <span class="prPrice" th:text="${products.discount > 0 ? #numbers.formatDecimal((products.price - products.discount / 100.00 * products.price) * products.productEa, 0, 0) : products.price * products.productEa}"></span>
                             <span class="prDis" th:text="|${products.discount}%|"></span>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
     </main>
 
     <!-- 송금을 위한 팝업 -->
-    <div class="to_pay_container">
+    <div id="to_pay_container">
         <form action="" method="post">
             <span>결제창</span>
             <input type="hidden" value="" id="order_seq" name="orderSeq">

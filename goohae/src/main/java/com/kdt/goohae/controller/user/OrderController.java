@@ -8,6 +8,7 @@ import com.kdt.goohae.domain.user.UserVO;
 import com.kdt.goohae.service.admin.ProductService;
 import com.kdt.goohae.service.user.OrderService;
 import com.kdt.goohae.service.user.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@Slf4j
 public class OrderController {
 
     private final OrderService orderService;
@@ -104,22 +106,26 @@ public class OrderController {
     }
 
 
+    /**
+     * 주문하기를 위한 컨트롤러
+     * @param vo OrderInfoVO
+     * @param detail OrderDetailVO
+     * @return
+     */
     @ResponseBody
     @PostMapping("/logined-user/order/insert")
-    public Map<String, Object> insertOrder(@RequestBody OrderInfoVO vo,
-                           @RequestParam("productInfo")List<OrderDetailVO> detailVO) {
+    public Map<String, Object> insertOrder(OrderInfoVO vo, OrderDetailVO detail) {
         Map<String, Object> map = new LinkedHashMap<>();
 
         if (orderService.insertOrder(vo) > 0) {
             vo = orderService.getOrderInfo(vo);
 
-            for (OrderDetailVO o : detailVO) {
-                o.setOrderSeq(vo.getOrderSeq());
+            /* 주문 상세에 데이터 넣기 */
+            detail.setOrderSeq(vo.getOrderSeq());
 
-                if (orderService.insertDetail(o) < 1) {
-                    map.put("message", "error");
-                    return map;
-                }
+            if (orderService.insertDetail(detail) < 1) {
+                map.put("message", "error");
+                return map;
             }
 
             // 주문 정보 담기
@@ -132,15 +138,14 @@ public class OrderController {
             for (OrderDetailVO v : list) {
                 totalPrice += v.getPrice() - v.getDiscount() / 100 * v.getPrice();
             }
+
             map.put("total", totalPrice);
             map.put("message", "success");
-
-            return map;
         } else {
             map.put("message", "error");
-            return map;
         }
 
+        return map;
     }
 
 
@@ -156,7 +161,7 @@ public class OrderController {
      * param : price
      * */
     @PostMapping(value = "/logined-user/order/payment")
-    public ModelAndView pay ( ModelAndView mv, HttpSession httpSession, OrderInfoVO vo){
+    public ModelAndView pay( ModelAndView mv, HttpSession httpSession, OrderInfoVO vo){
         vo.setUserId((String) httpSession.getAttribute("loginId"));
         mv.setViewName("user/paymentComplete");
         return mv;

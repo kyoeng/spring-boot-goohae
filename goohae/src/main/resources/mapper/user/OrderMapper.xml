@@ -34,7 +34,7 @@
         select *
         from order_info
         where user_id = #{userId}
-        and postNumber = #{postNumber}
+        and post_number = #{postNumber}
         order by order_date desc
         limit 0, 1
     </select>

@@ -59,35 +59,25 @@ orderBtn.addEventListener('click', function () {
   if (memo.value !== '' && $('#agree1').is(':checked') &&
     $('#agree2').is(':checked') && $('#agree3').is(':checked')) {
 
-    let formData = new FormData();
-    formData.append('userId', id);
-    formData.append('receiverName', receiver);
-    formData.append('phoneNumber', phone);
-    formData.append('address', address);
-    formData.append('memo', memo.value);
-
-
-    let products = [];
-    for (let i = 0; i <= product_code.length; i++) {
-      products[i] = {
-        productCode: product_code[i],
-        price: product_prices[i],
-        productEa: product_eas[i],
-        discount: product_discounts[i]
-      };
-
-      formData.append('productInfo', products[i]);
-    }
-
     $.ajax({
       type: 'post',
       url: '/logined-user/order/insert',
-      contentType: false,
-      data: formData,
+      data: {
+        userId: id,
+        receiverName: receiver,
+        phoneNumber: phone,
+        address: address,
+        memo: memo.value,
+        productCode: product_code[0].value,
+        productEa: product_eas[0].innerHTML,
+        price: product_prices[0].innerHTML,
+        discount: product_discounts[0].innerHTML.split("%")[0]
+      },
       success: (res) => {
         if (res.message === 'success') {
-          console.log('ok');
-          console.log(res.total);
+          $('#order_seq').val(res.info.orderSeq);
+          $('#order_total').val(res.total);
+          $('#to_pay_container').css('display', 'block');
         } else {
           alert('주문에 실패했습니다. 확인 후 다시 시도 바랍니다.');
         }
