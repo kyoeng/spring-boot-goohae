@@ -148,6 +148,8 @@ input {
 .memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoEmailInputWrap>.memberINfoEmailIdInput,
 .memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoPwConfirmInputWrap>.memberInfoPwConfirmInput,
 .memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoNameInputWrap>.memberInfoNameInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoAddressNumberInputWrap>.memberInfoAddressNumberInput,
+.memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoAddressInputWrap> .memberInfoAddressInput,
 .memberInfoMain>section>.formWrap>.memberInfoForm>.memberInfoTellInputWrap>.memberInfoTellInput {
     width: 32rem;
     background-color: white;

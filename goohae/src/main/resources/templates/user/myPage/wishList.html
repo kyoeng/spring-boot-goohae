@@ -10,19 +10,56 @@
     <link rel="stylesheet" href="/css/common/footer.css">
     <link rel="stylesheet" href="/css/common/config.css">
     <title>wishList</title>
-</head>
-<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+<!--    // header checkbox event-->
+	    	$("#wishChkAll").click(function() {
+	    		if (this.checked) {
+	    			$("input[name='wishChk']").prop("checked", true);
+	    		} else {
+	    			$("input[name='wishChk']").prop("checked", false);
+	    		}
+	    	});
+<!--     // body checkbox event-->
+	    	$("input[name='wishChk']").click(function() {
+	    		let wishChkLength= $("input[name='wishChk']").length;
+	    		let wishChkedLength = $("input[name='wishChk']:checked").length;
 
+	    		if (wishChkLength == wishChkedLength) {
+	    			$("#wishChkAll").prop("checked", true);
+	    		} else {
+	    			$("#wishChkAll").prop("checked", false);
+	    		}
+	    	});
+
+	    	function fnDelete() {
+				let wishChkedLength = $("input[name='wishChk']:checked").length;
+
+				if (wishChkedLength > 0) {
+					if (confirm("Do you want to delete it?")) {
+						let wishListForm = $("#wishListForm");
+						wishListForm.attr("action","mywish/checked-delete");
+						wishListForm.attr("method","post");
+						wishListForm.submit();
+					}
+				} else {
+					alert("선택된 상품이 없습니다");
+				}
+			}
+    </script>
+</head>
+
+<body>
 <header th:replace="common/header :: header"></header>
 <main id="wishListMain">
     <section  id="myWishListWrap">
-        <div class="OrderHistoryCategory">
+        <div class="wishListCategory">
             <a href="/" class="myPageLink">홈&nbsp;&nbsp;&gt;</a>
             <a href="/logined-user/mypage" class="myPageLink">&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&gt;</a>
             <a href="/logined-user/mypage/mywish" class="myPageLink" id="myPageSubLink">위시리스트</a>
         </div>
         <p class="myWishListTitle">위시리스트</p>
-        <form th:action="@{/logined-user/mycart}" method="post">
+        <form th:action="@{/logined-user/mycart/insert}"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    method="post" id="wishListForm">
             <article class="wishListTableWrap">
                 <table class="wishListTable">
                     <colgroup>
@@ -35,43 +72,46 @@
                     <thead id="wishListThead">
                     <tr class="wishListLine">
                         <th scope="col" class="wishListTh">
-                            <input type="checkbox" class="wishListCheckBox" name="wishChkAll" chacked="chacked"
+                            <input type="checkbox" class="wishListCheckBox" name="wishwishChkAll" chacked="checked"
                                    onclick="allselect(this.checked);"/>
                         </th>
                         <th scope="col" class="wishListTh">이미지</th>
                         <th scope="col" class="wishListTh">상품정보</th>
                         <th scope="col" class="wishListTh">상품금액</th>
-                        <th scope="col" class="wishListTh">선택</th>
+<!--                        <th scope="col" class="wishListTh">선택</th>-->
                     </tr>
                     </thead>
                     <tbody id="wishListTbody">
                     <tr class="wishListLine" th:each="wishList : ${wishList}">
                         <td class="wishListTd">
-                            <input type="checkbox" class="wishListCheckBox" name="wishChk" cheked="cheked"
-                                   th:values="${wishList.productCode}"/><!--제품코드로 체크-->
+                            <input type="checkbox" class="wishListCheckBox" name="wishChk" cheked="checked"
+                                   th:attr="productCode=${wishList.productCode}"
+                                   th:value="${wishList.productCode}"
+                            /><!--제품코드로 체크-->
                         </td>
                         <td class="wishListTd">
-                            <a href="#"><img th:src="@{${wishList.productImage}}"/><!--제품이미지--></a>
+                            <a href="#"><img th:src="@{${wishList.imagePath}}"/><!--제품이미지--></a>
                         </td>
                         <td class="wishListTd">
                             <p class="wishListProductName" th:text="${wishList.productName}"><!--제품이름--></p>
                             <p class="wishListProductName" th:text="${wishList.productOption}"><!--옵션--></p>
                         </td>
                         <td class="wishListTd" th:text="${wishList.price}"><!--제품가격--></td>
-                        <td class="wishListTd">
-                            <a th:href="@{/logined-user/mywish/delete(productCode=${post.productCode})}">삭제하기</a>
-                        </td>
+<!--                        <td class="wishListTd">-->
+<!--                            <a th:href="@{/logined-user/mywish/delete(productCode=${wishList.productCode})}">삭제하기</a>-->
+<!--                        </td>-->
                     </tr>
                     </tbody>
                 </table>
             </article>
-            <article class="wishlistButtonWrap">
+            <div class="wishlistButtonWrap">
                 <div class="wishlistControlButtonWrap">
                     <span class="wishlistButtonLeftText">선택한 상품</span>
-                    <!--                    <button type="submit" value="checked-delete" class="wishlistButton" id="wishListBlackButton">삭제하기</button>-->
+                    <button type="submit" value="checked-delete" class="wishlistButton" id="wishListBlackButton" onclick="fnDelete()">삭제하기</button>
                     <button type="submit" class="wishlistButton">장바구니 담기</button>
+
                 </div>
-            </article>
+            </div>
         </form>
     </section>
 </main>
