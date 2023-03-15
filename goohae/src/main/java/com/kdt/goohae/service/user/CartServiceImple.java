@@ -17,13 +17,14 @@ public class CartServiceImple implements CartService {
 
     @Override
     public int insert(CartVO vo) {return mapper.insert(vo);}
+    public int checkedInsert(CartVO vo) {return mapper.checkedInsert(vo);}
     @Override
     public int delete(CartVO vo) {return mapper.delete(vo);}
     @Override
     public int checkedDelete(CartVO vo) {return mapper.checkedDelete(vo);}
-
     @Override
     public ArrayList<GetProductDTO> selectList(String loginId) {return mapper.selectList(loginId);}
     public int eaChange(CartVO vo){return mapper.eaChange(vo);}
     public CartVO selectOne(CartVO vo){return mapper.selectOne(vo);}
+
 }

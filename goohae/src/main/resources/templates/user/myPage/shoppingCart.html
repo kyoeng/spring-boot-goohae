@@ -51,7 +51,9 @@
                         <tbody class="shoppingCartTableTbody">
                         <tr class="shoppingCartTableLine" th:each="item : ${userCart}">
                             <td class="shoppingCartTableRow">
-                                <input type="checkbox" name="selectedItems" th:value="${item.productCode}"
+                                <input type="checkbox"
+                                       name="productCodes"
+                                       th:value="${item.productCode}"
                                        onchange="calculateTotalPrice()"
                                        class="shoppingCartTableCheck"/>
                             </td>

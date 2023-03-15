@@ -32,4 +32,11 @@
         update cart set product_ea = #{productEa} where user_id = #{userId} and product_code = #{productCode}
     </update>
 
+    <insert id="checkedInsert">
+        insert into  cart ( product_code, user_id, product_ea ) values
+        <foreach collection="productCodes" item="pc" separator="," >
+            ( #{pc}, #{userId} , 1)
+        </foreach>
+    </insert>
+
 </mapper>

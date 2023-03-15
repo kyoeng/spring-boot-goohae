@@ -19,7 +19,7 @@
         delete from wish where user_id = #{userId} AND product_code in
         <foreach collection="productCodes" item="pc" separator="," open="(" close=")">
             #{pc}
-        </foreach>로
+        </foreach>
     </delete>
 
 

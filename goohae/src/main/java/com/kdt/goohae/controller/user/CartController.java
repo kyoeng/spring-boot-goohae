@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -85,6 +86,13 @@ public class CartController {
             model.addAttribute("message","fail");
         }
         return model;
+    }
+
+    @PostMapping(value = "logined-user/mycart/checked-insert")
+    public String checkedInsert (CartVO vo, HttpSession httpSession){
+        vo.setUserId((String) httpSession.getAttribute("loginId"));
+        cartService.checkedInsert(vo);
+        return "redirect:/logined-user/mycart";
     }
 
     @PostMapping(value = "logined-user/mycart/changeea")

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 @Mapper
 public interface CartMapper {
     int insert(CartVO vo);
+    int checkedInsert(CartVO vo);
     int delete(CartVO vo);
     int checkedDelete(CartVO vo);
     ArrayList<GetProductDTO> selectList(String loginId);

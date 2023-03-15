@@ -2,6 +2,8 @@ package com.kdt.goohae.domain.user;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class CartVO {
 
@@ -9,5 +11,6 @@ public class CartVO {
     String productCode;
     String productEa;
     String cartDate;
+    List<Integer> productCodes;
 
 }

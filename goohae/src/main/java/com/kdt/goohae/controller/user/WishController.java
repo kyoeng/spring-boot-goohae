@@ -25,7 +25,6 @@ public class WishController {
     @GetMapping(value = "logined-user/mywish")
     public ModelAndView myWish(ModelAndView mv, HttpSession httpSession) {
         mv.setViewName("user/myPage/wishList");
-        log.info("{}",wishService.selectList((String) httpSession.getAttribute("loginId")));
         return mv.addObject("wishList",wishService.selectList((String) httpSession.getAttribute("loginId")));
     }
 
@@ -46,6 +45,7 @@ public class WishController {
      * */
     @PostMapping(value = "logined-user/mywish/checked-delete")
     public String checkedDelete (WishVO vo, HttpSession httpSession){
+        log.info("{}",vo);
         vo.setUserId((String) httpSession.getAttribute("loginId"));
         wishService.checkedDelete(vo);
         return "/user/myPage/wishList";
