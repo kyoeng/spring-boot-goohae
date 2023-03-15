@@ -2,6 +2,7 @@ package com.kdt.goohae.controller.user;
 
 import com.kdt.goohae.domain.user.WishVO;
 import com.kdt.goohae.service.user.WishService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
+@Slf4j
 @Controller
 public class WishController {
 
@@ -21,14 +23,11 @@ public class WishController {
      * myWishList로 이동
      * */
     @GetMapping(value = "logined-user/mywish")
-    public String myWish() {return "/user/myPage/wishList";}
-
-    /**
-     * wishList에 wishList담아서 전달.
-     * result : ArrayList<productDto>
-     * */
-    @PostMapping(value = "logined-user/mywish")
-    public Model myWish(Model model, HttpSession httpSession) {return model.addAttribute("wishList",wishService.selectList((String) httpSession.getAttribute("loginId")));}
+    public ModelAndView myWish(ModelAndView mv, HttpSession httpSession) {
+        mv.setViewName("user/myPage/wishList");
+        log.info("{}",wishService.selectList((String) httpSession.getAttribute("loginId")));
+        return mv.addObject("wishList",wishService.selectList((String) httpSession.getAttribute("loginId")));
+    }
 
     /**
      * wishList에서 상품 삭제
@@ -45,7 +44,7 @@ public class WishController {
      * 체크된 항목 삭제
      * param : productCode의 배열 ( productCodes로 해주세요. )
      * */
-    @GetMapping(value = "logined-user/mywish/checked-delete")
+    @PostMapping(value = "logined-user/mywish/checked-delete")
     public String checkedDelete (WishVO vo, HttpSession httpSession){
         vo.setUserId((String) httpSession.getAttribute("loginId"));
         wishService.checkedDelete(vo);

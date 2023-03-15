@@ -8,13 +8,10 @@
    <link rel="stylesheet" href="/css/user/singlePage/config.css">
    <link rel="stylesheet" href="/css/user/singlePage/signUp.css">
    <script defer src="/js/user/singlePage/signUp.js"></script>
-
+    <script defer src="/js/jquery-3.2.1.min.js"></script>
   </head>
 
 <body>
-<c:if test="${message!=null}">
-  <script>alert(${message});</script>
-</c:if>
   <main class="signUpContainer">
     <section id="MemberInfoWrap">
       <div class="logoImage">
@@ -25,15 +22,14 @@
       <article class="FormWrap">
         <form class="InfoForm" name="memberJoin" th:action="@{/user/join}" method="post" th:object="${vo}">
           <div class="idInputWrap">
-            <p>아이디</p>
+            <p>아이디 &nbsp;<span class="duppleErrorMsg" style="color: red; margin-bottom: 20px "></span></p>
             <input type="text" name="id" class="signUpId" minLength=5 maxLength=16
               placeholder="영문 대소문자와 숫자 5-19자 조합" onkeyup="this.value=this.value.replace(/[^0-9a-zA-Z]/g,'');"/>
             <p class="signUpErrorMassage red hidden">아이디를 입력해주세요</p>
-            <button class="signUpIdDuplicateConform signUpBtn hidden" disabled={!isSignUpId}>아이디 중복확인</button>
           </div>
           <div class="pwInputWrap">
             <p>비밀번호</p>
-            <input class="pwInput" type="password" name="password" minLength=8 maxLength=16
+            <input  class="pwInput" type="password" name="password" minLength=8 maxLength=16
               placeholder=" 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합"/>
             <p class="signUpPwErrorMassage red nonDisplay">비밀번호를 입력해주세요.</p>
             <p class="signUpPwErrorMsg red hidden">8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합해주세요</p>

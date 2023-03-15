@@ -21,4 +21,5 @@ public interface UserMapper {
     int update(UserVO vo);
     String findId ( UserVO vo );
     int changePassword ( UserVO vo );
+    int idCheck(UserVO vo);
 }
