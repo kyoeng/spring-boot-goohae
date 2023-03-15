@@ -3,7 +3,7 @@
 
 <mapper namespace="com.kdt.goohae.mapper.user.OrderMapper">
 
-    <select id="selectList" resultType="orderVO">
+    <select id="selectList" resultType="OrderInfoVO">
         select i.order_seq, i.order_date, d.product_ea, d.product_code, d.price, d.deli_status , p.image_path, pr.product_name
         from product pr , product_image p, order_info i , order_detail d
         where i.user_id = #{loginId} and i.order_seq = d.order_seq and p.product_code = pr.product_code and d.product_code = pr.product_code;

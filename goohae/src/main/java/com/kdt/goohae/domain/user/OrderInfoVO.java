@@ -13,5 +13,10 @@ public class OrderInfoVO {
     private String address;
     private String orderDate;
     private String memo;
+    private String imagePath;
+    private int productCode;
+    private int price;
+    private int productEa;
+    private String deliStatus;
 
 }

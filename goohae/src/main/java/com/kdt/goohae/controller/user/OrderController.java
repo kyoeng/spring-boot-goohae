@@ -133,6 +133,7 @@ public class OrderController {
                 totalPrice += v.getPrice() - v.getDiscount() / 100 * v.getPrice();
             }
             map.put("total", totalPrice);
+            map.put("message", "success");
 
             return map;
         } else {

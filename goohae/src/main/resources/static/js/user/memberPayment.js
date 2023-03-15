@@ -41,7 +41,7 @@ const id = document.getElementById('user_id').value,
   phone = document.getElementById('phoneNum').value,            // 폰
   post = document.getElementById('postNum').value,              // 우편번호
   address = document.getElementById('add_input').value,         // 주소
-  memo = document.getElementById('memOrderPostMemo').value;     // 배송메모
+  memo = document.getElementById('memOrderPostMemo');     // 배송메모
 
 // 상품 정보
 const product_code = document.getElementsByClassName('product_code'), // 상품코드들
@@ -55,8 +55,17 @@ const product_code = document.getElementsByClassName('product_code'), // 상품�
 const orderBtn = document.getElementsByClassName('order_btn')[0];
 
 orderBtn.addEventListener('click', function () {
-  if (memo !== '' && $('#agree1').is('checked') &&
-    $('#agree2').is('checked') && $('#agree3').is('checked')) {
+
+  if (memo.value !== '' && $('#agree1').is(':checked') &&
+    $('#agree2').is(':checked') && $('#agree3').is(':checked')) {
+
+    let formData = new FormData();
+    formData.append('userId', id);
+    formData.append('receiverName', receiver);
+    formData.append('phoneNumber', phone);
+    formData.append('address', address);
+    formData.append('memo', memo.value);
+
 
     let products = [];
     for (let i = 0; i <= product_code.length; i++) {
@@ -66,23 +75,19 @@ orderBtn.addEventListener('click', function () {
         productEa: product_eas[i],
         discount: product_discounts[i]
       };
-    }
 
+      formData.append('productInfo', products[i]);
+    }
 
     $.ajax({
       type: 'post',
       url: '/logined-user/order/insert',
-      data: {
-        userId: id,
-        receiverName: receiver,
-        phoneNumber: phone,
-        address: address,
-        memo: memo,
-        productInfo: products
-      },
+      contentType: false,
+      data: formData,
       success: (res) => {
-        if (res.message === '성공') {
-          
+        if (res.message === 'success') {
+          console.log('ok');
+          console.log(res.total);
         } else {
           alert('주문에 실패했습니다. 확인 후 다시 시도 바랍니다.');
         }
