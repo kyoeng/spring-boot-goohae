@@ -144,6 +144,7 @@ public class ProductController {
             rttr.addAttribute("message", "삭제에 실패하였습니다.");
         }
 
+        rttr.addAttribute("check", "new");
         rttr.addAttribute("categoryCode", 1);
         mv.setViewName(uri);
         return mv;

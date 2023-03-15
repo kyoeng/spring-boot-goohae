@@ -71,7 +71,7 @@
 
         <form class="search_box" action="/admin/get-pro" method="get">
             <select name="categoryCode">
-                <option value="1" th:selected="${code == 1}">소파</option>
+                <option value="1" th:selected="${code == 1 || code == '' || code == null}">소파</option>
                 <option value="2" th:selected="${code == 2}">테이블</option>
                 <option value="3" th:selected="${code == 3}">의자-거실</option>
                 <option value="4" th:selected="${code == 4}">TV콘솔</option>
@@ -88,7 +88,7 @@
             <div>
                 <div>
                     <input type="radio" name="check" value="new"
-                           th:checked="${check.equals('new') || check.equals('')}">
+                           th:checked="${check.equals('new') || check.equals('') || check == null}">
                     최신순
                 </div>
 
