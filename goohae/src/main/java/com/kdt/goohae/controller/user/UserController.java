@@ -49,10 +49,11 @@ public class UserController {
      * */
     @PostMapping(value = "user/join")
     public ModelAndView join ( UserVO vo, ModelAndView mv) {
-        mv.setViewName("user/singlePage/join");
+        mv.setViewName("redirect:user/singlePage/join");
         if(userService.selectOne(vo) == null){
             vo.setPassword(passwordEncoder.encode(vo.getPassword()));
             if ( userService.insert(vo)>0 ) {
+                mv.addObject("message", "success");
                 mv.addObject("message", "success");
                 mv.setViewName("user/singlePage/login");
             } else {
@@ -123,22 +124,27 @@ public class UserController {
      *  param : phoneNumber
      **/
     @PostMapping(value = "user/findPw")
-    public String findPw(UserVO vo){
+    public ModelAndView findPw(UserVO vo, ModelAndView mv){
         UserVO dbVO = userService.selectOne(vo);
+        log.info(String.valueOf(dbVO.getName().equals(vo.getName())));
+        log.info(String.valueOf(dbVO.getPhoneNumber().equals(vo.getPhoneNumber())));
         if ( dbVO != null &&
                 dbVO.getName().equals(vo.getName())&&
                 dbVO.getPhoneNumber().equals(vo.getPhoneNumber())){
-            return "수정페이지";
+            mv.setViewName("user/singlePage/updatePw");
+            mv.addObject("id",vo.getId());
+            return mv;
         } else {
-            return "user/singlePage/findPw";
+            mv.setViewName("user/singlePage/findPw");
+            return mv;
         }
     }
 
-    @PostMapping(value = "user/changePw")
-    public String chagePw(UserVO vo, HttpSession httpSession) {
-        vo.setId((String) httpSession.getAttribute("loginId"));
+    @PostMapping(value = "user/updatePw")
+    public String chagePw(UserVO vo, HttpSession httpSession,String id) {
         if (userService.changePassword(vo)>0) {
             httpSession.setAttribute("message", "success");
+            log.info("succcess");
             return "user/singlePage/login";
         } else {
             httpSession.setAttribute("message","fail");

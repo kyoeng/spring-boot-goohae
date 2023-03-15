@@ -36,13 +36,13 @@ function fpNameCheck() {
 }
 
 function fpMobileCheck() {
-    if ((fpMobile[1].value == "") && (fpMobile[2].value == "")) {
+    if ((fpMobile[0].value == "")) {
         errorMassage[2].classList.remove('hidden');
         for (let i = 0; i < fpMobile.length; i++) {
             fpMobile[i].classList.add('redInputBox');
         }
         return false;
-    } else if (!((fpMobile[1].value.length == "4") && (fpMobile[2].value.length == "4"))) {
+    } else if (!((fpMobile[0].value.length == "11"))) {
         errorMassage[2].classList.remove('hidden');
         for (let i = 0; i < fpMobile.length; i++) {
             fpMobile[i].classList.add('redInputBox');
@@ -85,19 +85,19 @@ document.addEventListener('keydown', function (e) {
 
 findPwBtn.addEventListener('click', function (e) {
     e.preventDefault();
-    fpIdCheck();
-    fpNameCheck();
-    fpMobileCheck();
+
+
+
 //    findPwEmailCheck();
 //    if (fiNameCheck() && fiEmailCheck() && fiMobileCheck()) {
-    if (fiNameCheck() && fiEmailCheck()) {
+    if (fpIdCheck()&&fpNameCheck()&&fpMobileCheck() ) {
         form.submit();
     }
 });
 
 function validate() {
 //    if (fpId.value && fpName.value &&findPwEmail.value && fpMobile[1].value.length == "4"&&fpMobile[2].value.length == "4") {
-    if (fpId.value && fpName.value&& fpMobile[1].value.length == "4"&&fpMobile[2].value.length == "4") {
+    if (fpId.value && fpName.value&& fpMobile[0].value.length == "11") {
         findPwBtn.style.cursor = 'pointer';
         findPwBtn.classList.add('buttonLogin');
     } else {
