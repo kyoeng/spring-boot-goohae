@@ -134,9 +134,9 @@ input {
     line-height: 36px;
 }
 
-.findPwMain .findPwForm .findPwPhone>.findPwInput {
-    width: 82px;
-}
+/*.findPwMain .findPwForm .findPwPhone>.findPwInput {*/
+/*    width: 140px;*/
+/*}*/
 .findPwMain .findPwForm .findPwEmail>#findPwEmail{
     width: 140px;
 }
@@ -167,7 +167,8 @@ input {
     border: 1px solid #FF655B;
 } 
 
-.findPwForm .findPwBtn {
+.findPwBtn,
+.updatePwBtn{
     display: block;
     width: 320px;
     height: 36px;
@@ -179,6 +180,7 @@ input {
 
 .buttonLogin{
     background-color: #1A1B23;
+    color: white;
 }
 
 .findPwFormContainer .findPwLinkToLogin {
@@ -188,6 +190,35 @@ input {
     color: #9497AB;
     text-decoration: underline;
 }
+
+.chagePwWrap{
+    height: 100px;
+}
+
+.changePwLabel{
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.changePwInput,
+.changePwConfirm{
+    border: 1px solid #1A1B23;
+    text-indent: 1.4em;
+    height: 36px;
+    outline: none;
+    font-size: 1.4rem;
+    width: 320px;
+}
+
+.updatePwBtn{
+    margin-top: 20px;
+    width: 320px;
+    border: 1px solid black;
+    height: 36px;
+}
+
 /* =============================================================================================== */
 /* =============================================================================================== */
 /* =============================================================================================== */

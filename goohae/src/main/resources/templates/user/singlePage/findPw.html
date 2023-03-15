@@ -28,26 +28,19 @@
         </ul>
       </div>
       <div class="findPwFormContainer">
-        <form class="findPwForm" action method="post"  th:action="@{/user/findpw}" >
+        <form class="findPwForm" action method="post"  th:action="@{/user/findPw}" >
           <label htmlFor="findPw_id" class="findPwLabel">아이디</label>
-          <input type="id" id="fpId" class="findPwInput" name="fpId" required placeholder="아이디" />
+          <input type="id" id="fpId" class="findPwInput" name="id" required placeholder="아이디" />
           <span class="errorMassage hidden">아이디를 입력해주세요</span>
           <label htmlFor="findPw_name" class="findPwLabel">이름</label>
-          <input type="text" id="fpName" class="findPwInput" name="fpName" required
+          <input type="text" id="fpName" class="findPwInput" name="name" required
                  placeholder="이름" />
           <span class="errorMassage hidden">이름을 입력해주세요</span>
           <label htmlFor="findPw_phone" class="findPwLabel">휴대전화</label>
           <div class="findPwPhone">
-            <input type="text" name="mobile1" class="findPwInput fpMobile" required readOnly value="010" />
-            -
-            <input type="text" name="mobile2" class="findPwInput fpMobile" minLength=4
-                   maxLength=4 required onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
-            -
-            <input type="text" name="mobile3" class="findPwInput fpMobile" minLength=4
-                   maxLength=4 required onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
+            <input type="text" style="width:320px" placeholder="휴대폰번호를 입력해주세요" name="phoneNumber" class="findPwInput fpMobile" />
           </div>
           <span class="errorMassage hidden">휴대전화번호를 입력해주세요</span>
-          <label htmlFor="findPw_email" class="findPwLabel">이메일</label>
 <!--          <div class="findPwEmail">-->
 <!--            <input type="email" class="findPwInput" id="findPwEmail" name="fpFw"-->
 <!--                   autofocus required />-->
@@ -64,8 +57,8 @@
 <!--            </select>-->
 <!--          </div>-->
 <!--          <p class="findPwWarning hidden errorMassage">이메일을 입력해주세요</p>-->
-          <button type="submit"  class="findPwBtn">비밀번호 찾기</button>
         </form>
+          <button type="submit"  class="findPwBtn">비밀번호 찾기</button>
         <a href="/Login" class="findPwLinkToLogin">로그인으로 돌아가기</a>
       </div>
     </div>
