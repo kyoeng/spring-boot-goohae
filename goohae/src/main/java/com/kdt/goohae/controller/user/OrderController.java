@@ -88,6 +88,8 @@ public class OrderController {
 
         // 단일 상품인 경우 ( 주문하기에서 바로 넘어갔을 때 )
         } else {
+            log.info("(product) : {}",(product));
+            log.info("productService.getProductOne(product) : {}",productService.getProductOne(product));
             GetProductDTO dto = productService.getProductOne(product);
             dto.setProductEa(product.getProductEa());
 

@@ -24,7 +24,7 @@
             </div>
             <p class="shoppingCartTitle">cart</p>
             <article class="shoppingCartTableContainer">
-                <form  method="post" action="/cart">
+                <form id="#cartForm" method="get" action="/logined-user/order/start">
                     <table class="shoppingCartTable">
                         <colgroup>
                             <col width="4%"/>
@@ -51,10 +51,11 @@
                         <tbody class="shoppingCartTableTbody">
                         <tr class="shoppingCartTableLine" th:each="item : ${userCart}">
                             <td class="shoppingCartTableRow">
+
                                 <input type="checkbox"
                                        name="productCodes"
+                                       th:attr="ea=${item.productEa}"
                                        th:value="${item.productCode}"
-                                       onchange="calculateTotalPrice()"
                                        class="shoppingCartTableCheck"/>
                             </td>
                             <td class="shoppingCartTableRow">
@@ -75,7 +76,7 @@
                             </td>
                             <td class="shoppingCartTableRow">
                                 <div class="shoppingCartTableFontSize" >
-                                    <p><span th:text="${item.price}"></span><span>/개</span></p>
+                                    <p><span class="thProductPrice" th:attr="price=${item.price}" th:text="${item.price}"></span><span>/개</span></p>
                                     <!--상품가격-->
                                 </div>
                             </td>
@@ -99,13 +100,18 @@
                             <p>총 주문 금액: <span id="totalPrice"></span></p>
                         </div>
                         <div class="shoppingCartOrderButtonBox">
-                            <button class="btnDisabled shoppingCartOrderButton shoppingCartCheckedOrderButton"
-                                    onclick="orderSelectedItems()">선택상품 주문
-                            </button>
-                            <button class="btnDisabled shoppingCartOrderButton shoppingCartAllOrderButton"
+                            <p class=" shoppingCartOrderButton shoppingCartCheckedOrderButton"
+                               style="background-color: black; color: white">선택상품 주문
+                            </p>
+                            <p class=" shoppingCartOrderButton shoppingCartAllOrderButton"
                                     onclick="orderAllItems()">전체상품 주문
-                            </button>
+                            </p>
                         </div>
+                    </div>
+                    <div  style="display: block">
+                        <input class="formDataProCode" name="productCode" />
+                        <input class="formDataProPrice" name="price"/>
+                        <input class="formDataProEa" name="productEa"/>
                     </div>
                 </form>
             </article>
