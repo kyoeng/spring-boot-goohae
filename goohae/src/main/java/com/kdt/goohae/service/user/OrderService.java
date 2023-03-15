@@ -32,4 +32,7 @@ public interface OrderService {
 
     /* 결제 정보 가져오기 */
     PaymentVO getPay(PaymentVO vo);
+
+    /* 주문 정보 가져오기 */
+    OrderInfoVO getOrder(PaymentVO vo);
 }

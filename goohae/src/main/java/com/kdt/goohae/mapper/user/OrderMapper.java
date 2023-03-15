@@ -20,7 +20,7 @@ public interface OrderMapper {
     /* 주문 정보 테이블 */
     int insertOrder(OrderInfoVO vo);
 
-    /* 주문 정보 가져오기 */
+    /* 주문 정보 가져오기 ( 주문 직후 ) */
     OrderInfoVO getOrderInfo(OrderInfoVO vo);
 
     /* 주문 상세 테이블 */
@@ -34,5 +34,8 @@ public interface OrderMapper {
 
     /* 결제 정보 가져오기 */
     PaymentVO getPay(PaymentVO vo);
+
+    /* 주문 정보 가져오기 */
+    OrderInfoVO getOrder(PaymentVO vo);
 
 }

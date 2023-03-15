@@ -86,10 +86,8 @@ public class OrderController {
             mv.addObject("totalPrice", totalP);
             mv.addObject("totalDiscount", totalD);
 
-        // 단일 상품인 경우 ( 주문하기에서 바로 넘어갔을 때 )
+            // 단일 상품인 경우 ( 주문하기에서 바로 넘어갔을 때 )
         } else {
-            log.info("(product) : {}",(product));
-            log.info("productService.getProductOne(product) : {}",productService.getProductOne(product));
             GetProductDTO dto = productService.getProductOne(product);
             dto.setProductEa(product.getProductEa());
 
@@ -99,7 +97,7 @@ public class OrderController {
             int discount = 0;
 
             if (dto.getDiscount() > 0) {
-                totalPrice = (dto.getPrice() - (int)(dto.getDiscount() / 100.00 * dto.getPrice())) * dto.getProductEa();
+//                totalPrice = (dto.getPrice() - (int)(dto.getDiscount() / 100.00 * dto.getPrice())) * dto.getProductEa();
                 discount = (int)(dto.getDiscount() / 100.00 * dto.getPrice()) * dto.getProductEa();
             }
 
@@ -166,17 +164,54 @@ public class OrderController {
      * param : productEa
      * param : price
      * */
+    // /logined-user/order/payment
     @PostMapping(value = "/logined-user/order/payment")
-    public ModelAndView pay(ModelAndView mv, PaymentVO vo){
+    public ModelAndView pay(ModelAndView mv, PaymentVO vo, HttpServletRequest request){
+        String uri = "user/paymentComplete";
+
         if (orderService.insertPay(vo) > 0) {
+            // 유저 정보 담기
+            UserVO user = new UserVO();
+            user.setId((String)request.getSession().getAttribute("loginId"));
+
+            mv.addObject("user", userService.selectOne(user));
+
+            // 결제 정보 담기
+            mv.addObject("pay", orderService.getPay(vo));
+
+            // 주문 정보 담기
+            OrderInfoVO ovo = orderService.getOrder(vo);
+            mv.addObject("orderInfo", ovo);
+
+            // 주문 상세 담기
+            List<OrderDetailVO> dvo = orderService.getOrderDetail(ovo);
+            mv.addObject("orderDetail", dvo);
+
+            // 상품 정보 담기 ( 나중에 여러 상품 주문 시 고려해서 수정 예정 )
+            ProductVO pvo = new ProductVO();
+            pvo.setProductCode(dvo.get(0).getProductCode());
+
+            GetProductDTO dto = productService.getProductOne(pvo);
+            dto.setProductEa(dvo.get(0).getProductEa());
+            mv.addObject("productInfo", dto);
+
+            mv.addObject("total", dto.getPrice() * dto.getProductEa());
+
+            int disPrice = 0;
+            if (dto.getDiscount() > 0) {
+                disPrice = (int)(dto.getDiscount() / 100.00 * dto.getPrice()) * dto.getProductEa();
+            }
+            mv.addObject("disPrice", disPrice);
+            mv.addObject("disTotalPrice", (dto.getPrice() - (int)(dto.getDiscount() / 100.00 * dto.getPrice())) * dto.getProductEa());
+
+            // 메시지 담기
             mv.addObject("message", "success");
-            log.info("성공");
         } else {
+            uri = "redirect:/";
             mv.addObject("message", "error");
         }
 
-        mv.addObject("payInfo", orderService.getPay(vo));
-        mv.setViewName("user/paymentComplete");
+        mv.setViewName(uri);
         return mv;
     }
 

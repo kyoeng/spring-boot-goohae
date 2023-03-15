@@ -43,7 +43,7 @@
                         <p class="product_name" th:text="${newProduct.productName}"></p>
 
                         <div>
-                            <span th:text="|${#numbers.formatInteger(newProduct.price - newProduct.price / newProduct.discount, 3, 'COMMA')}원|"
+                            <span th:text="|${#numbers.formatDecimal(newProduct.price - newProduct.discount / 100.00 * newProduct.price, 0, 0)}원|"
                                   th:if="${newProduct.discount > 0}"></span>
 
                             <span th:text="|${#numbers.formatInteger(newProduct.price, 3, 'COMMA')}원|"
@@ -65,7 +65,7 @@
                         <p class="product_name" th:text="${newProductTwo.productName}"></p>
 
                         <div>
-                            <span th:text="|${#numbers.formatInteger(newProductTwo.price - newProductTwo.price / newProductTwo.discount, 3, 'COMMA')}원|"
+                            <span th:text="|${#numbers.formatDecimal(newProductTwo.price - newProductTwo.discount / 100.00 * newProductTwo.price, 0, 0)}원|"
                                   th:if="${newProductTwo.discount > 0}"></span>
 
                             <span th:text="|${#numbers.formatInteger(newProductTwo.price, 3, 'COMMA')}원|"
@@ -96,7 +96,7 @@
                     <p class="product_name" th:text="${bestProduct.productName}"></p>
 
                     <div>
-                        <span th:text="|${#numbers.formatInteger(bestProduct.price - bestProduct.price / bestProduct.discount, 3, 'COMMA')}원|"
+                        <span th:text="|${#numbers.formatDecimal(bestProduct.price - bestProduct.discount / 100.00 * bestProduct.price, 0, 0)}원|"
                               th:if="${bestProduct.discount > 0}"></span>
 
                         <span th:text="|${#numbers.formatInteger(bestProduct.price, 3, 'COMMA')}원|"

@@ -1,96 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../header/header.css">
-    <link rel="stylesheet" href="../footer/footer.css">
-    <link rel="stylesheet" href="/user/paymentComplete.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/common/config.css">
+    <link rel="stylesheet" href="/css/common/header.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/user/paymentComplete.css">
+    <title>Goohae</title>
 </head>
 
 <body>
+    <!-- 헤더 -->
+    <header th:replace="common/header :: header"></header>
 
     <main>
-        <section >
+        <section class="information_container">
             <p>주문이 정상적으로 완료되었습니다.</p>
-            <div class="paymentCompleteWrap">
-                <ul>
-                    <li>
-                        <strong>예상 배송일</strong>
-                    </li>
-                    <li>
-                        <strong>수령인</strong>
-                        <strong>번호</strong>
-                        <strong>주소</strong>
-                    </li>
-                    <li>
-                        <strong>주문번호</strong>
-                        <strong>주문자</strong>
-                        <strong>번호</strong>
-                        <strong>아이디</strong>
-                        <strong>이메일</strong>
-                    </li>
-                </ul>
 
-                <ul>
-                    <li>
-                        <span><span>4~5</span>일</span>
-                    </li>
-                    <li>
-                        <span>유정현</span>
-                        <span>010-5421-5350</span>
-                        <span>성남시 중원구 하대원동 성원초원아파트 103동 1107호</span>
-                    </li>
-                    <li>
-                        <span>825353</span>
-                        <span>유정현</span>
-                        <span>010-5421-5350</span>
-                        <span>dbdb1114</span>
-                        <span>dbdb1114@naver.com</span>
-                    </li>
-                </ul>
+            <div class="order_info">
+                <p>주문자 정보</p>
+
                 <div>
+                    <span>주문번호</span>
+                    <span th:text="${orderInfo.orderSeq}"></span>
+                </div>
+
+                <div>
+                    <span>주문자</span>
+                    <span th:text="${user.name}"></span>
+                </div>
+
+                <div>
+                    <span>휴대폰 번호</span>
+                    <span th:text="${user.phoneNumber}"></span>
+                </div>
+
+                <div>
+                    <span>아이디</span>
+                    <span th:text="${user.id}"></span>
                 </div>
             </div>
-            <div class="paymentCompleteInfoWrap">
+
+
+            <div class="receiver_container">
+                <p>배송 정보</p>
+
                 <div>
-                    <img src="../images/icon/HunkerBed1-1.jpg" alt="">
-                    <div>
-                        <p>무헤드 통수납침대</p>
-                        <p>옵션</p>
-                        <div>
-                            <p>기본(+0)</p>
-                            <p>Walnut 색상(+0)</p>
-                        </div>
-                        <p>상품금액: 1,590,000</p>
-                        <p>주문 수량: 1개</p>
-                    </div>
+                    <span>예상 배송일</span>
+                    <span>4 ~ 5일</span>
                 </div>
+
                 <div>
-                    <div>
-                        <span>상품금액</span><span>1,590,000</span>
-                    </div>
-                    <div>
-                        <span>배송비</span><span>25,000</span>
-                    </div>
-                    <div>
-                        <span>할인금액</span><span>0</span>
-                    </div>
-                    <div>
-                        <span>쿠폰 할인</span><span>0</span>
-                    </div>
-                    <div>
-                        <span>최종결제금액</span><span>1,615,000</span>
-                    </div>
+                    <span>수령인</span>
+                    <span th:text="${orderInfo.receiverName}"></span>
+                </div>
+
+                <div>
+                    <span>휴대폰 번호</span>
+                    <span th:text="${orderInfo.phoneNumber}"></span>
+                </div>
+
+                <div>
+                    <span>우편번호</span>
+                    <span th:text="${orderInfo.postNumber}"></span>
+                </div>
+
+                <div>
+                    <span>주소</span>
+                    <span th:text="${orderInfo.address}"></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="productPay_container">
+            <div class="product_box">
+                <p>주문 상품 정보</p>
+
+                <div class="product_info_title">
+                    <span class="img_text">상품 이미지</span>
+                    <span class="pro_text">상품명</span>
+                    <span class="ea_text">수량</span>
+                    <span class="price_text">가격</span>
+                    <span class="dis_text">할인율</span>
+                </div>
+
+                <div class="product" th:each="productInfo : ${productInfo}">
+                    <img class="img_text" th:src="${productInfo.imagePath}">
+                    <span class="pro_text" th:text="${productInfo.productName}"></span>
+                    <span class="ea_text" th:text="${productInfo.productEa}"></span>
+                    <span class="price_text" th:text="|${productInfo.discount > 0 ? #numbers.formatDecimal((productInfo.price - productInfo.discount / 100.00 * productInfo.price) * productInfo.productEa, 0, 0) : productInfo.price * productInfo.productEa}원|"></span>
+                    <span class="dis_text" th:text="|${productInfo.discount}%|"></span>
+                </div>
+            </div>
+
+            <div class="pay_info_box">
+                <p>결제 정보</p>
+
+                <div>
+                    <span>총 상품 금액</span>
+                    <span th:text="|${#numbers.formatInteger(total, 3, 'COMMA')}원|"></span>  <!-- 원래 컨트롤러에서 계산해서 줘야함 -->
+                </div>
+
+                <div>
+                    <span>할인 금액</span>
+                    <span th:text="|${#numbers.formatInteger(disPrice, 3, 'COMMA')}원|"></span>
+                </div>
+
+                <div>
+                    <span>최총 결제 금액</span>
+                    <span th:text="|${#numbers.formatInteger(pay.totalPrice, 3, 'COMMA')}원|"></span>
                 </div>
             </div>
         </section>
     </main>
- 
+
+    <footer th:replace="common/footer :: footer"></footer>
 </body>
 
 </html>

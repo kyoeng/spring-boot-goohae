@@ -65,4 +65,11 @@
         where order_seq = #{orderSeq}
     </select>
 
+    <!-- 주문 정보 가져오기 -->
+    <select id="getOrder" resultType="OrderInfoVO">
+        select *
+        from order_info
+        where order_seq = #{orderSeq}
+    </select>
+
 </mapper>

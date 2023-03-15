@@ -54,4 +54,9 @@ public class OrderServiceImpl implements OrderService{
     public PaymentVO getPay(PaymentVO vo) {
         return orderMapper.getPay(vo);
     }
+
+    @Override
+    public OrderInfoVO getOrder(PaymentVO vo) {
+        return orderMapper.getOrder(vo);
+    }
 }
