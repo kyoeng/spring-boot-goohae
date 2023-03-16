@@ -19,3 +19,12 @@ right.addEventListener('click', function () {
     this.style.visibility = 'hidden';
     left.style.visibility = 'visible';
 });
+
+
+const priceBox = document.getElementsByClassName('price_box1');
+
+$(document).ready(() => {
+    for (let i = 0; i < priceBox.length; i++) {
+        priceBox[i].innerText = priceBox[i].innerText.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+});

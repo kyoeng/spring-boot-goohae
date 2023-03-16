@@ -4,6 +4,7 @@
 const main = document.getElementById('main_img');
 let imgs = document.getElementsByClassName('product_imgs');
 
+
 let selected = imgs[0];
 
 imgs[0].addEventListener('click', (e) => {
@@ -65,3 +66,31 @@ ea_btn[1].addEventListener('click', (e) => {
     ea_box.value = ea;
     price_box.value = price * ea;
 });
+
+
+let cart_btn = document.getElementsByClassName('cart_btn')[0];
+//const ea_box = document.getElementById('productEa');
+//const price_box = document.getElementById('price');
+//const price = Number(price_box.value);
+const product_code = document.getElementsByClassName('productCode')[0];
+
+cart_btn.addEventListener('click', (e) => {
+    $.ajax({
+        type: "post",
+        url: "logined-user/mycart/insert",
+        data: {
+            productCode: product_code.value,
+            productEa: ea_box.value
+        },
+        success: (res) => {
+            if (res.message === 'success') {
+                alert('장바구니에 등록되었습니다.');
+            } else {
+                alert('확인 후 다시 시도해주세요.');
+            }
+        },
+        error: () => {
+            alert('확인 후 다시 시도해주세요.');
+        }
+    });
+})

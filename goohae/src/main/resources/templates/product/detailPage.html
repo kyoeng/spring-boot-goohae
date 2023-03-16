@@ -34,7 +34,7 @@
 
         <!-- 상품 정보 부분 -->
         <form class="detail_info_box" action="/logined-user/order/start" method="get">
-            <input type="hidden" name="productCode" th:value="${product.productCode}">
+            <input type="hidden" name="productCode" class="productCode" th:value="${product.productCode}">
 
             <h3 class="product_name" th:text="${product.productName}"></h3>
 

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -79,18 +81,21 @@ public class CartController {
      * param : productCode
      * param : productEa
      * */
+    @ResponseBody
     @PostMapping(value = "logined-user/mycart/insert")
-    public Model insert(CartVO vo, HttpSession httpSession, Model model){
+    public Map<String, String> insert(CartVO vo, HttpSession httpSession){
+        Map<String, String> map = new LinkedHashMap<>();
+
         if ( cartService.selectOne(vo) != null) {
-            return model.addAttribute("message", "duplicate");
+            map.put("message", "duplicate");
         }
         vo.setUserId((String) httpSession.getAttribute("loginId") );
         if (cartService.insert(vo)>0){
-            model.addAttribute("message","success");
+            map.put("message","success");
         } else {
-            model.addAttribute("message","fail");
+            map.put("message","fail");
         }
-        return model;
+        return map;
     }
 
     @PostMapping(value = "logined-user/mycart/checked-insert")

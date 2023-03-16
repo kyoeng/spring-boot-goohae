@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/common/header.css">
     <link rel="stylesheet" href="/css/common/footer.css">
     <link rel="stylesheet" href="/css/user/paymentComplete.css">
+    <script src="/js/jquery-3.2.1.min.js"></script>
     <title>Goohae</title>
 </head>
 
@@ -90,7 +91,7 @@
                     <img class="img_text" th:src="${productInfo.imagePath}">
                     <span class="pro_text" th:text="${productInfo.productName}"></span>
                     <span class="ea_text" th:text="${productInfo.productEa}"></span>
-                    <span class="price_text" th:text="|${productInfo.discount > 0 ? #numbers.formatDecimal((productInfo.price - productInfo.discount / 100.00 * productInfo.price) * productInfo.productEa, 0, 0) : productInfo.price * productInfo.productEa}원|"></span>
+                    <span class="price_text price_box1" th:text="|${productInfo.discount > 0 ? #numbers.formatDecimal((productInfo.price - productInfo.discount / 100.00 * productInfo.price) * productInfo.productEa, 0, 0) : productInfo.price * productInfo.productEa}원|"></span>
                     <span class="dis_text" th:text="|${productInfo.discount}%|"></span>
                 </div>
             </div>
@@ -115,6 +116,16 @@
             </div>
         </section>
     </main>
+
+    <script>
+        $(document).ready(() => {
+            const priceBox = document.getElementsByClassName('price_box1');
+
+            for (let i = 0; i < priceBox.length; i++) {
+                priceBox[i].innerText = priceBox[i].innerText.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+        });
+    </script>
 
     <footer th:replace="common/footer :: footer"></footer>
 </body>

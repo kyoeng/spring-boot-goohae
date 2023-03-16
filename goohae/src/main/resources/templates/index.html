@@ -44,7 +44,7 @@
 
                         <div>
                             <span th:text="|${#numbers.formatDecimal(newProduct.price - newProduct.discount / 100.00 * newProduct.price, 0, 0)}원|"
-                                  th:if="${newProduct.discount > 0}"></span>
+                                  th:if="${newProduct.discount > 0}" class="price_box1"></span>
 
                             <span th:text="|${#numbers.formatInteger(newProduct.price, 3, 'COMMA')}원|"
                                   th:style="${newProduct.discount > 0 ? 'color:#505dd0; text-decoration:line-through' : ''}"></span>
@@ -66,7 +66,7 @@
 
                         <div>
                             <span th:text="|${#numbers.formatDecimal(newProductTwo.price - newProductTwo.discount / 100.00 * newProductTwo.price, 0, 0)}원|"
-                                  th:if="${newProductTwo.discount > 0}"></span>
+                                  th:if="${newProductTwo.discount > 0}" class="price_box1"></span>
 
                             <span th:text="|${#numbers.formatInteger(newProductTwo.price, 3, 'COMMA')}원|"
                                   th:style="${newProductTwo.discount > 0 ? 'color:#505dd0; text-decoration:line-through' : ''}"></span>
@@ -97,7 +97,7 @@
 
                     <div>
                         <span th:text="|${#numbers.formatDecimal(bestProduct.price - bestProduct.discount / 100.00 * bestProduct.price, 0, 0)}원|"
-                              th:if="${bestProduct.discount > 0}"></span>
+                              th:if="${bestProduct.discount > 0}" class="price_box1"></span>
 
                         <span th:text="|${#numbers.formatInteger(bestProduct.price, 3, 'COMMA')}원|"
                               th:style="${bestProduct.discount > 0 ? 'color:#505dd0; text-decoration:line-through' : ''}"></span>
@@ -141,6 +141,7 @@
 
 <!--        </div>-->
 <!--    </section>-->
+
 
     <footer th:replace="common/footer :: footer"></footer>
 </body>

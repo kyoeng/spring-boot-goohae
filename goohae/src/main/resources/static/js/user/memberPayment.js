@@ -66,6 +66,7 @@ orderBtn.addEventListener('click', function () {
         userId: id,
         receiverName: receiver,
         phoneNumber: phone,
+        postNumber: post,
         address: address,
         memo: memo.value,
         productCode: product_code[0].value,
