@@ -94,7 +94,7 @@
     border: 1px solid silver;
 }
 
-.optionBox form>button {
+.go {
     background-color: black;
     width: 400px;
     height: 60px;
