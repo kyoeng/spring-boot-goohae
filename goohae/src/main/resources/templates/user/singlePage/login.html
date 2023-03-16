@@ -32,10 +32,11 @@
             <div class="loginBody">
                 <div th:if="${message}">
                     <script th:inline="javascript">
-                            alert([[${message}]]);
+                        alert([[${message}]]);
                     </script>
                 </div>
                 <form class='loginIdPwForm' th:action="@{/user/login}" method="post" th:object="${vo}">
+                    <p style="color: #505dd0; font-size: 20px;" th:if="findId != null" th:text="${findId}"></p>
                     <div class="loginInputContainer">
                         <!--아이디 , 비밀번호  최소 글자 안정함...-->
                         <input type="text" id="loginId" class="loginInput" name="id" autofocus required
@@ -43,13 +44,13 @@
                         <input type="password" id="loginPw" class="loginInput" name="password" autoFocus required
                                placeholder="비밀번호"/>
                     </div>
-<!--                    <div class="idCheck">-->
-<!--                        <input type="idCheckbox" class="idCheckInput" name="loginCheck"/>-->
-<!--                        <p>아이디저장</p>-->
-<!--                    </div>-->
+                    <!--                    <div class="idCheck">-->
+                    <!--                        <input type="idCheckbox" class="idCheckInput" name="loginCheck"/>-->
+                    <!--                        <p>아이디저장</p>-->
+                    <!--                    </div>-->
 
                     <div class="errorMassageBox">
-<!--                        <p th:if="${message!=null}" th:text="${message}" class="loginError"></p>-->
+                        <!--                        <p th:if="${message!=null}" th:text="${message}" class="loginError"></p>-->
                         <p class="noneDisplay errormsg">아이디를 입력해주세요</p>
                         <p class="noneDisplay errormsg">비밀번호를 입력해주세요</p>
                     </div>

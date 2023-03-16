@@ -5,7 +5,7 @@
 
 body {
     background-color: #F5F5F5;
-    ;
+;
 }
 
 .container>.findIdHeadListWrap:nth-of-type(1),
@@ -56,7 +56,7 @@ input {
     background: url(../../../stores/images/icon/logo.png) no-repeat center top/contain;
 }
 .findIdHead>.findIdHeadLogo>a{
- display: block;
+    display: block;
     height: 70px;
     width: 200px;
 }
@@ -109,6 +109,7 @@ input {
     text-indent: 12px;
     height: 36px;
     font-size: 1.4rem;
+    width: 320px;
 }
 
 .findIdMain .findIdForm .findIdLabel{
@@ -144,10 +145,6 @@ button{
     align-self: flex-start;
 }
 
-.findIdMain .findIdForm div> .findIdInput {
-    width: 82px;
-    /* margin: 0 10px; */
-}
 
 /* .findIdMain .findIdForm div> .findIdInput:first-of-type {
     margin: 0;
@@ -159,7 +156,7 @@ button{
 } */
 .findIdMain .findIdPhoneWrap,
 .findIdMain .findIEemailWrap{
-    width: 320px;
+    /*width: 320px;*/
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -196,7 +193,7 @@ button{
     text-decoration: underline;
 }
 
- .buttonLogin{
+.buttonLogin{
     background-color: #1A1B23;
 }
 /* =============================================================================================== */

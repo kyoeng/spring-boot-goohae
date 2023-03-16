@@ -11,13 +11,9 @@ const
 
 // --- 미입력 경고 함수들
 function fiNameCheck() {
-    if (fiName.value == "") {
-        errorMassage[0].classList.remove('hidden');
-        fiName.classList.add('redInputBox');
+    if (fiName.value == "" && fiName.value.length<2) {
         return false;
     } else {
-        errorMassage[0].classList.add('hidden');
-        fiName.classList.remove('redInputBox');
         return true;
     }
 }
@@ -37,23 +33,7 @@ function fiNameCheck() {
 //}
 
 function fiMobileCheck() {
-    if ((fiMobile[1].value == "") && (fiMobile[2].value == "")) {
-        errorMassage[2].classList.remove('hidden');
-        for (let i = 0; i < fiMobile.length; i++) {
-            fiMobile[i].classList.add('redInputBox');
-        }
-        return false;
-    } else if (!((fiMobile[1].value.length == "4") && (fiMobile[2].value.length == "4"))) {
-        errorMassage[2].classList.remove('hidden');
-        for (let i = 0; i < fiMobile.length; i++) {
-            fiMobile[i].classList.add('redInputBox');
-        }
-        return false;
-    } else {
-        errorMassage[2].classList.add('hidden');
-        for (let i = 0; i < fiMobile.length; i++) {
-            fiMobile[i].classList.remove('redInputBox');
-        }
+    if (fiMobile[0].value.length == 11) {
         return true;
     }
 }
@@ -76,14 +56,8 @@ function fiMobileCheck() {
 // 버튼 클릭시 각각의 input 조건을 충족하지 못할경우 경고 활성화
 findIdBtn.addEventListener('click', function (e) {
     e.preventDefault();
-    fiNameCheck();
-//    fiEmailCheck();
-    fiMobileCheck();
-//    if (fiNameCheck() && fiEmailCheck() && fiMobileCheck()) {
     if (fiNameCheck() && fiMobileCheck()) {
-        // if (form) {
-            form.submit();
-        // }
+        form.submit();
     }
 });
 

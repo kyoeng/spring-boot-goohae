@@ -121,8 +121,8 @@ public class UserController {
     public String findId(UserVO vo, Model model ,HttpSession httpSession) {
         String id = userService.findId(vo);
         if ( id != null){
-            model.addAttribute("id",id);
-            return "user/login";
+            model.addAttribute("findId",id);
+            return "user/singlePage/login";
         } else {
             httpSession.setAttribute("message", "잘못된 정보입니다.");
             return "user/singlePage/findId";
@@ -157,6 +157,7 @@ public class UserController {
 
     @PostMapping(value = "user/updatePw")
     public String chagePw(UserVO vo, HttpSession httpSession,String id) {
+        vo.setPassword(passwordEncoder.encode(vo.getPassword()));
         if (userService.changePassword(vo)>0) {
             httpSession.setAttribute("message", "success");
             log.info("succcess");
@@ -227,16 +228,16 @@ public class UserController {
      * param : phoneNumber
      * */
     @PostMapping (value = "logined-user/myinfo/update")
-            public String update (  HttpSession httpSession, UserVO vo ) {
-                vo.setId((String) httpSession.getAttribute("loginId"));
-                vo.setPassword(passwordEncoder.encode(vo.getPassword()));
-                if(userService.update(vo)>0){
-                    httpSession.setAttribute("message", "success");
-                    return "/user/myPage/myPage";
-                } else {
-                    httpSession.setAttribute("message", "fail");
-                    return "/user/myPage/memberInfo";
-                }
+    public String update (  HttpSession httpSession, UserVO vo ) {
+        vo.setId((String) httpSession.getAttribute("loginId"));
+        vo.setPassword(passwordEncoder.encode(vo.getPassword()));
+        if(userService.update(vo)>0){
+            httpSession.setAttribute("message", "success");
+            return "/user/myPage/myPage";
+        } else {
+            httpSession.setAttribute("message", "fail");
+            return "/user/myPage/memberInfo";
+        }
     }
 
 }

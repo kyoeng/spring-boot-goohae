@@ -62,8 +62,8 @@
     </select>
 
     <!--  id 찾기  -->
-    <select id="findId" >
-        select id from user where phone_number = #{phoneNum} And name = #{name}
+    <select id="findId" resultType="string">
+        select id from user where phone_number = #{phoneNumber} And name = #{name}
     </select>
 
     <!-- 패스워드 수정 -->
