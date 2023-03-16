@@ -105,8 +105,8 @@ public class CartController {
         } else {
             vo.setUserId((String) httpSession.getAttribute("loginId"));
             mv.setViewName("/user/myPage/shoppingCart");
-            mv.addObject("userCart",cartService.selectList(loginId));
             cartService.checkedInsert(vo);
+            mv.addObject("userCart",cartService.selectList(loginId));
         }
         return mv;
     }
